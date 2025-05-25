@@ -43,6 +43,17 @@ jump={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player"
+2d_render/layer_2="world"
+2d_render/layer_3="enemie"
+2d_render/layer_4="projectile"
+2d_physics/layer_1="player"
+2d_physics/layer_2="world"
+2d_physics/layer_3="enemie"
+2d_physics/layer_4="projectile"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

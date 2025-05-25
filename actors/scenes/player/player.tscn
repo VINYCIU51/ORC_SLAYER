@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://40gmnjaj1r8i"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://dmqenpk6svmco" path="res://assets/characters/Soldier/Soldier-Walk.png" id="2_33vod"]
-[ext_resource type="Texture2D" uid="uid://b8j4vobdvqfcv" path="res://assets/characters/Soldier/Soldier-Attack03.png" id="3_er1rk"]
-[ext_resource type="Texture2D" uid="uid://cur0yushb4dy4" path="res://assets/characters/Soldier/Soldier-Attack01.png" id="4_e7yfm"]
-[ext_resource type="Texture2D" uid="uid://cnr3yfkb3d0x4" path="res://assets/characters/Soldier/Soldier-Death.png" id="5_ua707"]
-[ext_resource type="Texture2D" uid="uid://vfj746c5o1jq" path="res://assets/characters/Soldier/jump.png" id="6_41w2c"]
-[ext_resource type="Texture2D" uid="uid://ihvaf7t86mt0" path="res://assets/characters/Soldier/Soldier-Idle.png" id="7_rkwqa"]
+[ext_resource type="Texture2D" uid="uid://phpvwn6wbw24" path="res://assets/characters/Soldier/Soldier-Walk.png" id="2_33vod"]
+[ext_resource type="Texture2D" uid="uid://bvsafqmxs4m76" path="res://assets/characters/Soldier/Soldier-Attack03.png" id="3_er1rk"]
+[ext_resource type="Texture2D" uid="uid://d0dvckcisac5u" path="res://assets/characters/Soldier/Soldier-Attack01.png" id="4_e7yfm"]
+[ext_resource type="Texture2D" uid="uid://b1kc1h7i52p6p" path="res://assets/characters/Soldier/Soldier-Death.png" id="5_ua707"]
+[ext_resource type="Texture2D" uid="uid://8ef4yvlph4nm" path="res://assets/characters/Soldier/jump.png" id="6_41w2c"]
+[ext_resource type="Texture2D" uid="uid://di1bn7x1gccrv" path="res://assets/characters/Soldier/Soldier-Idle.png" id="7_rkwqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
 size = Vector2(11.5, 20)
@@ -147,7 +147,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tue77"]
-load_path = "res://.godot/imported/Soldier-Hurt.png-deef0c7fed9a85c3808e9ea11a735a14.ctex"
 
 [sub_resource type="Animation" id="Animation_m2gb2"]
 resource_name = "hurt"
@@ -325,6 +324,7 @@ _data = {
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
+collision_mask = 2
 script = ExtResource("1_33vod")
 
 [node name="Camera2D" type="Camera2D" parent="."]
