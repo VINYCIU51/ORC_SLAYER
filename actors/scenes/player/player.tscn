@@ -333,9 +333,8 @@ zoom = Vector2(3, 3)
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("3_er1rk")
-hframes = 9
-frame = 6
+texture = ExtResource("7_rkwqa")
+hframes = 6
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, 0)
