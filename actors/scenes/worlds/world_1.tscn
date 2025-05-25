@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://40gmnjaj1r8i" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
 [ext_resource type="Texture2D" uid="uid://fpd38xv5afhx" path="res://assets/maps/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_uyb46"]
-[ext_resource type="Texture2D" uid="uid://b30j52y5iedta" path="res://assets/maps/Dungeon Tile Set.png" id="3_uyb46"]
+[ext_resource type="Texture2D" uid="uid://b30j52y5iedta" path="res://assets/maps/Dungeon.png" id="3_uyb46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jltjs"]
 texture = ExtResource("2_uyb46")
