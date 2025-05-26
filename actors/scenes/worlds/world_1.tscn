@@ -8,11 +8,11 @@
 
 [node name="player" parent="." instance=ExtResource("1_ie2gg")]
 
-[node name="slime" parent="." instance=ExtResource("1_ebjk8")]
-position = Vector2(473, -11)
-
-[node name="slime2" parent="." instance=ExtResource("1_ebjk8")]
-position = Vector2(370, -13)
-
 [node name="level-1" parent="." instance=ExtResource("3_uyb46")]
 position = Vector2(0, -95)
+
+[node name="slime" parent="." instance=ExtResource("1_ebjk8")]
+position = Vector2(478, -10)
+
+[node name="slime2" parent="." instance=ExtResource("1_ebjk8")]
+position = Vector2(323, 5)
