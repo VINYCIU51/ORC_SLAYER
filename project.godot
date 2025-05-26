@@ -51,8 +51,9 @@ jump={
 2d_render/layer_4="projectile"
 2d_physics/layer_1="player"
 2d_physics/layer_2="world"
-2d_physics/layer_3="enemie"
+2d_physics/layer_3="enemies"
 2d_physics/layer_4="projectile"
+2d_physics/layer_5="hitbox"
 
 [rendering]
 

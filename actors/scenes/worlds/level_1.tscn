@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciufv6k15ylsn"]
+[gd_scene load_steps=4 format=4 uid="uid://j8aehi716jrh"]
 
 [ext_resource type="Texture2D" uid="uid://1hpjt3yd4wm4" path="res://assets/maps/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_3umed"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hb6hn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3umed"]
 texture = ExtResource("1_3umed")
 3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:1/0 = 0
 3:2/0 = 0
 4:2/0 = 0
@@ -45,12 +43,13 @@ texture = ExtResource("1_3umed")
 5:6/0 = 0
 4:8/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_qv50g"]
+[sub_resource type="TileSet" id="TileSet_hb6hn"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 5
-sources/0 = SubResource("TileSetAtlasSource_hb6hn")
+sources/0 = SubResource("TileSetAtlasSource_3umed")
 
-[node name="level-1" type="TileMap"]
-tile_set = SubResource("TileSet_qv50g")
-format = 2
-layer_0/tile_data = PackedInt32Array(65536, 262144, 1, 65537, 262144, 1, 65538, 262144, 1, 65539, 262144, 1, 65540, 262144, 1, 65541, 262144, 1, 65542, 262144, 1, 65543, 262144, 1, 65544, 262144, 1, 65545, 262144, 1, 65546, 262144, 1, 65547, 262144, 1, 131084, 262144, 1, 131085, 262144, 1, 131086, 262144, 1, 131087, 262144, 1, 131088, 262144, 1, 131089, 262144, 1, 131090, 262144, 1, 131091, 262144, 1, 65555, 262144, 1, 65556, 262144, 1, 65557, 262144, 1, 65558, 262144, 1, 65559, 262144, 1, 65560, 262144, 1, 65561, 262144, 1, 65562, 262144, 1, 65563, 262144, 1, 65564, 262144, 1, 65565, 262144, 1, 65566, 262144, 1, 65567, 262144, 1, 65568, 262144, 1, 65569, 262144, 1, 65570, 262144, 1, 65571, 262144, 1, 65572, 262144, 1, 65573, 262144, 1, 65574, 262144, 1, 65575, 262144, 1, 65576, 262144, 1, 65577, 262144, 1, 65578, 262144, 1)
+[node name="level-1" type="Node2D"]
+
+[node name="ground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAYAAAAEAAEAAAABAAYAAAAEAAEAAAACAAYAAAAEAAEAAAADAAYAAAAEAAEAAAAEAAYAAAAEAAEAAAAFAAYAAAAEAAEAAAAGAAYAAAAEAAEAAAAHAAYAAAAEAAEAAAAIAAYAAAAEAAEAAAAJAAYAAAAEAAEAAAAKAAYAAAAEAAEAAAALAAYAAAAEAAEAAAAMAAYAAAAEAAEAAAANAAcAAAAEAAEAAAAOAAcAAAAEAAEAAAAPAAcAAAAEAAEAAAAQAAcAAAAEAAEAAAARAAcAAAAEAAEAAAASAAcAAAAEAAEAAAATAAcAAAAEAAEAAAAUAAcAAAAEAAEAAAAVAAcAAAAEAAEAAAAWAAcAAAAEAAEAAAAXAAcAAAAEAAEAAAAYAAcAAAAEAAEAAAAZAAcAAAAEAAEAAAAaAAcAAAAEAAEAAAAbAAcAAAAEAAEAAAAcAAcAAAAEAAEAAAAdAAYAAAAEAAEAAAAeAAYAAAAEAAEAAAAfAAYAAAAEAAEAAAAgAAYAAAAEAAEAAAAhAAYAAAAEAAEAAAAiAAYAAAAEAAEAAAAjAAYAAAAEAAEAAAAkAAYAAAAEAAEAAAAlAAYAAAAEAAEAAAAmAAYAAAAEAAEAAAAnAAYAAAAEAAEAAAA=")
+tile_set = SubResource("TileSet_hb6hn")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bd26662oj1fs8" path="res://actors/scenes/enemies/slime.tscn" id="1_ebjk8"]
 [ext_resource type="PackedScene" uid="uid://40gmnjaj1r8i" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
-[ext_resource type="PackedScene" uid="uid://ciufv6k15ylsn" path="res://actors/scenes/worlds/level_1.tscn" id="3_uyb46"]
+[ext_resource type="PackedScene" uid="uid://j8aehi716jrh" path="res://actors/scenes/worlds/level_1.tscn" id="3_uyb46"]
 
 [node name="world-1" type="Node2D"]
 
@@ -11,6 +11,8 @@
 [node name="slime" parent="." instance=ExtResource("1_ebjk8")]
 position = Vector2(473, -11)
 
+[node name="slime2" parent="." instance=ExtResource("1_ebjk8")]
+position = Vector2(370, -13)
+
 [node name="level-1" parent="." instance=ExtResource("3_uyb46")]
-position = Vector2(-1, -16)
-layer_0/tile_data = PackedInt32Array(65536, 196608, 1, 65537, 196608, 1, 65538, 196608, 1, 65539, 196608, 1, 65540, 196608, 1, 65541, 196608, 1, 65542, 196608, 1, 65543, 196608, 1, 65544, 196608, 1, 65545, 196608, 1, 65546, 196608, 1, 65547, 196608, 1, 131084, 196608, 1, 131085, 196608, 1, 131086, 196608, 1, 131087, 196608, 1, 131088, 196608, 1, 131089, 196608, 1, 131090, 196608, 1, 131091, 196608, 1, 65555, 196608, 1, 65556, 196608, 1, 65557, 196608, 1, 65558, 196608, 1, 65559, 196608, 1, 65560, 196608, 1, 65561, 196608, 1, 65562, 196608, 1, 65563, 196608, 1, 65564, 196608, 1, 65565, 196608, 1, 65566, 196608, 1, 65567, 196608, 1, 65568, 196608, 1, 65569, 196608, 1, 65570, 196608, 1, 65571, 196608, 1, 65572, 196608, 1, 65573, 196608, 1, 65574, 196608, 1, 65575, 196608, 1, 65576, 196608, 1, 65577, 196608, 1, 65578, 196608, 1)
+position = Vector2(0, -95)
