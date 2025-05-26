@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
+@onready var animation := $animation as AnimationPlayer
+
 const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
 const SPEED := 250
 const DEATH_HEIGHT := 1000
 
-var life := 2
+var life := 3
+var is_dead := false
 
 var jump_height := 64
 var time_to_top_height := 0.5
@@ -15,6 +18,7 @@ var air_friction := 0.4
 
 var direction
 
+var taked_damage = false
 var is_jumping = false
 var is_attacking = false
 
@@ -26,9 +30,15 @@ func _ready():
 
 func _physics_process(delta):
 	
+	# Reinicia caso o boneco caia no limbo
 	if global_position.y > DEATH_HEIGHT:
-		die()
+		fall_out()
 
+	if is_dead:
+		if $animation.is_playing():
+			velocity.x = 0
+		return
+		
 	# Atualiza direção
 	direction = Input.get_axis("move_left", "move_right")
 	velocity.x = direction * SPEED
@@ -52,6 +62,7 @@ func _physics_process(delta):
 		else:
 			velocity.y += fall_gravity * delta
 
+
 	# Impede interrupções de Ataques
 	if is_attacking:
 		velocity.x = 0
@@ -64,6 +75,13 @@ func _physics_process(delta):
 	if is_jumping:
 		if not $animation.is_playing() and is_on_floor():
 			is_jumping = false
+		move_and_slide()
+		return
+		
+	if taked_damage:
+		velocity.x = 0
+		if not $animation.is_playing():
+			taked_damage = false
 		move_and_slide()
 		return
 
@@ -85,8 +103,24 @@ func _physics_process(delta):
 	move_and_slide()
 
 # Função para reiniciar após a morte
-func die():
+func fall_out():
 	get_tree().reload_current_scene()
+	
+# Funçao que gerencia o dano e a morte do personagem
+func take_damage():
+	taked_damage = true
+	life -= 1
+	
+	if is_dead:
+		return
+	
+	if life > 0:
+		animation.play("hurt")
+		return
+		
+	animation.play("die")
+	is_dead = true
+	
 
 # Função que atira as flechas
 func shoot_arrow(direct):
