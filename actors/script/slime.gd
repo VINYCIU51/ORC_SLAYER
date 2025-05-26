@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
+@onready var animation := $animation as AnimationPlayer
 @onready var wall_detection := $wall_detector as RayCast2D
+
 var direction := -1
 const SPEED = 50.0
 
@@ -14,7 +16,11 @@ func _physics_process(delta: float) -> void:
 		$sprite.flip_h = false if direction == -1 else true
 		wall_detection.target_position.x = direction * abs(wall_detection.target_position.x)
 		
-	$animation.play("walk")
 	velocity.x = direction * SPEED
 
 	move_and_slide()
+
+
+func _on_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "die":
+		queue_free()
