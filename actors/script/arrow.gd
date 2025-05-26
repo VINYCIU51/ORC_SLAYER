@@ -1,8 +1,7 @@
-extends Area2D
+extends CharacterBody2D
 
 const SPEED := 280
 
-var velocity := Vector2.ZERO
 var direction := 1
 
 func _ready() -> void:
