@@ -169,14 +169,15 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft43y"]
-size = Vector2(11, 11)
+size = Vector2(19, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_huaw6"]
-size = Vector2(24, 12)
+size = Vector2(24, 13)
 
 [node name="slime" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
-collision_mask = 6
+collision_mask = 22
+slide_on_ceiling = false
 script = ExtResource("1_rjbn8")
 
 [node name="animation" type="AnimationPlayer" parent="."]
@@ -186,7 +187,7 @@ libraries = {
 autoplay = "walk"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 5.5)
+position = Vector2(1.5, 5)
 shape = SubResource("RectangleShape2D_ft43y")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -195,14 +196,14 @@ texture = ExtResource("2_4pt07")
 [node name="wall_detector" type="RayCast2D" parent="."]
 light_mask = 4
 position = Vector2(0, 4)
-target_position = Vector2(-12, 0)
+scale = Vector2(1.00508, 1)
+target_position = Vector2(-12.9343, 0)
 collision_mask = 6
-collide_with_areas = true
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
 
 [node name="collision-2" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(1, 4)
+position = Vector2(1, 4.5)
 shape = SubResource("RectangleShape2D_huaw6")
 debug_color = Color(1, 0.00696271, 0.0518057, 0.42)
 

@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var animation := $animation as AnimationPlayer
 @onready var wall_detection := $wall_detector as RayCast2D
 
+var life := 1
+var is_dead := false
+
 var direction := -1
 const SPEED = 50.0
 
@@ -19,6 +22,19 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED
 
 	move_and_slide()
+	
+func take_damage():
+	life -= 1
+	
+	if is_dead:
+		return
+	
+	if life > 0:
+		animation.play("hurt")
+		return
+		
+	animation.play("die")
+	is_dead = true
 
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:
