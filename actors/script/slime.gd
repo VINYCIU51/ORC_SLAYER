@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 var life := 1
 var is_dead := false
+var taked_damage = false
 
 var direction := -1
 const SPEED = 50.0
@@ -20,10 +21,18 @@ func _physics_process(delta: float) -> void:
 		wall_detection.target_position.x = direction * abs(wall_detection.target_position.x)
 		
 	velocity.x = direction * SPEED
+	
+	if taked_damage:
+		velocity.x = 0
+		if not animation.is_playing():
+			taked_damage = false
+		move_and_slide()
+		return
 
 	move_and_slide()
 	
 func take_damage(damage: int):
+	taked_damage = true
 	life -= damage
 	
 	if is_dead:
