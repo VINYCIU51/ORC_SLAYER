@@ -8,6 +8,7 @@ const DEATH_HEIGHT := 1000
 
 var life := 3
 var is_dead := false
+const SWORD_DAMAGE := 2
 
 var jump_height := 64
 var time_to_top_height := 0.5
@@ -130,3 +131,8 @@ func shoot_arrow(direct):
 	add_sibling(arrow_instance) # Gera ela com base no mundo
 	arrow_instance.set_direction(direct) # Define a direção
 	arrow_instance.position = $arrow_point.global_position # Inicia no ponto definido (arco)
+
+
+func _on_melee_body_entered(body: Node2D):
+	if body.is_in_group("enemies"):
+		body.take_damage(SWORD_DAMAGE)
