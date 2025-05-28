@@ -1,69 +1,132 @@
 extends CharacterBody2D
 
-const SPEED = 400.0
-const JUMP_VELOCITY = -400.0
-const DEATH_HEIGHT = 1400.0
+@onready var animation := $animation as AnimationPlayer
 
-@onready var animation: AnimationPlayer = $animation
-@onready var sprite: Sprite2D = $sprite
+const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
+const SPEED := 250
+const DEATH_HEIGHT := 1000
 
-var direction = Vector2.ZERO
+var life := 3
+var is_dead := false
+
+var jump_height := 64
+var time_to_top_height := 0.5
+var jump_velocity
+var gravity
+var fall_gravity
+var air_friction := 0.4
+
+var direction
+
+var taked_damage = false
+var is_jumping = false
 var is_attacking = false
+
+# DEFINE AS VARIAVEIS DE SALTO NO INICIO
+func _ready():
+	jump_velocity = (jump_height*2) / time_to_top_height
+	gravity = (jump_height * 2) / pow(time_to_top_height,2)
+	fall_gravity = gravity * 2
 
 func _physics_process(delta):
 	
-# MORRE CASO CAIA NESTA AREA
+	# Reinicia caso o boneco caia no limbo
 	if global_position.y > DEATH_HEIGHT:
-		die()
+		fall_out()
+
+	if is_dead:
+		if animation.is_playing():
+			velocity.x = 0
+		return
+		
+	# Atualiza direção
+	direction = Input.get_axis("move_left", "move_right")
+	velocity.x = direction * SPEED
 	
+	# Inverte sprite conforme direção
+	if direction != 0 and not is_attacking:
+		$sprite.flip_h = direction < 0
+		if sign($arrow_point.position.x) != direction:
+			$arrow_point.position.x *= -1
+
+	# Pulo
+	if Input.is_action_pressed("jump") and is_on_floor():
+		velocity.y = -jump_velocity
+		animation.play("jump")
+		is_jumping = true
+
+	# Aplica gravidade
+	if not is_on_floor():
+		if Input.is_action_pressed("jump") and velocity.y < 0:
+			velocity.y += gravity * delta
+		else:
+			velocity.y += fall_gravity * delta
+
+
+	# Impede interrupções de Ataques
 	if is_attacking:
-		# IMPEDE QUE OUTRAS ANIMAÇÕES ATRAPALHEM AS DE ATAQUE
+		velocity.x = 0
 		if not animation.is_playing():
 			is_attacking = false
 		move_and_slide()
 		return
-	
-	# APLICA A GRAVIDADE
-	if not is_on_floor():
-		velocity.y += get_gravity().y * delta
-	else:
-		if velocity.x == 0: 
-			animation.play("idle")
-	
-# EFETUA O SALTO
-	if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		animation.play("jump")    
 
-# EFETUA O MOVIMENTO DO PERSONAGEM
-	if Input.is_key_pressed(KEY_D):
-		direction.x = 1 
-		sprite.flip_h = false
-	elif Input.is_key_pressed(KEY_A): 
-		direction.x = -1
-		sprite.flip_h = true
-	else:
-		direction.x = 0
-
-# MOVIMENTO
-	velocity.x = direction.x * SPEED
-
-# APLICA A ANIMAÇÃO DE CAMINHAR
-	if is_on_floor() and direction.x != 0:
-		animation.play("walk")
-
-# EFETUA OS ATAQUES DE ESPADA E FLECHA
-	if is_on_floor() and Input.is_action_just_pressed("left_click"):
+	# Impede interrupções de Saltos
+	if is_jumping:
+		if not animation.is_playing() and is_on_floor():
+			is_jumping = false
+		move_and_slide()
+		return
+		
+	if taked_damage:
 		velocity.x = 0
+		if not animation.is_playing():
+			taked_damage = false
+		move_and_slide()
+		return
+
+	# Define animação com prioridade
+	if direction != 0:
+		animation.play("walk")
+	else:
+		animation.play("idle")
+
+	# Ativa animações de Ataques
+	if is_on_floor() and Input.is_action_just_pressed("left_click"):
 		is_attacking = true
 		animation.play("atack")
-		
-	if is_on_floor() and Input.is_action_just_pressed("right_click"):
-		velocity.x = 0
+	elif is_on_floor() and Input.is_action_just_pressed("right_click"):
 		is_attacking = true
+		shoot_arrow(sign($arrow_point.position.x))
 		animation.play("arrow")
 
 	move_and_slide()
 
-func die():
+# Função para reiniciar após a morte
+func fall_out():
 	get_tree().reload_current_scene()
+	
+# Funçao que gerencia o dano e a morte do personagem
+func take_damage():
+	taked_damage = true
+	life -= 1
+	
+	if is_dead:
+		return
+	
+	if life > 0:
+		animation.play("hurt")
+		return
+		
+	animation.play("die")
+	is_dead = true
+	
+
+# Função que atira as flechas
+func shoot_arrow(direct):
+	await get_tree().create_timer(0.5).timeout # Time para sincronizar com a animação
+	
+	var arrow_instance = ARROW.instantiate() # Instância a flecha
+	add_sibling(arrow_instance) # Gera ela com base no mundo
+	arrow_instance.set_direction(direct) # Define a direção
+	arrow_instance.position = $arrow_point.global_position # Inicia no ponto definido (arco)
