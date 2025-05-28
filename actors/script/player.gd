@@ -35,7 +35,7 @@ func _physics_process(delta):
 		fall_out()
 
 	if is_dead:
-		if $animation.is_playing():
+		if animation.is_playing():
 			velocity.x = 0
 		return
 		
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	# Pulo
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = -jump_velocity
-		$animation.play("jump")
+		animation.play("jump")
 		is_jumping = true
 
 	# Aplica gravidade
@@ -66,39 +66,39 @@ func _physics_process(delta):
 	# Impede interrupções de Ataques
 	if is_attacking:
 		velocity.x = 0
-		if not $animation.is_playing():
+		if not animation.is_playing():
 			is_attacking = false
 		move_and_slide()
 		return
 
 	# Impede interrupções de Saltos
 	if is_jumping:
-		if not $animation.is_playing() and is_on_floor():
+		if not animation.is_playing() and is_on_floor():
 			is_jumping = false
 		move_and_slide()
 		return
 		
 	if taked_damage:
 		velocity.x = 0
-		if not $animation.is_playing():
+		if not animation.is_playing():
 			taked_damage = false
 		move_and_slide()
 		return
 
 	# Define animação com prioridade
 	if direction != 0:
-		$animation.play("walk")
+		animation.play("walk")
 	else:
-		$animation.play("idle")
+		animation.play("idle")
 
 	# Ativa animações de Ataques
 	if is_on_floor() and Input.is_action_just_pressed("left_click"):
 		is_attacking = true
-		$animation.play("atack")
+		animation.play("atack")
 	elif is_on_floor() and Input.is_action_just_pressed("right_click"):
 		is_attacking = true
 		shoot_arrow(sign($arrow_point.position.x))
-		$animation.play("arrow")
+		animation.play("arrow")
 
 	move_and_slide()
 
