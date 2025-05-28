@@ -23,8 +23,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-func take_damage():
-	life -= 1
+func take_damage(damage: int):
+	life -= damage
 	
 	if is_dead:
 		return
