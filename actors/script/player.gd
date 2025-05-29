@@ -30,7 +30,6 @@ func _ready():
 	fall_gravity = gravity * 2
 
 func _physics_process(delta):
-	
 	# Reinicia caso o boneco caia no limbo
 	if global_position.y > DEATH_HEIGHT:
 		fall_out()
@@ -49,9 +48,10 @@ func _physics_process(delta):
 		$sprite.flip_h = direction < 0
 		if sign($arrow_point.position.x) != direction:
 			$arrow_point.position.x *= -1
+			$melee.position.x *= -1
 
 	# Pulo
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor() and not is_attacking:
 		velocity.y = -jump_velocity
 		animation.play("jump")
 		is_jumping = true
