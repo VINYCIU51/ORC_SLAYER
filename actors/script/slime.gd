@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animation := $animation as AnimationPlayer
 @onready var wall_detection := $wall_detector as RayCast2D
 
-var life := 1
+var life := 3
 var is_dead := false
 var taked_damage = false
 
@@ -43,6 +43,7 @@ func take_damage(damage: int):
 		return
 		
 	animation.play("die")
+	remove_from_group("enemies")
 	is_dead = true
 
 
