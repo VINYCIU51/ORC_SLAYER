@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di36nuyh1dumg"]
 
 [ext_resource type="Script" uid="uid://dw0q2c0hap3yb" path="res://actors/script/arrow.gd" id="1_yi3td"]
-[ext_resource type="Texture2D" uid="uid://bvh3on5pxohtn" path="res://assets/characters/Arrow(projectile)/Arrow01(32x32).png" id="2_7k75j"]
+[ext_resource type="Texture2D" uid="uid://c8ffo0yd088gh" path="res://assets/characters/Arrow(projectile)/Arrow01(32x32).png" id="2_7k75j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
 size = Vector2(17, 7)
@@ -14,6 +14,7 @@ script = ExtResource("1_yi3td")
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_ql5rp")
+debug_color = Color(0.625242, 0.532028, 1.92523e-07, 0.42)
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_7k75j")
