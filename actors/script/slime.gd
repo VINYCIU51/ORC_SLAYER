@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 	if wall_detection.is_colliding():
 		direction *= -1
-		$sprite.flip_h = false if direction == -1 else true
+		$sprite.flip_h = direction > 0
 		wall_detection.target_position.x = direction * abs(wall_detection.target_position.x)
 		
 	velocity.x = direction * SPEED
@@ -28,6 +28,9 @@ func _physics_process(delta: float) -> void:
 			taked_damage = false
 		move_and_slide()
 		return
+		
+	if direction != 0:
+		animation.play("walk")
 
 	move_and_slide()
 	
