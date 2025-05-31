@@ -41,6 +41,14 @@ func _physics_process(delta):
 			velocity.x = 0
 		return
 		
+	if is_invencible:
+		invencible_timer -= delta
+		$sprite.visible = int(invencible_timer * 10) % 2 == 0
+		
+		if invencible_timer <= 0.0:
+			is_invencible = false
+			$sprite.visible = true
+		
 	# Atualiza direção
 	direction = Input.get_axis("move_left", "move_right")
 	velocity.x = direction * SPEED
@@ -58,14 +66,13 @@ func _physics_process(delta):
 		animation.play("jump")
 		is_jumping = true
 
-	# Aplica gravidade
+	# Aplica gravidade do pulo
 	if not is_on_floor():
 		if Input.is_action_pressed("jump") and velocity.y < 0:
 			velocity.y += gravity * delta
 		else:
 			velocity.y += fall_gravity * delta
-
-
+			
 	# Impede interrupções de Ataques
 	if is_attacking:
 		velocity.x = 0
@@ -88,14 +95,6 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
-	if is_invencible:
-		invencible_timer -= delta
-		
-		if invencible_timer <= 0.0:
-			is_invencible = false
-			
-		return
-
 	# Define animação com prioridade
 	if direction != 0:
 		animation.play("walk")
@@ -110,7 +109,7 @@ func _physics_process(delta):
 		is_attacking = true
 		shoot_arrow(sign($arrow_point.position.x))
 		animation.play("arrow")
-
+		
 	move_and_slide()
 
 # Função para reiniciar após a morte
