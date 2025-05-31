@@ -5,23 +5,25 @@ extends CharacterBody2D
 const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
 const SPEED := 250
 const DEATH_HEIGHT := 1000
+const SWORD_DAMAGE := 2
+const INVENCIBLE_DURATION := 2.5
 
 var life := 3
 var is_dead := false
-const SWORD_DAMAGE := 2
 
 var jump_height := 64
 var time_to_top_height := 0.5
 var jump_velocity
 var gravity
 var fall_gravity
-var air_friction := 0.4
+var invencible_timer := 0.0
 
 var direction
 
-var taked_damage = false
-var is_jumping = false
-var is_attacking = false
+var is_invencible := false
+var taked_damage := false
+var is_jumping := false
+var is_attacking := false
 
 # DEFINE AS VARIAVEIS DE SALTO NO INICIO
 func _ready():
@@ -85,6 +87,14 @@ func _physics_process(delta):
 			taked_damage = false
 		move_and_slide()
 		return
+		
+	if is_invencible:
+		invencible_timer -= delta
+		
+		if invencible_timer <= 0.0:
+			is_invencible = false
+			
+		return
 
 	# Define animação com prioridade
 	if direction != 0:
@@ -109,11 +119,14 @@ func fall_out():
 	
 # Funçao que gerencia o dano e a morte do personagem
 func take_damage():
-	taked_damage = true
-	life -= 1
 	
-	if is_dead:
+	if is_invencible or is_dead:
 		return
+		
+	taked_damage = true
+	is_invencible = true
+	invencible_timer = INVENCIBLE_DURATION
+	life -= 1
 	
 	if life > 0:
 		animation.play("hurt")
