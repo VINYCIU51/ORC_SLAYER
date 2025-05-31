@@ -11,7 +11,7 @@ const INVENCIBLE_DURATION := 2.5
 var life := 3
 var is_dead := false
 
-var jump_height := 64
+var jump_height := 80
 var time_to_top_height := 0.5
 var jump_velocity
 var gravity
