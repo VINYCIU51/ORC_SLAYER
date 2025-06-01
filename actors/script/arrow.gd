@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var wall_collision := $wall_collision as RayCast2D
+
 const SPEED := 280
 const DAMAGE := 1
 
@@ -18,7 +20,14 @@ func set_direction(direct):
 
 # Faz ela se mover
 func _physics_process(delta: float) -> void:
-	position.x += SPEED * delta * direction
+	velocity.x = SPEED * direction
+	
+	if wall_collision.is_colliding():
+		velocity.x = 0
+		velocity.y = 0
+		return
+	
+	move_and_slide()
 
 # Faz ela sumir ao sair da tela
 func _on_visibility_screen_exited() -> void:
