@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 @onready var animation := $animation as AnimationPlayer
+@onready var invencible_timer := $invencible_timer
+@onready var blink_timer := $blink_timer
 
 const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
 const SPEED := 250
 const DEATH_HEIGHT := 1000
 const SWORD_DAMAGE := 2
-const INVENCIBLE_DURATION := 2.5
 
 var life := 3
 var is_dead := false
@@ -16,7 +17,6 @@ var time_to_top_height := 0.5
 var jump_velocity
 var gravity
 var fall_gravity
-var invencible_timer := 0.0
 
 var direction
 
@@ -40,25 +40,15 @@ func _physics_process(delta):
 		if animation.is_playing():
 			velocity.x = 0
 		return
-		
-	if is_invencible:
-		invencible_timer -= delta
-		$sprite.visible = int(invencible_timer * 10) % 2 == 0
-		
-		if invencible_timer <= 0.0:
-			is_invencible = false
-			$sprite.visible = true
-		
+
 	# Atualiza direção
 	direction = Input.get_axis("move_left", "move_right")
-	velocity.x = direction * SPEED
+	if not taked_damage:
+		velocity.x = direction * SPEED
 	
 	# Inverte sprite conforme direção
 	if direction != 0 and not is_attacking:
-		$sprite.flip_h = direction < 0
-		if sign($arrow_point.position.x) != direction:
-			$arrow_point.position.x *= -1
-			$melee.position.x *= -1
+		rotate_player(direction)
 
 	# Pulo
 	if Input.is_action_pressed("jump") and is_on_floor() and not is_attacking:
@@ -96,8 +86,9 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
+	# Impede interrupções da animaçao de dano
 	if taked_damage:
-		velocity.x = 0
+		knockback()
 		if not animation.is_playing():
 			taked_damage = false
 		move_and_slide()
@@ -128,13 +119,11 @@ func fall_out():
 	
 # Funçao que gerencia o dano e a morte do personagem
 func take_damage():
-	
 	if is_invencible or is_dead:
 		return
 		
 	taked_damage = true
-	is_invencible = true
-	invencible_timer = INVENCIBLE_DURATION
+	invencible_mode()
 	life -= 1
 	
 	if life > 0:
@@ -144,6 +133,10 @@ func take_damage():
 	animation.play("die")
 	is_dead = true
 	
+func invencible_mode():
+	is_invencible = true
+	blink_timer.start()
+	invencible_timer.start()
 
 # Função que atira as flechas
 func shoot_arrow(direct, time := 0.5):
@@ -154,7 +147,27 @@ func shoot_arrow(direct, time := 0.5):
 	arrow_instance.set_direction(direct) # Define a direção
 	arrow_instance.position = $arrow_point.global_position # Inicia no ponto definido (arco)
 
+func rotate_player(direction):
+	$sprite.flip_h = direction < 0
+	if sign($arrow_point.position.x) != direction:
+		$arrow_point.position.x *= -1
+		$melee.position.x *= -1
+		
+func knockback():
+	var knock_direction = 1 if $sprite.flip_h else -1
+	velocity.x = knock_direction * 100
+
 
 func _on_melee_body_entered(body: Node2D):
 	if body.is_in_group("enemies"):
 		body.take_damage(SWORD_DAMAGE)
+
+
+func _on_invencible_timer_timeout() -> void:
+	is_invencible = false
+	blink_timer.stop()
+	$sprite.visible = true
+
+
+func _on_blink_timer_timeout() -> void:
+	$sprite.visible = !$sprite.visible 
