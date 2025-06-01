@@ -72,10 +72,18 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 		else:
 			velocity.y += fall_gravity * delta
-			
+	
+	# Tiro de flecha no ar
+	if not is_on_floor() and not is_attacking and Input.is_action_just_pressed("right_click"):
+		is_attacking = true
+		shoot_arrow(sign($arrow_point.position.x), 0.3)
+		animation.play("air_arrow")
+		
 	# Impede interrupções de Ataques
 	if is_attacking:
-		velocity.x = 0
+		if is_on_floor():
+			velocity.x = 0
+			
 		if not animation.is_playing():
 			is_attacking = false
 		move_and_slide()
@@ -105,10 +113,12 @@ func _physics_process(delta):
 	if is_on_floor() and Input.is_action_just_pressed("left_click"):
 		is_attacking = true
 		animation.play("atack")
-	elif is_on_floor() and Input.is_action_just_pressed("right_click"):
+		
+	if is_on_floor() and Input.is_action_just_pressed("right_click"):
 		is_attacking = true
 		shoot_arrow(sign($arrow_point.position.x))
 		animation.play("arrow")
+
 		
 	move_and_slide()
 
@@ -136,8 +146,8 @@ func take_damage():
 	
 
 # Função que atira as flechas
-func shoot_arrow(direct):
-	await get_tree().create_timer(0.5).timeout # Time para sincronizar com a animação
+func shoot_arrow(direct, time := 0.5):
+	await get_tree().create_timer(time).timeout # Time para sincronizar com a animação
 	
 	var arrow_instance = ARROW.instantiate() # Instância a flecha
 	add_sibling(arrow_instance) # Gera ela com base no mundo

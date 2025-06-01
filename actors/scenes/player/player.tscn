@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://gkhbgo55eaaq"]
+[gd_scene load_steps=24 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player.gd" id="1_33vod"]
 [ext_resource type="Texture2D" uid="uid://lf6fcgueybrs" path="res://assets/characters/Soldier/Soldier-Arrow.png" id="2_2fab3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://2bd8ms20p3hq" path="res://assets/characters/Soldier/Soldier-Walk.png" id="7_gdopa"]
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hurtbox.gd" id="8_2fab3"]
 [ext_resource type="Texture2D" uid="uid://d017u7gncc85l" path="res://assets/characters/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://cdplp04nb86o7" path="res://assets/characters/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
 size = Vector2(11.5, 20)
@@ -62,6 +63,58 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.5]
+}
+
+[sub_resource type="Animation" id="Animation_ii4c0"]
+resource_name = "air_arrow"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_wlyqf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.3, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_jglmw"]
@@ -433,6 +486,7 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gruaa"]
 _data = {
 &"RESET": SubResource("Animation_ya2v2"),
+&"air_arrow": SubResource("Animation_ii4c0"),
 &"arrow": SubResource("Animation_jglmw"),
 &"atack": SubResource("Animation_bncfn"),
 &"die": SubResource("Animation_77ki2"),
@@ -450,7 +504,7 @@ size = Vector2(24, 19)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
-collision_mask = 22
+collision_mask = 30
 script = ExtResource("1_33vod")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -459,8 +513,8 @@ zoom = Vector2(3, 3)
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("7_gdopa")
-hframes = 8
+texture = ExtResource("9_wlyqf")
+hframes = 9
 frame = 6
 
 [node name="collision" type="CollisionShape2D" parent="."]
