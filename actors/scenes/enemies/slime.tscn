@@ -250,7 +250,7 @@ texture = ExtResource("2_4pt07")
 light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
-target_position = Vector2(-12.9343, 0)
+target_position = Vector2(-13.9292, 0)
 collision_mask = 6
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
