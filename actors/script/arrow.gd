@@ -4,11 +4,9 @@ extends CharacterBody2D
 
 const SPEED := 280
 const DAMAGE := 1
+const ARROW_DURATION := 3.5
 
 var direction := 1
-
-func _ready() -> void:
-	pass
 
 # Define a direçao da flecha
 func set_direction(direct):
@@ -19,13 +17,17 @@ func set_direction(direct):
 # Faz ela se mover
 func _physics_process(delta: float) -> void:
 	velocity.x = SPEED * direction
+	move_and_slide()
 	
 	if wall_collision.is_colliding():
+		stop_and_disappear()
+	
+func stop_and_disappear():
 		velocity.x = 0
 		velocity.y = 0
-		return
-	
-	move_and_slide()
+		
+		await get_tree().create_timer(ARROW_DURATION).timeout
+		queue_free()
 
 # Faz ela sumir ao sair da tela
 func _on_visibility_screen_exited() -> void:
