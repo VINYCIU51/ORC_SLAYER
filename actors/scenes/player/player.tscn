@@ -1,15 +1,15 @@
 [gd_scene load_steps=24 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://lf6fcgueybrs" path="res://assets/characters/Soldier/Soldier-Arrow.png" id="2_2fab3"]
-[ext_resource type="Texture2D" uid="uid://prvpakhnnx2n" path="res://assets/characters/Soldier/Sword-Attack.png" id="3_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://p2sbkuufhfun" path="res://assets/characters/Soldier/Soldier-Death.png" id="4_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://do6t5lcdiq0f1" path="res://assets/characters/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
-[ext_resource type="Texture2D" uid="uid://dcbsqsih30rdp" path="res://assets/characters/Soldier/Soldier-Idle.png" id="6_un1rg"]
-[ext_resource type="Texture2D" uid="uid://2bd8ms20p3hq" path="res://assets/characters/Soldier/Soldier-Walk.png" id="7_gdopa"]
+[ext_resource type="Texture2D" uid="uid://crae8it34hmqw" path="res://assets/characters/Soldier/Soldier-Arrow.png" id="2_2fab3"]
+[ext_resource type="Texture2D" uid="uid://byasso30bgcbc" path="res://assets/characters/Soldier/Sword-Attack.png" id="3_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://dqfhwpcrow74p" path="res://assets/characters/Soldier/Soldier-Death.png" id="4_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://dxs8ce8igtfgq" path="res://assets/characters/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://bk77sgxxk30ts" path="res://assets/characters/Soldier/Soldier-Idle.png" id="6_un1rg"]
+[ext_resource type="Texture2D" uid="uid://hqowhiwlika" path="res://assets/characters/Soldier/Soldier-Walk.png" id="7_gdopa"]
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hurtbox.gd" id="8_2fab3"]
-[ext_resource type="Texture2D" uid="uid://d017u7gncc85l" path="res://assets/characters/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://cdplp04nb86o7" path="res://assets/characters/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://xhs5s5xbj6lu" path="res://assets/characters/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://3bnqx2f2m2pm" path="res://assets/characters/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
 size = Vector2(11.5, 20)

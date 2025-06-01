@@ -150,7 +150,7 @@ func shoot_arrow(direct, time := 0.5):
 	await get_tree().create_timer(time).timeout # Time para sincronizar com a animação
 	
 	var arrow_instance = ARROW.instantiate() # Instância a flecha
-	add_sibling(arrow_instance) # Gera ela com base no mundo
+	add_sibling(arrow_instance, true) # Gera ela com base no mundo
 	arrow_instance.set_direction(direct) # Define a direção
 	arrow_instance.position = $arrow_point.global_position # Inicia no ponto definido (arco)
 

@@ -13,10 +13,8 @@ func _ready() -> void:
 # Define a direçao da flecha
 func set_direction(direct):
 	direction = direct
-	if direction == 1:
-		$sprite.flip_h = false
-	else:
-		$sprite.flip_h = true
+	$sprite.flip_h = direction < 0
+	$wall_collision.target_position.x = $wall_collision.target_position.x * direction
 
 # Faz ela se mover
 func _physics_process(delta: float) -> void:

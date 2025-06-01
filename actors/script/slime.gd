@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	if wall_detection.is_colliding():
 		direction *= -1
 		$sprite.flip_h = direction > 0
-		wall_detection.target_position.x = direction * abs(wall_detection.target_position.x)
+		wall_detection.target_position.x = abs(wall_detection.target_position.x) * direction
 		
 	velocity.x = direction * SPEED
 	
