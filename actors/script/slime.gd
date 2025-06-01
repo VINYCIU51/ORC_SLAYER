@@ -49,7 +49,6 @@ func take_damage(damage: int):
 	remove_from_group("enemies")
 	is_dead = true
 
-
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":
 		queue_free()
