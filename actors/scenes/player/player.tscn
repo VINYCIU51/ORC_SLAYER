@@ -1,14 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://40gmnjaj1r8i"]
+[gd_scene load_steps=24 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://phpvwn6wbw24" path="res://assets/characters/Soldier/Soldier-Walk.png" id="2_33vod"]
-[ext_resource type="Texture2D" uid="uid://pon44w7vt31b" path="res://assets/characters/Soldier/Soldier-Hurt.png" id="2_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://bvsafqmxs4m76" path="res://assets/characters/Soldier/Soldier-Attack03.png" id="3_er1rk"]
-[ext_resource type="Texture2D" uid="uid://d0dvckcisac5u" path="res://assets/characters/Soldier/Soldier-Attack01.png" id="4_e7yfm"]
-[ext_resource type="Texture2D" uid="uid://b1kc1h7i52p6p" path="res://assets/characters/Soldier/Soldier-Death.png" id="5_ua707"]
-[ext_resource type="Texture2D" uid="uid://8ef4yvlph4nm" path="res://assets/characters/Soldier/jump.png" id="6_41w2c"]
-[ext_resource type="Texture2D" uid="uid://di1bn7x1gccrv" path="res://assets/characters/Soldier/Soldier-Idle.png" id="7_rkwqa"]
+[ext_resource type="Texture2D" uid="uid://crae8it34hmqw" path="res://assets/characters/Soldier/Soldier-Arrow.png" id="2_2fab3"]
+[ext_resource type="Texture2D" uid="uid://byasso30bgcbc" path="res://assets/characters/Soldier/Sword-Attack.png" id="3_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://dqfhwpcrow74p" path="res://assets/characters/Soldier/Soldier-Death.png" id="4_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://dxs8ce8igtfgq" path="res://assets/characters/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://bk77sgxxk30ts" path="res://assets/characters/Soldier/Soldier-Idle.png" id="6_un1rg"]
+[ext_resource type="Texture2D" uid="uid://hqowhiwlika" path="res://assets/characters/Soldier/Soldier-Walk.png" id="7_gdopa"]
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hurtbox.gd" id="8_2fab3"]
+[ext_resource type="Texture2D" uid="uid://xhs5s5xbj6lu" path="res://assets/characters/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://3bnqx2f2m2pm" path="res://assets/characters/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
 size = Vector2(11.5, 20)
@@ -39,9 +40,33 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hurtbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
 
-[sub_resource type="Animation" id="Animation_jglmw"]
-resource_name = "arrow"
+[sub_resource type="Animation" id="Animation_ii4c0"]
+resource_name = "air_arrow"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,7 +78,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_er1rk")]
+"values": [ExtResource("9_wlyqf")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -79,6 +104,70 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.3, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jglmw"]
+resource_name = "arrow"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2fab3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5, 1.0]
+}
 
 [sub_resource type="Animation" id="Animation_bncfn"]
 resource_name = "atack"
@@ -93,7 +182,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_e7yfm")]
+"values": [ExtResource("3_n4r3a")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -131,6 +220,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
 
 [sub_resource type="Animation" id="Animation_77ki2"]
 resource_name = "die"
@@ -145,7 +246,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_ua707")]
+"values": [ExtResource("4_wlyqf")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -174,7 +275,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_m2gb2"]
 resource_name = "hurt"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -185,7 +286,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_n4r3a")]
+"values": [ExtResource("5_ii4c0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -206,10 +307,10 @@ tracks/2/path = NodePath("sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.2001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.2001, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 0]
+"values": [0, 1, 2, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_p7c1f"]
@@ -226,7 +327,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_rkwqa")]
+"values": [ExtResource("6_un1rg")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -252,6 +353,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hurtbox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_g4jua"]
 resource_name = "jump"
@@ -266,7 +391,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_41w2c")]
+"values": [ExtResource("8_n4r3a")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -307,7 +432,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_33vod")]
+"values": [ExtResource("7_gdopa")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -331,12 +456,37 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hurtbox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gruaa"]
 _data = {
 &"RESET": SubResource("Animation_ya2v2"),
+&"air_arrow": SubResource("Animation_ii4c0"),
 &"arrow": SubResource("Animation_jglmw"),
 &"atack": SubResource("Animation_bncfn"),
 &"die": SubResource("Animation_77ki2"),
@@ -347,14 +497,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhqle"]
-size = Vector2(20, 22)
+size = Vector2(16, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4r3a"]
-size = Vector2(28, 16)
+size = Vector2(24, 19)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
-collision_mask = 22
+collision_mask = 30
 script = ExtResource("1_33vod")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -363,8 +513,9 @@ zoom = Vector2(3, 3)
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("4_e7yfm")
-hframes = 6
+texture = ExtResource("9_wlyqf")
+hframes = 9
+frame = 6
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, 0)
@@ -374,7 +525,7 @@ shape = SubResource("RectangleShape2D_31m4k")
 libraries = {
 &"": SubResource("AnimationLibrary_gruaa")
 }
-speed_scale = 1.1
+speed_scale = 1.5
 
 [node name="arrow_point" type="Marker2D" parent="."]
 position = Vector2(5, 2)
@@ -385,7 +536,6 @@ collision_mask = 4
 script = ExtResource("8_2fab3")
 
 [node name="collision_damage" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_hhqle")
 debug_color = Color(1, 0.270588, 0.345098, 0.337255)
 
@@ -395,10 +545,20 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="collision_sword" type="CollisionShape2D" parent="melee"]
-position = Vector2(1, 0)
+position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_n4r3a")
 disabled = true
+debug_color = Color(0.629037, 0.530222, 1.92523e-07, 0.42)
+
+[node name="invencible_timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="blink_timer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="hurtbox" to="hurtbox" method="_on_body_entered"]
 [connection signal="body_entered" from="melee" to="." method="_on_melee_body_entered"]
+[connection signal="timeout" from="invencible_timer" to="." method="_on_invencible_timer_timeout"]
+[connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]

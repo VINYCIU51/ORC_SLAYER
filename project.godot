@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="knight"
-run/main_scene="uid://cgb2vl5teu2jv"
+run/main_scene="uid://c5tophuk42vyq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
