@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
 const SPEED := 200
-const DEATH_HEIGHT := 300
+const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 
 var life := 3
