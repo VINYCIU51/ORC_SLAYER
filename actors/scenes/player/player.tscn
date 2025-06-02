@@ -509,6 +509,14 @@ script = ExtResource("1_33vod")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+limit_left = -100
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.6
+drag_bottom_margin = 0.6
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5)
