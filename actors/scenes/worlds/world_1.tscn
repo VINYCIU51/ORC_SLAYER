@@ -2,20 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://m77gyi0qm1su" path="res://actors/scenes/enemies/slime.tscn" id="1_ebjk8"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
-[ext_resource type="PackedScene" uid="uid://bwrey2c2c0yr7" path="res://actors/scenes/worlds/cave_level.tscn" id="1_li40o"]
-[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://actors/scenes/worlds/cave_map.tscn" id="1_rux5h"]
+[ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://actors/scenes/worlds/cave_map/cave_entrance.tscn" id="1_li40o"]
+[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://actors/scenes/worlds/cave_background.tscn" id="1_rux5h"]
 
 [node name="world-1" type="Node2D"]
 
-[node name="cave_level" parent="." instance=ExtResource("1_li40o")]
-position = Vector2(-2, -44)
+[node name="cave_entrance" parent="." instance=ExtResource("1_li40o")]
+position = Vector2(-2, 212)
 
-[node name="cave-map" parent="." instance=ExtResource("1_rux5h")]
+[node name="cave_background" parent="." instance=ExtResource("1_rux5h")]
 
 [node name="player" parent="." instance=ExtResource("1_ie2gg")]
 
 [node name="slime" parent="." instance=ExtResource("1_ebjk8")]
-position = Vector2(447, 5)
+position = Vector2(895, 87)
 
 [node name="slime2" parent="." instance=ExtResource("1_ebjk8")]
-position = Vector2(520, -11)
+position = Vector2(1180, 51)

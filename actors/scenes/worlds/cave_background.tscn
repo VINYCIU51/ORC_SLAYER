@@ -53,5 +53,5 @@ repeat_size = Vector2(960, 0)
 repeat_times = 3
 
 [node name="nearest_rocks" type="Sprite2D" parent="parallax_bg/nearest_rocks"]
-position = Vector2(0, -1)
+position = Vector2(24, 0.666667)
 texture = ExtResource("4_lpvv4")
