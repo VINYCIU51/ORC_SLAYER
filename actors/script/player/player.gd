@@ -5,8 +5,8 @@ extends CharacterBody2D
 @onready var blink_timer := $blink_timer
 
 const ARROW := preload("res://actors/scenes/projectiles/arrow.tscn")
-const SPEED := 250
-const DEATH_HEIGHT := 500
+const SPEED := 200
+const DEATH_HEIGHT := 300
 const SWORD_DAMAGE := 2
 
 var life := 3
