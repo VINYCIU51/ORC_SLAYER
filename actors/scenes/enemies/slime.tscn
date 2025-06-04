@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bi66ovo4oqi0a" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
 [ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://actors/script/enemies/slime.gd" id="1_rjbn8"]
 [ext_resource type="Texture2D" uid="uid://djtk8ir3ett17" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
-[ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/outros/hitbox.tscn" id="4_ft43y"]
+[ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="4_ft43y"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]
 length = 0.001
@@ -251,6 +251,13 @@ light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
 target_position = Vector2(-13.9292, 0)
+collision_mask = 6
+
+[node name="floor_detector" type="RayCast2D" parent="."]
+light_mask = 4
+position = Vector2(0, 4)
+scale = Vector2(1.00508, 1)
+target_position = Vector2(-19.8989, 10)
 collision_mask = 6
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
