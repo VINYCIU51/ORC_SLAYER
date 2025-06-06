@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://gkhbgo55eaaq"]
+[gd_scene load_steps=27 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player/player.gd" id="1_33vod"]
 [ext_resource type="Texture2D" uid="uid://crae8it34hmqw" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
@@ -10,9 +10,10 @@
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hitbox/hurtbox.gd" id="8_2fab3"]
 [ext_resource type="Texture2D" uid="uid://xhs5s5xbj6lu" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
 [ext_resource type="Texture2D" uid="uid://3bnqx2f2m2pm" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://c51qjiwrfmotj" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
-size = Vector2(11.5, 20)
+size = Vector2(10, 19)
 
 [sub_resource type="Animation" id="Animation_ya2v2"]
 length = 0.001
@@ -63,6 +64,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("parry/parry_area:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ii4c0"]
@@ -418,6 +431,58 @@ tracks/2/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_un1rg"]
+resource_name = "parry"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_ii4c0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parry/parry_area:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_opp7g"]
 resource_name = "walk"
 length = 0.8
@@ -493,6 +558,7 @@ _data = {
 &"hurt": SubResource("Animation_m2gb2"),
 &"idle": SubResource("Animation_p7c1f"),
 &"jump": SubResource("Animation_g4jua"),
+&"parry": SubResource("Animation_un1rg"),
 &"walk": SubResource("Animation_opp7g")
 }
 
@@ -501,6 +567,9 @@ size = Vector2(16, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4r3a"]
 size = Vector2(24, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii4c0"]
+size = Vector2(16, 22)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
@@ -523,12 +592,12 @@ editor_draw_drag_margin = true
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("7_gdopa")
-hframes = 8
-frame = 6
+texture = ExtResource("10_ii4c0")
+hframes = 3
+frame = 2
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 0)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_31m4k")
 
 [node name="animation" type="AnimationPlayer" parent="."]
@@ -559,6 +628,13 @@ position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_n4r3a")
 disabled = true
 debug_color = Color(0.629037, 0.530222, 1.92523e-07, 0.42)
+
+[node name="parry" type="Area2D" parent="."]
+
+[node name="parry_area" type="CollisionShape2D" parent="parry"]
+shape = SubResource("RectangleShape2D_ii4c0")
+disabled = true
+debug_color = Color(0.490075, 0.432996, 1, 0.42)
 
 [node name="invencible_timer" type="Timer" parent="."]
 wait_time = 2.5

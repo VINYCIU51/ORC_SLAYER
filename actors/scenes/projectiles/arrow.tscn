@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di36nuyh1dumg"]
 
 [ext_resource type="Script" uid="uid://dw0q2c0hap3yb" path="res://actors/script/projectiles/arrow.gd" id="1_yi3td"]
-[ext_resource type="Texture2D" uid="uid://dli6nrnvkfs43" path="res://assets/projectiles/Arrow(projectile)/Arrow01(32x32).png" id="2_7k75j"]
+[ext_resource type="Texture2D" uid="uid://dli6nrnvkfs43" path="res://assets/projectiles/arrow/Arrow01-32x32.png" id="2_7k75j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
 size = Vector2(17, 3)

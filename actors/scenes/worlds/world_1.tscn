@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5tophuk42vyq"]
+[gd_scene load_steps=6 format=3 uid="uid://c5tophuk42vyq"]
 
 [ext_resource type="PackedScene" uid="uid://m77gyi0qm1su" path="res://actors/scenes/enemies/slime.tscn" id="1_ebjk8"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
 [ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://actors/scenes/worlds/cave_map/cave_entrance.tscn" id="1_li40o"]
 [ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://actors/scenes/worlds/cave_map/cave_background.tscn" id="1_rux5h"]
+[ext_resource type="PackedScene" uid="uid://c13fg4s25upwf" path="res://actors/scenes/enemies/blue_golem.tscn" id="5_rux5h"]
 
 [node name="world-1" type="Node2D"]
 
@@ -58,3 +59,6 @@ You can shoot arrows on the walls
  and use it to climb"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="blue_golem" parent="." instance=ExtResource("5_rux5h")]
+position = Vector2(1531, 180)
