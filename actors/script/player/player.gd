@@ -25,6 +25,7 @@ var taked_damage := false
 var is_attacking := false
 var is_shooting := false
 var is_air_shooting := false
+var is_parrying := false
 var current_state := "idle"
 
 func _ready():
@@ -73,7 +74,13 @@ func _physics_process(delta):
 	# Ataque corpo-a-corpo
 	if is_on_floor() and Input.is_action_just_pressed("left_click") and !is_attacking and !is_shooting:
 		is_attacking = true
-		animation.play("attack")
+
+	if Input.is_action_just_pressed("interact"):
+		is_parrying = true
+		
+	if is_parrying:
+		velocity.x = 0
+		if !animation.is_playing(): is_parrying = false
 
 	# Verifica se terminou o ataque
 	if is_attacking:
@@ -110,6 +117,8 @@ func set_state():
 		new_state = "arrow"
 	elif is_air_shooting:
 		new_state = "air_arrow"
+	elif is_parrying:
+		new_state = "parry"
 	elif !is_on_floor():
 		new_state = "jump"
 	elif direction != 0:
@@ -122,12 +131,12 @@ func set_state():
 func fall_out():
 	get_tree().reload_current_scene()
 
-func take_damage():
+func take_damage(damage = 1):
 	if is_invencible or is_dead: return
 
 	taked_damage = true
 	invencible_mode()
-	life -= 1
+	life -= damage
 
 	if life <= 0: is_dead = true
 
@@ -140,9 +149,8 @@ func shoot_arrow(direct, time := 0.5):
 
 func rotate_player(direction):
 	$sprite.flip_h = direction < 0
-	if sign($arrow_point.position.x) != direction:
-		$arrow_point.position.x *= -1
-		$melee.position.x *= -1
+	$arrow_point.position.x = abs($arrow_point.position.x) * direction
+	$melee.position.x = abs($melee.position.x) * direction
 
 func knockback():
 	var knock_direction = 1 if $sprite.flip_h else -1

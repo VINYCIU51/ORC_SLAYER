@@ -4,21 +4,20 @@ extends CharacterBody2D
 @onready var wall_detection := $wall_detector as RayCast2D
 @onready var floor_detector: RayCast2D = $floor_detector
 
-
-var life := 3
-var is_dead := false
-var taked_damage = false
-
-var direction := -1
 const SPEED = 50.0
 
+var life := 3
+var direction := -1
+
+var is_dead := false
+var taked_damage = false
 var current_state = "walk"
 
 func _physics_process(delta: float) -> void:
 	
 	if is_dead: remove_from_group("enemies")
 	
-	if not is_on_floor():
+	if !is_on_floor():
 		velocity += get_gravity() * delta
 
 	if wall_detection.is_colliding() or !floor_detector.is_colliding():
@@ -28,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	if taked_damage:
 		velocity.x = 0
-		if not animation.is_playing():
+		if !animation.is_playing():
 			taked_damage = false
 
 	set_state()
