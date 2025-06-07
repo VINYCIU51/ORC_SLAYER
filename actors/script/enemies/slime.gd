@@ -1,8 +1,9 @@
+class_name Slime
 extends CharacterBody2D
 
 @onready var animation := $animation as AnimationPlayer
-@onready var wall_detection := $wall_detector as RayCast2D
-@onready var floor_detector: RayCast2D = $floor_detector
+@onready var wall_detection := $body/wall_detector as RayCast2D
+@onready var floor_detector: RayCast2D = $body/floor_detector
 
 const SPEED = 50.0
 
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if wall_detection.is_colliding() or !floor_detector.is_colliding():
-		rotate_sprite(direction)
+		flip_sprite()
 
 	velocity.x = direction * SPEED
 	
@@ -42,11 +43,9 @@ func take_damage(damage: int):
 	if life <= 0:
 		is_dead = true
 
-func rotate_sprite(dir):
-	direction = dir * -1
-	$sprite.flip_h = direction > 0
-	wall_detection.target_position.x = abs(wall_detection.target_position.x) * direction
-	floor_detector.target_position.x = abs(wall_detection.target_position.x) * direction
+func flip_sprite():
+	direction *= -1
+	$body.scale.x = direction
 
 func set_state():
 	var new_state = ""
