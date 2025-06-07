@@ -1,9 +1,7 @@
-extends CharacterBody2D
+extends CharacterBody2D 
 
-@onready var floor_detector: RayCast2D = $floor_detector
-@onready var animation: AnimationPlayer = $animation
+@onready var animation: AnimationPlayer = $body/animation
 @onready var player = owner.get_node("player")
-@onready var blink_timer: Timer = $blink_timer
 
 const SPEED := 100
 const DIST_FOLLOW := 300
@@ -34,9 +32,6 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if !floor_detector.is_colliding():
-		is_following = false
 		
 	calcule_position()
 	
@@ -81,7 +76,7 @@ func set_state():
 	elif taked_damage and !is_attacking:
 		new_state = "hurt"
 	elif has_parryed:
-		new_state = "hurt"
+		new_state = "parryed"
 	elif is_stuned:
 		new_state = "idle"
 	elif is_attacking:
@@ -100,19 +95,15 @@ func taked_stun():
 	parry_resistance = 3
 
 func rotate_sprite():
-	direction = 1 if $sprite.flip_h == false else -1
-	
-	$sprite.flip_h = global_position.x > player.global_position.x
-	floor_detector.target_position.x = abs(floor_detector.target_position.x) * direction
-	$attack_area.position.x = abs($attack_area.position.x) * direction
+	direction = 1 if global_position.x < player.global_position.x else -1
+	$body.scale.x = direction
 
 func take_damage(damage: int):
-	if is_dead: return
+	if is_dead or damage == 0: return
 		
+	hit_blink()
 	taked_damage = true
 	life -= damage
-	blink_timer.start()
-	$sprite.self_modulate = Color(100,100,100,1)
 	
 	if life <= 0:
 		is_dead = true
@@ -122,6 +113,11 @@ func calcule_position():
 	horizontal_difference = abs(global_position.x - player.global_position.x)
 	is_below_player = global_position.y > player.global_position.y
 	is_exactly_below = horizontal_difference < 2 and is_below_player
+	
+func hit_blink():
+	$body/sprite.self_modulate = Color(50,50,50,1)
+	await get_tree().create_timer(0.1).timeout
+	$body/sprite.self_modulate = Color(1,1,1,1)
 
 func _on_attack_body_entered(body: Node2D) -> void:
 	if body.name == "player":
@@ -130,13 +126,6 @@ func _on_attack_body_entered(body: Node2D) -> void:
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":
 		queue_free()
-	elif anim_name == "hurt" and has_parryed:
+	elif anim_name == "parryed" and has_parryed:
 		has_parryed = false
 		parry_resistance -= 1
-
-func _on_attack_area_area_entered(area: Area2D) -> void:
-	if area.name == "parry":
-		has_parryed = true
-
-func _on_blink_timer_timeout() -> void:
-	$sprite.self_modulate = Color(1,1,1,1)

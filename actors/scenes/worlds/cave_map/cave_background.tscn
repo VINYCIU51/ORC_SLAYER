@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cejifiwbcvmne"]
 
-[ext_resource type="Texture2D" uid="uid://wfb13xlcfcvw" path="res://assets/maps/caves/background1.png" id="1_y3ltw"]
-[ext_resource type="Texture2D" uid="uid://gfesug2p6nn0" path="res://assets/maps/caves/background2.png" id="2_o76xk"]
-[ext_resource type="Texture2D" uid="uid://dylyhc5bwcogy" path="res://assets/maps/caves/background3.png" id="3_0j37h"]
-[ext_resource type="Texture2D" uid="uid://c18byhvgvlqsk" path="res://assets/maps/caves/background4b.png" id="4_lpvv4"]
+[ext_resource type="Texture2D" uid="uid://dt1krl6y45ox2" path="res://assets/maps/caves/background1.png" id="1_y3ltw"]
+[ext_resource type="Texture2D" uid="uid://7d18xxiv0ou8" path="res://assets/maps/caves/background2.png" id="2_o76xk"]
+[ext_resource type="Texture2D" uid="uid://dk5xaktedk8f0" path="res://assets/maps/caves/background3.png" id="3_0j37h"]
+[ext_resource type="Texture2D" uid="uid://c8e406w6rjkvo" path="res://assets/maps/caves/background4b.png" id="4_lpvv4"]
 
 [node name="cave_background" type="Node2D"]
 
