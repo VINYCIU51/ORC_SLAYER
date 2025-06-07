@@ -1,7 +1,7 @@
 class_name Slime
 extends CharacterBody2D
 
-@onready var animation := $animation as AnimationPlayer
+@onready var animation := $body/animation as AnimationPlayer
 @onready var wall_detection := $body/wall_detector as RayCast2D
 @onready var floor_detector: RayCast2D = $body/floor_detector
 
@@ -36,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	
 func take_damage(damage: int):
 	if is_dead: return
-		
+	
+	hit_blink()
 	took_damage = true
 	life -= damage
 	
@@ -46,6 +47,11 @@ func take_damage(damage: int):
 func flip_sprite():
 	direction *= -1
 	$body.scale.x = direction
+
+func hit_blink():
+	$body/sprite.self_modulate = Color(50,50,50,1)
+	await get_tree().create_timer(0.1).timeout
+	$body/sprite.self_modulate = Color(1,1,1,1)
 
 func set_state():
 	var new_state = ""

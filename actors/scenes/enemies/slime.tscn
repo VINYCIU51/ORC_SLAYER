@@ -221,11 +221,13 @@ _data = {
 &"walk": SubResource("Animation_rjbn8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft43y"]
-size = Vector2(20, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huaw6"]
+radius = 6.0
+height = 20.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_huaw6"]
-size = Vector2(22, 13)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft43y"]
+radius = 7.0
+height = 24.0
 
 [node name="slime" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -260,16 +262,18 @@ scale = Vector2(1.00508, 1)
 target_position = Vector2(20, 10)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 5)
-shape = SubResource("RectangleShape2D_ft43y")
+position = Vector2(-1, 5.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_huaw6")
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
 collision_layer = 32
 collision_mask = 10
 
 [node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(1, 4.5)
-shape = SubResource("RectangleShape2D_huaw6")
+position = Vector2(-1, 4.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ft43y")
 debug_color = Color(1, 0.00696271, 0.0518057, 0.42)
 
 [connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]
