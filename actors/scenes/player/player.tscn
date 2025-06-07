@@ -1,26 +1,25 @@
-[gd_scene load_steps=27 format=3 uid="uid://gkhbgo55eaaq"]
+[gd_scene load_steps=29 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://crae8it34hmqw" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
-[ext_resource type="Texture2D" uid="uid://byasso30bgcbc" path="res://assets/player/Soldier/Sword-Attack.png" id="3_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://dqfhwpcrow74p" path="res://assets/player/Soldier/Soldier-Death.png" id="4_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://dxs8ce8igtfgq" path="res://assets/player/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
-[ext_resource type="Texture2D" uid="uid://bk77sgxxk30ts" path="res://assets/player/Soldier/Soldier-Idle.png" id="6_un1rg"]
-[ext_resource type="Texture2D" uid="uid://hqowhiwlika" path="res://assets/player/Soldier/Soldier-Walk.png" id="7_gdopa"]
+[ext_resource type="Texture2D" uid="uid://kx7l5t10ksus" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
+[ext_resource type="Texture2D" uid="uid://bhc6cm83gsulk" path="res://assets/player/Soldier/Sword-Attack.png" id="3_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://ol1tvix2afpu" path="res://assets/player/Soldier/Soldier-Death.png" id="4_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://dovp34u4xc4pk" path="res://assets/player/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://cw5qw002h4ule" path="res://assets/player/Soldier/Soldier-Idle.png" id="6_un1rg"]
+[ext_resource type="Texture2D" uid="uid://b543uii21uce1" path="res://assets/player/Soldier/Soldier-Walk.png" id="7_gdopa"]
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hitbox/hurtbox.gd" id="8_2fab3"]
-[ext_resource type="Texture2D" uid="uid://xhs5s5xbj6lu" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://3bnqx2f2m2pm" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://c51qjiwrfmotj" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
-size = Vector2(10, 19)
+[ext_resource type="Texture2D" uid="uid://bsnwyuvcwg27g" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://d0m8ccl0mfkhf" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://dhl2kwvmejv4m" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
+[ext_resource type="Script" uid="uid://sixnx7xvau4o" path="res://actors/script/hitbox/melee.gd" id="11_gdopa"]
+[ext_resource type="Script" uid="uid://o0cwlky1oa73" path="res://actors/script/hitbox/parry.gd" id="12_un1rg"]
 
 [sub_resource type="Animation" id="Animation_ya2v2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:frame")
+tracks/0/path = NodePath("body/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("melee/collision_sword:disabled")
+tracks/1/path = NodePath("body/melee/collision_sword:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -56,7 +55,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -84,7 +83,7 @@ length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +95,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,7 +107,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -120,7 +119,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -129,6 +128,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [2.3, 1.0]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_arrow"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_jglmw"]
 resource_name = "arrow"
@@ -136,7 +149,7 @@ length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,7 +161,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -160,7 +173,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -172,7 +185,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("animation:speed_scale")
+tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -181,6 +194,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [1.5, 1.0]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_arrow"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bncfn"]
 resource_name = "attack"
@@ -188,7 +215,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -200,7 +227,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -212,7 +239,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -224,7 +251,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("melee/collision_sword:disabled")
+tracks/3/path = NodePath("body/melee/collision_sword:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -236,7 +263,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/path = NodePath("body/animation:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -252,7 +279,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -264,7 +291,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -276,7 +303,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -292,7 +319,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -304,7 +331,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -316,7 +343,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -333,7 +360,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -345,7 +372,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -357,7 +384,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -381,7 +408,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/path = NodePath("body/animation:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -397,7 +424,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -409,7 +436,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -421,7 +448,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -437,7 +464,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -449,7 +476,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -461,7 +488,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -490,7 +517,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -502,7 +529,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -514,7 +541,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("body/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -538,7 +565,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("animation:speed_scale")
+tracks/4/path = NodePath("body/animation:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -562,19 +589,54 @@ _data = {
 &"walk": SubResource("Animation_opp7g")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhqle"]
-size = Vector2(16, 22)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4r3a"]
 size = Vector2(24, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31m4k"]
+size = Vector2(10, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhqle"]
+size = Vector2(16, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii4c0"]
 size = Vector2(16, 22)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
-collision_mask = 30
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_33vod")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="body"]
+position = Vector2(0, 1.5)
+scale = Vector2(1.33, 1.23)
+texture = ExtResource("2_2fab3")
+hframes = 9
+frame = 6
+
+[node name="animation" type="AnimationPlayer" parent="body"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_gruaa")
+}
+speed_scale = 1.5
+
+[node name="arrow_point" type="Marker2D" parent="body"]
+position = Vector2(5, 2)
+
+[node name="melee" type="Area2D" parent="body"]
+position = Vector2(19, 1)
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("11_gdopa")
+
+[node name="collision_sword" type="CollisionShape2D" parent="body/melee"]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_n4r3a")
+disabled = true
+debug_color = Color(0.629037, 0.530222, 1.92523e-07, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -589,62 +651,40 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, 1.5)
-scale = Vector2(1.33, 1.23)
-texture = ExtResource("10_ii4c0")
-hframes = 3
-frame = 2
-
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_31m4k")
 
-[node name="animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gruaa")
-}
-speed_scale = 1.5
-
-[node name="arrow_point" type="Marker2D" parent="."]
-position = Vector2(5, 2)
-
 [node name="hurtbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 16
+collision_mask = 68
 script = ExtResource("8_2fab3")
 
 [node name="collision_damage" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("RectangleShape2D_hhqle")
 debug_color = Color(1, 0.270588, 0.345098, 0.337255)
 
-[node name="melee" type="Area2D" parent="."]
-position = Vector2(19, 1)
-collision_layer = 16
-collision_mask = 4
-
-[node name="collision_sword" type="CollisionShape2D" parent="melee"]
-position = Vector2(-1, -1.5)
-shape = SubResource("RectangleShape2D_n4r3a")
-disabled = true
-debug_color = Color(0.629037, 0.530222, 1.92523e-07, 0.42)
-
 [node name="parry" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 64
+script = ExtResource("12_un1rg")
 
 [node name="parry_area" type="CollisionShape2D" parent="parry"]
 shape = SubResource("RectangleShape2D_ii4c0")
 disabled = true
 debug_color = Color(0.490075, 0.432996, 1, 0.42)
 
-[node name="invencible_timer" type="Timer" parent="."]
+[node name="invincible_timer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
 
 [node name="blink_timer" type="Timer" parent="."]
 wait_time = 0.1
 
+[connection signal="body_entered" from="body/melee" to="." method="_on_melee_body_entered"]
+[connection signal="body_entered" from="body/melee" to="body/melee" method="_on_body_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="hurtbox" to="hurtbox" method="_on_body_entered"]
-[connection signal="body_entered" from="melee" to="." method="_on_melee_body_entered"]
-[connection signal="timeout" from="invencible_timer" to="." method="_on_invencible_timer_timeout"]
+[connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
+[connection signal="timeout" from="invincible_timer" to="." method="_on_invincible_timer_timeout"]
 [connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]
