@@ -35,8 +35,6 @@ func _ready():
 	jump_velocity = (jump_height * 2) / time_to_top_height
 	gravity = (jump_height * 2) / pow(time_to_top_height, 2)
 	fall_gravity = gravity * 2
-	
-	$parry/parry_area.disabled = true
 
 func _physics_process(delta):
 	if global_position.y > DEATH_HEIGHT:
@@ -84,7 +82,9 @@ func _physics_process(delta):
 	set_state()
 	if is_blocking:
 		velocity.x = 0
-		if !animation.is_playing() or current_state != "parry": is_blocking = false
+		if !animation.is_playing() or current_state != "parry": 
+			$parry/parry_area.disabled = true
+			is_blocking = false
 
 	# Verifica se terminou o ataque
 	if is_attacking:
