@@ -23,7 +23,7 @@ var fall_gravity
 var direction = 0.0
 
 var is_invincible := false
-var took_damage := false
+var is_damaged := false
 var is_attacking := false
 var is_shooting := false
 var is_air_shooting := false
@@ -38,7 +38,7 @@ func _ready():
 
 func _physics_process(delta):
 	if global_position.y > DEATH_HEIGHT:
-		fall_out()
+		fall_off_screen()
 
 	if is_dead:
 		velocity.x = 0
@@ -47,7 +47,7 @@ func _physics_process(delta):
 
 	direction = Input.get_axis("move_left", "move_right")
 
-	if !took_damage:
+	if !is_damaged:
 		velocity.x = direction * SPEED
 
 	if direction != 0 and !is_attacking and !is_shooting and !is_air_shooting and !is_blocking:
@@ -85,6 +85,7 @@ func _physics_process(delta):
 		if !animation.is_playing() or current_state != "parry": 
 			$parry/parry_area.disabled = true
 			is_blocking = false
+			has_parried = false
 
 	# Verifica se terminou o ataque
 	if is_attacking:
@@ -101,9 +102,9 @@ func _physics_process(delta):
 		if !animation.is_playing(): is_air_shooting = false
 
 	# Verifica fim de dano
-	if took_damage:
+	if is_damaged:
 		knockback()
-		if !animation.is_playing(): took_damage = false
+		if !animation.is_playing(): is_damaged = false
 
 	move_and_slide()
 
@@ -112,14 +113,14 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif took_damage:
+	elif is_damaged:
 		new_state = "hurt"
 	elif is_attacking:
 		new_state = "attack"
 	elif is_shooting:
-		new_state = "arrow"
+		new_state = "shoot"
 	elif is_air_shooting:
-		new_state = "air_arrow"
+		new_state = "air_shoot"
 	elif is_blocking:
 		new_state = "parry"
 	elif !is_on_floor():
@@ -131,14 +132,14 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
-func fall_out():
+func fall_off_screen():
 	get_tree().reload_current_scene()
 
 func take_damage(damage := 1):
 	if is_invincible or is_dead or has_parried: return
 
-	took_damage = true
-	invincible_mode()
+	is_damaged = true
+	enable_invincibility()
 	life -= damage
 
 	if life <= 0: is_dead = true
@@ -158,7 +159,7 @@ func knockback():
 	var knock_direction = -sign($body.scale.x)
 	velocity.x = knock_direction * 100
 
-func invincible_mode():
+func enable_invincibility():
 	is_invincible = true
 	set_collision_mask_value(3,false)
 	blink_timer.start()

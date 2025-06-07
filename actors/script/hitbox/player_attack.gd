@@ -9,9 +9,9 @@ func _on_body_entered(body: Node2D) -> void:
 
 # encontra o nó raiz ou o nó que pertence aà classe especificada
 func get_player():
-	var current = self
-	while current:
-		if current is Player:
-			return current
-		current = current.get_parent()
+	var current_node = self
+	while current_node:
+		if current_node is Player:
+			return current_node
+		current_node = current_node.get_parent()
 	return null

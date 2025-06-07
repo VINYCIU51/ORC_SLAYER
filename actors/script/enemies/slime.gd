@@ -11,7 +11,7 @@ var life := 3
 var direction := -1
 
 var is_dead := false
-var took_damage = false
+var is_damaged = false
 var current_state = "walk"
 
 func _physics_process(delta: float) -> void:
@@ -26,10 +26,10 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED
 	
-	if took_damage:
+	if is_damaged:
 		velocity.x = 0
 		if !animation.is_playing():
-			took_damage = false
+			is_damaged = false
 
 	set_state()
 	move_and_slide()
@@ -38,7 +38,7 @@ func take_damage(damage: int):
 	if is_dead: return
 	
 	hit_blink()
-	took_damage = true
+	is_damaged = true
 	life -= damage
 	
 	if life <= 0:
@@ -58,7 +58,7 @@ func set_state():
 	
 	if is_dead:
 		new_state = "die"
-	elif took_damage:
+	elif is_damaged:
 		new_state = "hurt"
 	elif direction != 0:
 		new_state = "walk"
