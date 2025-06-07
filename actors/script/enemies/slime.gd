@@ -10,7 +10,7 @@ var life := 3
 var direction := -1
 
 var is_dead := false
-var taked_damage = false
+var took_damage = false
 var current_state = "walk"
 
 func _physics_process(delta: float) -> void:
@@ -25,10 +25,10 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED
 	
-	if taked_damage:
+	if took_damage:
 		velocity.x = 0
 		if !animation.is_playing():
-			taked_damage = false
+			took_damage = false
 
 	set_state()
 	move_and_slide()
@@ -36,14 +36,14 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int):
 	if is_dead: return
 		
-	taked_damage = true
+	took_damage = true
 	life -= damage
 	
 	if life <= 0:
 		is_dead = true
 
-func rotate_sprite(direct):
-	direction = direct * -1
+func rotate_sprite(dir):
+	direction = dir * -1
 	$sprite.flip_h = direction > 0
 	wall_detection.target_position.x = abs(wall_detection.target_position.x) * direction
 	floor_detector.target_position.x = abs(wall_detection.target_position.x) * direction
@@ -53,7 +53,7 @@ func set_state():
 	
 	if is_dead:
 		new_state = "die"
-	elif taked_damage:
+	elif took_damage:
 		new_state = "hurt"
 	elif direction != 0:
 		new_state = "walk"
