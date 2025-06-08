@@ -11,7 +11,7 @@ const SPEED := 200
 const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 
-var life := 3
+var life := 5
 var is_dead := false
 
 var jump_height := 80
