@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://debo5acmbosm0" path="res://assets/enemies/blue_golem/Golem_1_idle.png" id="4_daps1"]
 [ext_resource type="Texture2D" uid="uid://55o7ccvnflov" path="res://assets/enemies/blue_golem/Golem_1_die.png" id="5_ad0aq"]
 [ext_resource type="Texture2D" uid="uid://cesvcrbd6cvvk" path="res://assets/enemies/blue_golem/Golem_1_hurt.png" id="6_daps1"]
-[ext_resource type="Script" uid="uid://dktj0e52an8w4" path="res://actors/script/hitbox/enemie_attack.gd" id="8_67jdw"]
+[ext_resource type="Script" uid="uid://dktj0e52an8w4" path="res://actors/script/hitbox/golem_attack.gd" id="8_67jdw"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -107,7 +107,7 @@ tracks/3/path = NodePath("body/attack_area/attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.733333),
+"times": PackedFloat32Array(0, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -246,46 +246,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_phf0r"]
-resource_name = "walk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("body/sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_jasww")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("body/sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [10]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("body/sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-}
-
 [sub_resource type="Animation" id="Animation_pufdi"]
 resource_name = "parried"
 length = 0.6
@@ -326,6 +286,46 @@ tracks/2/keys = {
 "values": [5, 4, 3, 2, 1, 0]
 }
 
+[sub_resource type="Animation" id="Animation_phf0r"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_jasww")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
 &"RESET": SubResource("Animation_daps1"),
@@ -337,14 +337,15 @@ _data = {
 &"walk": SubResource("Animation_phf0r")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o735a"]
-size = Vector2(23, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67jdw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67jdw"]
-size = Vector2(24, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o735a"]
+radius = 15.0
+height = 34.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ad0aq"]
-size = Vector2(21, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y02my"]
+radius = 11.5
+height = 32.0
 
 [node name="blue_golem" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -372,7 +373,8 @@ script = ExtResource("8_67jdw")
 
 [node name="attack" type="CollisionShape2D" parent="body/attack_area"]
 position = Vector2(-1.5, 0)
-shape = SubResource("RectangleShape2D_o735a")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_67jdw")
 debug_color = Color(0.675856, 0.50611, 0, 0.42)
 
 [node name="hitbox" parent="." instance=ExtResource("3_lrdse")]
@@ -380,13 +382,13 @@ collision_layer = 32
 collision_mask = 73
 
 [node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_67jdw")
+position = Vector2(-0.5, 16)
+shape = SubResource("CapsuleShape2D_o735a")
 debug_color = Color(1, 0.0086283, 0.0413556, 0.42)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 18)
-shape = SubResource("RectangleShape2D_ad0aq")
+position = Vector2(-0.5, 17)
+shape = SubResource("CapsuleShape2D_y02my")
 
 [connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]
 [connection signal="area_entered" from="body/attack_area" to="body/attack_area" method="_on_area_entered"]

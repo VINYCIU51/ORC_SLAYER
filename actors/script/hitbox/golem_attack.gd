@@ -20,7 +20,7 @@ func _on_area_entered(area: Area2D) -> void:
 func get_mob():
 	var current_node = self
 	while current_node:
-		if current_node is Blue_golem:
+		if current_node is Golem:
 			return current_node
 		current_node = current_node.get_parent()
 	return null
