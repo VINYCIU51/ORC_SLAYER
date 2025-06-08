@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://m77gyi0qm1su"]
 
-[ext_resource type="Texture2D" uid="uid://cbbb5odj75hf7" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
-[ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://actors/script/enemies/slime.gd" id="1_rjbn8"]
-[ext_resource type="Texture2D" uid="uid://cu26b1twavpfr" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
+[ext_resource type="Texture2D" uid="uid://cys75y4jwyc22" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
+[ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://actors/script/enemies/slime/slime.gd" id="1_rjbn8"]
+[ext_resource type="Texture2D" uid="uid://cikl7otoy2maw" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="4_ft43y"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]
@@ -221,13 +221,13 @@ _data = {
 &"walk": SubResource("Animation_rjbn8")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huaw6"]
-radius = 6.0
-height = 20.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft43y"]
 radius = 7.0
 height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huaw6"]
+radius = 6.0
+height = 20.0
 
 [node name="slime" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -261,11 +261,6 @@ position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
 target_position = Vector2(20, 10)
 
-[node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5.5)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_huaw6")
-
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
 collision_layer = 32
 collision_mask = 10
@@ -275,5 +270,10 @@ position = Vector2(-1, 4.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ft43y")
 debug_color = Color(1, 0.00696271, 0.0518057, 0.42)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_huaw6")
 
 [connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]

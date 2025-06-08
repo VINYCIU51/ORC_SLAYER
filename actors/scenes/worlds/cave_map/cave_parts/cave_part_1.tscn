@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://bgcdy60rd3mbr"]
 
 [ext_resource type="Script" uid="uid://b7nmpa0w8wrf8" path="res://actors/script/worlds/cave/generate_parts.gd" id="1_71gbj"]
-[ext_resource type="Texture2D" uid="uid://nb1c166wyq8e" path="res://assets/maps/caves/mainlev_build.png" id="1_ojo3w"]
+[ext_resource type="Texture2D" uid="uid://cm4nypehv2qy" path="res://assets/maps/caves/mainlev_build.png" id="1_ojo3w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71gbj"]
 texture = ExtResource("1_ojo3w")

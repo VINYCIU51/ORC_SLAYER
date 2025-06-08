@@ -1,14 +1,14 @@
 [gd_scene load_steps=21 format=3 uid="uid://c13fg4s25upwf"]
 
-[ext_resource type="Texture2D" uid="uid://fduqkon6dm88" path="res://assets/enemies/blue_golem/Golem_1.png" id="1_370ft"]
-[ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://actors/script/enemies/blue_golem.gd" id="1_ad0aq"]
-[ext_resource type="Texture2D" uid="uid://b0jer37fae6e" path="res://assets/enemies/blue_golem/Golem_1_walk.png" id="2_jasww"]
+[ext_resource type="Texture2D" uid="uid://dgfa1uowf05ca" path="res://assets/enemies/golem_blue/Golem_1.png" id="1_370ft"]
+[ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://actors/script/enemies/golem_blue/golem_blue.gd" id="1_ad0aq"]
+[ext_resource type="Texture2D" uid="uid://cmv8prhif4lap" path="res://assets/enemies/golem_blue/Golem_1_walk.png" id="2_jasww"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="3_lrdse"]
-[ext_resource type="Texture2D" uid="uid://dri33rympqghk" path="res://assets/enemies/blue_golem/Golem_1_attack.png" id="3_phf0r"]
-[ext_resource type="Texture2D" uid="uid://debo5acmbosm0" path="res://assets/enemies/blue_golem/Golem_1_idle.png" id="4_daps1"]
-[ext_resource type="Texture2D" uid="uid://55o7ccvnflov" path="res://assets/enemies/blue_golem/Golem_1_die.png" id="5_ad0aq"]
-[ext_resource type="Texture2D" uid="uid://cesvcrbd6cvvk" path="res://assets/enemies/blue_golem/Golem_1_hurt.png" id="6_daps1"]
-[ext_resource type="Script" uid="uid://dktj0e52an8w4" path="res://actors/script/hitbox/golem_attack.gd" id="8_67jdw"]
+[ext_resource type="Texture2D" uid="uid://bsbetog8ewtb7" path="res://assets/enemies/golem_blue/Golem_1_attack.png" id="3_phf0r"]
+[ext_resource type="Texture2D" uid="uid://b4yhf6h3ipl4q" path="res://assets/enemies/golem_blue/Golem_1_idle.png" id="4_daps1"]
+[ext_resource type="Texture2D" uid="uid://dakc7u2j7t1nc" path="res://assets/enemies/golem_blue/Golem_1_die.png" id="5_ad0aq"]
+[ext_resource type="Texture2D" uid="uid://qjvkvgistj14" path="res://assets/enemies/golem_blue/Golem_1_hurt.png" id="6_daps1"]
+[ext_resource type="Script" uid="uid://dktj0e52an8w4" path="res://actors/script/enemies/golem_blue/golem_atk.gd" id="8_67jdw"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -349,7 +349,7 @@ height = 32.0
 
 [node name="blue_golem" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
-collision_mask = 19
+collision_mask = 17
 script = ExtResource("1_ad0aq")
 
 [node name="body" type="Node2D" parent="."]
@@ -364,6 +364,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_ad0aq")
 }
 autoplay = "idle"
+
+[node name="floor_edge" type="RayCast2D" parent="body"]
+position = Vector2(0, 31)
+target_position = Vector2(20, 24)
+
+[node name="step_ahead" type="RayCast2D" parent="body"]
+position = Vector2(0, 27)
+target_position = Vector2(20, 0)
 
 [node name="attack_area" type="Area2D" parent="body" groups=["enemies_attacks"]]
 position = Vector2(23, 22)
@@ -387,7 +395,7 @@ shape = SubResource("CapsuleShape2D_o735a")
 debug_color = Color(1, 0.0086283, 0.0413556, 0.42)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 17)
+position = Vector2(-0.5, 16)
 shape = SubResource("CapsuleShape2D_y02my")
 
 [connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]
