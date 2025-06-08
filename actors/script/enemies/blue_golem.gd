@@ -1,4 +1,4 @@
-class_name Blue_golem
+class_name Golem
 extends CharacterBody2D 
 
 @onready var animation: AnimationPlayer = $body/animation
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	if is_exactly_below:
 		velocity.x = 0
 
-	is_following = distance <= DIST_FOLLOW and not is_exactly_below
+	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !is_stuned
 
 	if distance <= DIST_ATTACK:
 		is_attacking = true
@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 			
 	if has_parried:
 		velocity.x = 0
+		$body/attack_area/attack.disabled = true
 			
 	if parry_resistance <= 0:
 		take_stun()
