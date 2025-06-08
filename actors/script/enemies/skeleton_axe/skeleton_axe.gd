@@ -1,22 +1,30 @@
-class_name Golem
+class_name Skeleton_axe
 extends CharacterBody2D 
 
-@onready var animation: AnimationPlayer = $body/animation
 @onready var player = owner.get_node("player")
+@onready var animation: AnimationPlayer = $body/animation
+@onready var floor_edge: RayCast2D = $body/floor_edge
+@onready var step_ahead: RayCast2D = $body/step_ahead
+@onready var jump_clear: RayCast2D = $body/jump_clear
+
 
 const SPEED := 100
+const JUMP_HEIGHT := -150
 const DIST_FOLLOW := 300
-const DIST_ATTACK := 40
+const DIST_ATTACK := 25
 const DAMAGE := 2
 
 var distance := 0.0
-var life := 6
-var parry_resistance := 3
+var life := 4
+var parry_resistance := 2
 
 var direction := 0
 var horizontal_difference := 0
 var is_exactly_below := 0
 var is_below_player := 0
+var at_edge := false
+var at_wall := false
+var should_jump := false
 
 var is_stuned := false
 var has_parried := false
@@ -28,35 +36,42 @@ var is_following := false
 var current_state := "idle"
 
 func _physics_process(delta: float) -> void:
+	at_edge = !floor_edge.is_colliding()
+	at_wall = step_ahead.is_colliding()
+	should_jump = true if at_wall and !jump_clear.is_colliding() else false
 	
 	if is_dead: remove_from_group("enemies")
 	
-	if not is_on_floor():
+	if !is_on_floor():
 		velocity += get_gravity() * delta
-		
-	calculate_position()
 	
-	rotate_sprite()
+	if !is_dead:
+		calculate_position()
+		rotate_sprite()
 
 	if is_exactly_below:
 		velocity.x = 0
 
-	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !is_stuned
+	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !at_edge and !jump_clear.is_colliding() and !is_stuned and !player.is_dead
 
-	if distance <= DIST_ATTACK:
+	if is_following and should_jump:
+		velocity.y = JUMP_HEIGHT
+
+	if distance <= DIST_ATTACK and !player.is_dead:
 		is_attacking = true
 		
-	if is_following:
-		velocity.x = direction * SPEED
+	velocity.x = direction * SPEED if is_following else 0
 		
 	if is_attacking:
 		velocity.x = 0
 		if !animation.is_playing():
+			await get_tree().create_timer(0.2).timeout
 			is_attacking = false
+
 			
 	if is_damaged:
 		velocity.x = 0
-		if not animation.is_playing():
+		if !animation.is_playing():
 			is_damaged = false
 			
 	if has_parried:
@@ -75,7 +90,7 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif is_damaged and not is_attacking:
+	elif is_damaged and !is_attacking:
 		new_state = "hurt"
 	elif has_parried:
 		new_state = "parried"
@@ -94,11 +109,12 @@ func take_stun():
 	is_stuned = true
 	await get_tree().create_timer(2.0).timeout
 	is_stuned = false
-	parry_resistance = 3
+	parry_resistance = 1
 
 func rotate_sprite():
 	direction = 1 if global_position.x < player.global_position.x else -1
 	$body.scale.x = direction
+	$collision.position.x = direction * -3
 
 func take_damage(damage: int):
 	if is_dead or damage == 0: return

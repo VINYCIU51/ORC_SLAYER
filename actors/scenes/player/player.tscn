@@ -1,18 +1,18 @@
 [gd_scene load_steps=29 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://kx7l5t10ksus" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
-[ext_resource type="Texture2D" uid="uid://bhc6cm83gsulk" path="res://assets/player/Soldier/Sword-Attack.png" id="3_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://ol1tvix2afpu" path="res://assets/player/Soldier/Soldier-Death.png" id="4_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://dovp34u4xc4pk" path="res://assets/player/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
-[ext_resource type="Texture2D" uid="uid://cw5qw002h4ule" path="res://assets/player/Soldier/Soldier-Idle.png" id="6_un1rg"]
-[ext_resource type="Texture2D" uid="uid://b543uii21uce1" path="res://assets/player/Soldier/Soldier-Walk.png" id="7_gdopa"]
-[ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/hitbox/player_hurtbox.gd" id="8_2fab3"]
-[ext_resource type="Texture2D" uid="uid://bsnwyuvcwg27g" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://d0m8ccl0mfkhf" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://dhl2kwvmejv4m" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
-[ext_resource type="Script" uid="uid://sixnx7xvau4o" path="res://actors/script/hitbox/player_attack.gd" id="11_gdopa"]
-[ext_resource type="Script" uid="uid://o0cwlky1oa73" path="res://actors/script/hitbox/player_parry.gd" id="12_un1rg"]
+[ext_resource type="Texture2D" uid="uid://ct4rva40m2e8i" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
+[ext_resource type="Texture2D" uid="uid://dn6liul3ekcxx" path="res://assets/player/Soldier/Sword-Attack.png" id="3_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://j3kp665d3odo" path="res://assets/player/Soldier/Soldier-Death.png" id="4_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://cpplxwchrmycm" path="res://assets/player/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://dnfd5222yu3kl" path="res://assets/player/Soldier/Soldier-Idle.png" id="6_un1rg"]
+[ext_resource type="Texture2D" uid="uid://dy8yf8fvif2gc" path="res://assets/player/Soldier/Soldier-Walk.png" id="7_gdopa"]
+[ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/player/player_hurtbox.gd" id="8_2fab3"]
+[ext_resource type="Texture2D" uid="uid://cjabla551laxy" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://cri1wjbgg06ix" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://di3utexvn4xoj" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
+[ext_resource type="Script" uid="uid://sixnx7xvau4o" path="res://actors/script/player/player_atk.gd" id="11_gdopa"]
+[ext_resource type="Script" uid="uid://o0cwlky1oa73" path="res://actors/script/player/player_parry.gd" id="12_un1rg"]
 
 [sub_resource type="Animation" id="Animation_ya2v2"]
 length = 0.001
@@ -438,10 +438,10 @@ tracks/3/path = NodePath("parry/parry_area:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.233333),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_jglmw"]
@@ -593,10 +593,6 @@ _data = {
 radius = 11.0
 height = 24.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdopa"]
-radius = 5.0
-height = 21.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3luku"]
 radius = 8.0
 height = 26.0
@@ -604,6 +600,10 @@ height = 26.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kxo2m"]
 radius = 9.0
 height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdopa"]
+radius = 5.0
+height = 21.0
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, -10)
@@ -618,7 +618,6 @@ position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
 texture = ExtResource("10_ii4c0")
 hframes = 3
-frame = 2
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")
@@ -656,9 +655,6 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_gdopa")
-
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 68
@@ -677,6 +673,10 @@ script = ExtResource("12_un1rg")
 shape = SubResource("CapsuleShape2D_kxo2m")
 disabled = true
 debug_color = Color(0.490196, 0.431373, 1, 0.690196)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.4)
+shape = SubResource("CapsuleShape2D_gdopa")
 
 [node name="invincible_timer" type="Timer" parent="."]
 wait_time = 2.5

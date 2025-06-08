@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://df6e8wftmk8mp"]
 
-[ext_resource type="Texture2D" uid="uid://nb1c166wyq8e" path="res://assets/maps/caves/mainlev_build.png" id="1_kq20t"]
+[ext_resource type="Texture2D" uid="uid://cm4nypehv2qy" path="res://assets/maps/caves/mainlev_build.png" id="1_kq20t"]
 [ext_resource type="Script" uid="uid://b7nmpa0w8wrf8" path="res://actors/script/worlds/cave/generate_parts.gd" id="1_n7ufj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7ufj"]
