@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://m77gyi0qm1su"]
 
-[ext_resource type="Texture2D" uid="uid://bi66ovo4oqi0a" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
+[ext_resource type="Texture2D" uid="uid://cbbb5odj75hf7" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
 [ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://actors/script/enemies/slime.gd" id="1_rjbn8"]
-[ext_resource type="Texture2D" uid="uid://djtk8ir3ett17" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
-[ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/outros/hitbox.tscn" id="4_ft43y"]
+[ext_resource type="Texture2D" uid="uid://cu26b1twavpfr" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
+[ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="4_ft43y"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:vframes")
+tracks/2/path = NodePath("body/sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +46,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:frame_coords")
+tracks/3/path = NodePath("body/sprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -62,7 +62,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,7 +74,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -86,7 +86,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:vframes")
+tracks/2/path = NodePath("body/sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -98,7 +98,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:frame_coords")
+tracks/3/path = NodePath("body/sprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -114,7 +114,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -126,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -138,7 +138,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:vframes")
+tracks/2/path = NodePath("body/sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -150,7 +150,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:frame_coords")
+tracks/3/path = NodePath("body/sprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -167,7 +167,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("body/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +179,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("body/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -191,7 +191,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:vframes")
+tracks/2/path = NodePath("body/sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -203,7 +203,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:frame_coords")
+tracks/3/path = NodePath("body/sprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -221,43 +221,59 @@ _data = {
 &"walk": SubResource("Animation_rjbn8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft43y"]
-size = Vector2(20, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huaw6"]
+radius = 6.0
+height = 20.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_huaw6"]
-size = Vector2(22, 13)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft43y"]
+radius = 7.0
+height = 24.0
 
 [node name="slime" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
-collision_mask = 22
+collision_mask = 17
 slide_on_ceiling = false
 script = ExtResource("1_rjbn8")
 
-[node name="animation" type="AnimationPlayer" parent="."]
+[node name="body" type="Node2D" parent="."]
+
+[node name="animation" type="AnimationPlayer" parent="body"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_oncw2")
 }
 autoplay = "walk"
 
-[node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 5)
-shape = SubResource("RectangleShape2D_ft43y")
-
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="body"]
 texture = ExtResource("2_4pt07")
+flip_h = true
 
-[node name="wall_detector" type="RayCast2D" parent="."]
+[node name="wall_detector" type="RayCast2D" parent="body"]
 light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
-target_position = Vector2(-13.9292, 0)
-collision_mask = 6
+target_position = Vector2(14, 0)
+collision_mask = 5
+
+[node name="floor_detector" type="RayCast2D" parent="body"]
+light_mask = 4
+position = Vector2(0, 4)
+scale = Vector2(1.00508, 1)
+target_position = Vector2(20, 10)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_huaw6")
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
+collision_layer = 32
+collision_mask = 10
 
 [node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(1, 4.5)
-shape = SubResource("RectangleShape2D_huaw6")
+position = Vector2(-1, 4.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ft43y")
 debug_color = Color(1, 0.00696271, 0.0518057, 0.42)
 
-[connection signal="animation_finished" from="animation" to="." method="_on_animation_animation_finished"]
+[connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]

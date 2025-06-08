@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5tophuk42vyq"]
+[gd_scene load_steps=7 format=3 uid="uid://c5tophuk42vyq"]
 
 [ext_resource type="PackedScene" uid="uid://m77gyi0qm1su" path="res://actors/scenes/enemies/slime.tscn" id="1_ebjk8"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
 [ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://actors/scenes/worlds/cave_map/cave_entrance.tscn" id="1_li40o"]
-[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://actors/scenes/worlds/cave_background.tscn" id="1_rux5h"]
+[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://actors/scenes/worlds/cave_map/cave_background.tscn" id="1_rux5h"]
+[ext_resource type="PackedScene" uid="uid://c13fg4s25upwf" path="res://actors/scenes/enemies/blue_golem.tscn" id="5_rux5h"]
+[ext_resource type="PackedScene" uid="uid://bqnqhdqrwweo2" path="res://actors/scenes/enemies/orc.tscn" id="6_li40o"]
 
 [node name="world-1" type="Node2D"]
 
@@ -15,7 +17,52 @@ position = Vector2(-2, 212)
 [node name="player" parent="." instance=ExtResource("1_ie2gg")]
 
 [node name="slime" parent="." instance=ExtResource("1_ebjk8")]
-position = Vector2(895, 87)
+position = Vector2(878, 198)
 
 [node name="slime2" parent="." instance=ExtResource("1_ebjk8")]
 position = Vector2(1180, 51)
+
+[node name="slime3" parent="." instance=ExtResource("1_ebjk8")]
+position = Vector2(1201, 211)
+
+[node name="move_tutorial" type="Label" parent="."]
+offset_left = 1.0
+offset_right = 131.0
+offset_bottom = 101.0
+scale = Vector2(0.7, 0.7)
+text = "Movement
+A - Move Left
+D - Move Right
+Space Bar - Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="attack_tutorial" type="Label" parent="."]
+offset_left = 650.0
+offset_top = 1.0
+offset_right = 839.0
+offset_bottom = 76.0
+scale = Vector2(0.7, 0.7)
+text = "Attacks
+Left Click - Sword Attack
+Right Click - Shoot arrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="attack_tutorial2" type="Label" parent="."]
+offset_left = 1583.0
+offset_top = 30.0
+offset_right = 1772.0
+offset_bottom = 105.0
+scale = Vector2(0.7, 0.7)
+text = "Climbing Walls
+You can shoot arrows on the walls
+ and use it to climb"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="blue_golem" parent="." instance=ExtResource("5_rux5h")]
+position = Vector2(1531, 180)
+
+[node name="orc" parent="." instance=ExtResource("6_li40o")]
+position = Vector2(332, 117)

@@ -1,53 +1,71 @@
+class_name Slime
 extends CharacterBody2D
 
-@onready var animation := $animation as AnimationPlayer
-@onready var wall_detection := $wall_detector as RayCast2D
+@onready var animation := $body/animation as AnimationPlayer
+@onready var wall_detection := $body/wall_detector as RayCast2D
+@onready var floor_detector: RayCast2D = $body/floor_detector
+
+const SPEED = 50.0
 
 var life := 3
-var is_dead := false
-var taked_damage = false
-
 var direction := -1
-const SPEED = 50.0
+
+var is_dead := false
+var is_damaged = false
+var current_state = "walk"
 
 func _physics_process(delta: float) -> void:
 	
-	if not is_on_floor():
+	if is_dead: remove_from_group("enemies")
+	
+	if !is_on_floor():
 		velocity += get_gravity() * delta
 
-	if wall_detection.is_colliding():
-		direction *= -1
-		$sprite.flip_h = direction > 0
-		wall_detection.target_position.x = abs(wall_detection.target_position.x) * direction
-		
+	if wall_detection.is_colliding() or !floor_detector.is_colliding():
+		flip_sprite()
+
 	velocity.x = direction * SPEED
 	
-	if taked_damage:
+	if is_damaged:
 		velocity.x = 0
-		if not animation.is_playing():
-			taked_damage = false
-		move_and_slide()
-		return
-		
-	if direction != 0:
-		animation.play("walk")
+		if !animation.is_playing():
+			is_damaged = false
 
+	set_state()
 	move_and_slide()
 	
 func take_damage(damage: int):
-	taked_damage = true
+	if is_dead: return
+	
+	hit_blink()
+	is_damaged = true
 	life -= damage
 	
-	if is_dead:
-		return
+	if life <= 0:
+		is_dead = true
+
+func flip_sprite():
+	direction *= -1
+	$body.scale.x = direction
+
+func hit_blink():
+	$body/sprite.self_modulate = Color(50,50,50,1)
+	await get_tree().create_timer(0.1).timeout
+	$body/sprite.self_modulate = Color(1,1,1,1)
+
+func set_state():
+	var new_state = ""
 	
-	if life > 0:
-		animation.play("hurt")
-		return
+	if is_dead:
+		new_state = "die"
+	elif is_damaged:
+		new_state = "hurt"
+	elif direction != 0:
+		new_state = "walk"
 		
-	animation.play("die")
-	remove_from_group("enemies")
-	is_dead = true
+	if current_state != new_state:
+		animation.play(new_state)
+		current_state = new_state
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":

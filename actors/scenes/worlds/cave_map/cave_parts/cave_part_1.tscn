@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://bgcdy60rd3mbr"]
 
 [ext_resource type="Script" uid="uid://b7nmpa0w8wrf8" path="res://actors/script/worlds/cave/generate_parts.gd" id="1_71gbj"]
-[ext_resource type="Texture2D" uid="uid://cm6wm1kaldfpv" path="res://assets/maps/caves/mainlev_build.png" id="1_ojo3w"]
+[ext_resource type="Texture2D" uid="uid://nb1c166wyq8e" path="res://assets/maps/caves/mainlev_build.png" id="1_ojo3w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71gbj"]
 texture = ExtResource("1_ojo3w")
@@ -916,7 +916,7 @@ texture = ExtResource("1_ojo3w")
 29:63/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_b6xhy"]
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_71gbj")
 

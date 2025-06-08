@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://di36nuyh1dumg"]
 
 [ext_resource type="Script" uid="uid://dw0q2c0hap3yb" path="res://actors/script/projectiles/arrow.gd" id="1_yi3td"]
-[ext_resource type="Texture2D" uid="uid://dli6nrnvkfs43" path="res://assets/projectiles/Arrow(projectile)/Arrow01(32x32).png" id="2_7k75j"]
+[ext_resource type="Texture2D" uid="uid://bnhb3xsr4dgdm" path="res://assets/projectiles/arrow/Arrow01-32x32.png" id="2_7k75j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
 size = Vector2(17, 3)
 
 [node name="arrow" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 18
+collision_mask = 33
 script = ExtResource("1_yi3td")
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -25,6 +25,5 @@ texture = ExtResource("2_7k75j")
 [node name="wall_collision" type="RayCast2D" parent="."]
 position = Vector2(0, 1)
 target_position = Vector2(11, 0)
-collision_mask = 2
 
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
