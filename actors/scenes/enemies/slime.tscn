@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://m77gyi0qm1su"]
 
-[ext_resource type="Texture2D" uid="uid://cys75y4jwyc22" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
+[ext_resource type="Texture2D" uid="uid://c5de47hqwdwlc" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
 [ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://actors/script/enemies/slime/slime.gd" id="1_rjbn8"]
-[ext_resource type="Texture2D" uid="uid://cikl7otoy2maw" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
+[ext_resource type="Texture2D" uid="uid://c4eccorarf8cc" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="4_ft43y"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]

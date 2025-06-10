@@ -1,12 +1,12 @@
 [gd_scene load_steps=21 format=3 uid="uid://dx3af1d0magoi"]
 
 [ext_resource type="Script" uid="uid://bji8ktcdsgfut" path="res://actors/script/enemies/goblin_smasher/goblin_smasher.gd" id="1_ksjmm"]
-[ext_resource type="Texture2D" uid="uid://4tcqp4nthqvk" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_sprite.png" id="2_ujhxc"]
-[ext_resource type="Texture2D" uid="uid://bm2yt5eiq3e2f" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_attack_outline.png" id="3_ifray"]
-[ext_resource type="Texture2D" uid="uid://c2q6tu643sjdg" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_death_outline.png" id="4_61ljm"]
-[ext_resource type="Texture2D" uid="uid://dj6ykwoy3juhm" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_hurt_outline.png" id="5_mjn0a"]
-[ext_resource type="Texture2D" uid="uid://b6oqv61lvf1ud" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_idle_outline.png" id="6_5k45i"]
-[ext_resource type="Texture2D" uid="uid://r6oxxh0l7dk7" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_run_outline.png" id="7_be3f0"]
+[ext_resource type="Texture2D" uid="uid://bded3wh2ubu5j" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_sprite.png" id="2_ujhxc"]
+[ext_resource type="Texture2D" uid="uid://dpx7b47473r08" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_attack_outline.png" id="3_ifray"]
+[ext_resource type="Texture2D" uid="uid://hrpitx2cxmi" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_death_outline.png" id="4_61ljm"]
+[ext_resource type="Texture2D" uid="uid://cduaqiyy8n607" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_hurt_outline.png" id="5_mjn0a"]
+[ext_resource type="Texture2D" uid="uid://bnnyjahhuiija" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_idle_outline.png" id="6_5k45i"]
+[ext_resource type="Texture2D" uid="uid://dhnmcxuiuvolf" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_run_outline.png" id="7_be3f0"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="8_3l614"]
 [ext_resource type="Script" uid="uid://btrclshakplla" path="res://actors/script/enemies/goblin_smasher/goblin_smasher_atk.gd" id="8_ujhxc"]
 
