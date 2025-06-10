@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5tophuk42vyq"]
+[gd_scene load_steps=9 format=3 uid="uid://c5tophuk42vyq"]
 
 [ext_resource type="PackedScene" uid="uid://m77gyi0qm1su" path="res://actors/scenes/enemies/slime.tscn" id="1_ebjk8"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://actors/scenes/player/player.tscn" id="1_ie2gg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c13fg4s25upwf" path="res://actors/scenes/enemies/blue_golem.tscn" id="5_rux5h"]
 [ext_resource type="PackedScene" uid="uid://bqnqhdqrwweo2" path="res://actors/scenes/enemies/goblin_axe.tscn" id="6_li40o"]
 [ext_resource type="PackedScene" uid="uid://b6nr6y57apkr8" path="res://actors/scenes/enemies/skeleton_axe.tscn" id="7_ris6f"]
+[ext_resource type="PackedScene" uid="uid://dx3af1d0magoi" path="res://actors/scenes/enemies/goblin_smasher.tscn" id="8_ryoc1"]
 
 [node name="world-1" type="Node2D"]
 
@@ -63,4 +64,7 @@ position = Vector2(995, 121)
 position = Vector2(1531, 180)
 
 [node name="skeleton_axe" parent="." instance=ExtResource("7_ris6f")]
-position = Vector2(378, 187)
+position = Vector2(895, 181)
+
+[node name="goblin_smasher" parent="." instance=ExtResource("8_ryoc1")]
+position = Vector2(179, 190)

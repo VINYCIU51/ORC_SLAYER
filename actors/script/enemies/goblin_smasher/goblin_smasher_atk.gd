@@ -1,6 +1,6 @@
 extends Area2D
 
-var mob = Goblin_axe
+var mob = Goblin_smasher
 
 func _on_body_entered(body: Node2D) -> void:
 	# se o player tiver entrado em contato com a area, ele toma o dano referente á força do mob

@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var jump_clear: RayCast2D = $body/jump_clear
 
 
-const SPEED := 100
+const SPEED := 80
 const JUMP_HEIGHT := -150
 const DIST_FOLLOW := 300
 const DIST_ATTACK := 25

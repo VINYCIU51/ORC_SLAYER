@@ -1,19 +1,22 @@
-class_name Golem_blue
+class_name Goblin_smasher
 extends CharacterBody2D 
 
 @onready var player = owner.get_node("player")
 @onready var animation: AnimationPlayer = $body/animation
 @onready var floor_edge: RayCast2D = $body/floor_edge
 @onready var step_ahead: RayCast2D = $body/step_ahead
+@onready var jump_clear: RayCast2D = $body/jump_clear
 
-const SPEED := 60
+
+const SPEED := 120
+const JUMP_HEIGHT := -150
 const DIST_FOLLOW := 300
-const DIST_ATTACK := 40
-const DAMAGE := 3
+const DIST_ATTACK := 25
+const DAMAGE := 1
 
 var distance := 0.0
-var life := 6
-var parry_resistance := 3
+var life := 2
+var parry_resistance := 1
 
 var direction := 0
 var horizontal_difference := 0
@@ -21,6 +24,7 @@ var is_exactly_below := 0
 var is_below_player := 0
 var at_edge := false
 var at_wall := false
+var should_jump := false
 
 var is_stuned := false
 var has_parried := false
@@ -31,9 +35,13 @@ var is_following := false
 
 var current_state := "idle"
 
+func _ready():
+	randomize()
+
 func _physics_process(delta: float) -> void:
 	at_edge = !floor_edge.is_colliding()
 	at_wall = step_ahead.is_colliding()
+	should_jump = true if at_wall and !jump_clear.is_colliding() else false
 	
 	if is_dead: remove_from_group("enemies")
 	
@@ -47,7 +55,10 @@ func _physics_process(delta: float) -> void:
 	if is_exactly_below:
 		velocity.x = 0
 
-	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !is_stuned and !at_edge and !at_wall and !player.is_dead
+	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !at_edge and !jump_clear.is_colliding() and !is_stuned and !player.is_dead
+
+	if is_following and should_jump:
+		velocity.y = JUMP_HEIGHT
 
 	if distance <= DIST_ATTACK and !player.is_dead:
 		is_attacking = true
@@ -59,6 +70,7 @@ func _physics_process(delta: float) -> void:
 		if !animation.is_playing():
 			await get_tree().create_timer(0.2).timeout
 			is_attacking = false
+
 			
 	if is_damaged:
 		velocity.x = 0
@@ -100,7 +112,7 @@ func take_stun():
 	is_stuned = true
 	await get_tree().create_timer(2.0).timeout
 	is_stuned = false
-	parry_resistance = 3
+	parry_resistance = 1
 
 func rotate_sprite():
 	direction = 1 if global_position.x < player.global_position.x else -1
