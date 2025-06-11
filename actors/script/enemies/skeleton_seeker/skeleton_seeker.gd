@@ -88,7 +88,7 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif is_damaged and !is_attacking:
+	elif is_damaged and !is_attacking and has_spawned:
 		new_state = "hurt"
 	elif has_parried:
 		new_state = "parried"
