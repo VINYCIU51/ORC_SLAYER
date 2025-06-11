@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 
 	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !is_stuned and !at_edge and !at_wall and !player.is_dead
 
-	if distance <= DIST_ATTACK and !player.is_dead:
+	if distance <= DIST_ATTACK and !player.is_dead and !is_stuned:
 		is_attacking = true
 		
 	velocity.x = direction * SPEED if is_following else 0

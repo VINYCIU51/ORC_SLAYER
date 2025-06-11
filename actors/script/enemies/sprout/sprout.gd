@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var jump_clear: RayCast2D = $body/jump_clear
 
 
-const SPEED := 120
+const SPEED := 100
 const JUMP_HEIGHT := -150
 const DIST_FOLLOW := 300
 const DIST_ATTACK := 35
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	if is_following and should_jump:
 		velocity.y = JUMP_HEIGHT
 
-	if distance <= DIST_ATTACK and !player.is_dead:
+	if distance <= DIST_ATTACK and !player.is_dead and !is_stuned:
 		is_attacking = true
 		
 	velocity.x = direction * SPEED if is_following else 0

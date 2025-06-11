@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var mob: Sprout
+@export var mob: Skeleton_seeker
 
 func _on_body_entered(body: Node2D) -> void:
 	# se o player tiver entrado em contato com a area, ele toma o dano referente á força do mob
