@@ -40,6 +40,7 @@ func _physics_process(delta):
 	if global_position.y > DEATH_HEIGHT:
 		fall_off_screen()
 
+	# Bloqueios para impedir açoes pós morte
 	if is_dead:
 		velocity.x = 0
 		velocity.y += fall_gravity * delta
@@ -47,11 +48,14 @@ func _physics_process(delta):
 		set_state()
 		return
 
+	# Define a direção com base no input de movimento
 	direction = Input.get_axis("move_left", "move_right")
 
+	# Permite o movimento do player se ele nao estiver recebendo dano
 	if !is_damaged:
 		velocity.x = direction * SPEED
 
+	# Verifica a direcao do personagem para efetuar o flip de sprite
 	if direction != 0 and !is_attacking and !is_shooting and !is_air_shooting and !is_blocking:
 		flip_sprite(direction)
 
@@ -78,15 +82,23 @@ func _physics_process(delta):
 	if is_on_floor() and Input.is_action_just_pressed("left_click") and !is_attacking and !is_shooting and !is_blocking:
 		is_attacking = true
 
+	# Efetua bloqueio / parry
 	if is_on_floor() and Input.is_action_just_pressed("right_click") and !is_attacking and !is_shooting and !is_air_shooting:
 		is_blocking = true
 		
 	set_state()
+	
+	# Verifica o fim da animacao de bloqueio comum
 	if is_blocking:
 		velocity.x = 0
 		if !animation.is_playing() or current_state != "parry": 
 			$parry/parry_area.disabled = true
 			is_blocking = false
+
+	# Verifica o fim da animacao de parry bem sucedido (com faiscas)
+	if has_parried:
+		velocity.x = 0
+		if !animation.is_playing() or current_state != "successful_parry": 
 			has_parried = false
 
 	# Verifica se terminou o ataque
@@ -111,6 +123,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+# Gerencia as animacoes do personagem
 func set_state():
 	var new_state = "idle"
 
@@ -124,8 +137,10 @@ func set_state():
 		new_state = "shoot"
 	elif is_air_shooting:
 		new_state = "air_shoot"
-	elif is_blocking:
+	elif is_blocking and !has_parried:
 		new_state = "parry"
+	elif has_parried:
+		new_state = "successful_parry"
 	elif !is_on_floor():
 		new_state = "jump"
 	elif direction != 0:
@@ -135,9 +150,11 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
+# Faz ele reaparecer ao cair dos limites da tela
 func fall_off_screen():
 	get_tree().reload_current_scene()
 
+# Efetua as verificaçoes e ativaçoes ao tomar um hit
 func take_damage(damage : int, enemie_position := Vector2.ZERO):
 	if is_invincible or is_dead or has_parried: return
 
@@ -148,6 +165,7 @@ func take_damage(damage : int, enemie_position := Vector2.ZERO):
 
 	if life <= 0: is_dead = true
 
+# Efetua o disparo da flecha
 func shoot():
 	var arrow_instance = ARROW.instantiate()
 	add_sibling(arrow_instance, true)
@@ -156,24 +174,29 @@ func shoot():
 	arrow_instance.set_direction(direct)
 	arrow_instance.position = $body/arrow_point.global_position
 
+# Inverte a direcao do sprite do personagem
 func flip_sprite(dir):
 	$body.scale.x = sign(dir)
 
+# Faz o personagem ser lançado na direcao oposta do inimigo que lhe inferiu dano
 func knockback(dir):
 	var knock_direction = sign(global_position.x - dir.x)
 	velocity.x = knock_direction * 100
 
+# Ativa o modo de invencibilidade permitindo o personagem andar sem tomar dano por um periodo
 func enable_invincibility():
 	is_invincible = true
 	set_collision_mask_value(3,false)
 	blink_timer.start()
 	invincible_timer.start()
 
+# Faz as desativaçoes de invencibilidade ao fim do tempo
 func _on_invincible_timer_timeout() -> void:
 	is_invincible = false
 	set_collision_mask_value(3,true)
 	blink_timer.stop()
 	sprite.visible = true
 
+# Faz o efeito de "piscar" do personagem
 func _on_blink_timer_timeout() -> void:
 	sprite.visible = !sprite.visible

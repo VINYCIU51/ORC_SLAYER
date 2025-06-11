@@ -1,16 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://gkhbgo55eaaq"]
+[gd_scene load_steps=31 format=3 uid="uid://gkhbgo55eaaq"]
 
 [ext_resource type="Script" uid="uid://b6xwcy5a7ysi1" path="res://actors/script/player/player.gd" id="1_33vod"]
-[ext_resource type="Texture2D" uid="uid://dgjk3488aqy0y" path="res://assets/player/Soldier/Soldier-Arrow.png" id="2_2fab3"]
-[ext_resource type="Texture2D" uid="uid://bqo0y506hqfjm" path="res://assets/player/Soldier/Sword-Attack.png" id="3_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://bux2blb5vwu17" path="res://assets/player/Soldier/Soldier-Death.png" id="4_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://f6i2ml0j2rfk" path="res://assets/player/Soldier/Soldier-Hurt.png" id="5_ii4c0"]
-[ext_resource type="Texture2D" uid="uid://bmf7lutxrlyjg" path="res://assets/player/Soldier/Soldier-Idle.png" id="6_un1rg"]
-[ext_resource type="Texture2D" uid="uid://dl176xobnnhjn" path="res://assets/player/Soldier/Soldier-Walk.png" id="7_gdopa"]
+[ext_resource type="Texture2D" uid="uid://dgjk3488aqy0y" path="res://assets/player/Soldier-Arrow.png" id="2_2fab3"]
+[ext_resource type="Texture2D" uid="uid://cgsxmg8v3j5mj" path="res://assets/player/successful_parry.png" id="2_gdopa"]
+[ext_resource type="Texture2D" uid="uid://bqo0y506hqfjm" path="res://assets/player/Sword-Attack.png" id="3_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://bux2blb5vwu17" path="res://assets/player/Soldier-Death.png" id="4_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://f6i2ml0j2rfk" path="res://assets/player/Soldier-Hurt.png" id="5_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://bmf7lutxrlyjg" path="res://assets/player/Soldier-Idle.png" id="6_un1rg"]
+[ext_resource type="Texture2D" uid="uid://dl176xobnnhjn" path="res://assets/player/Soldier-Walk.png" id="7_gdopa"]
 [ext_resource type="Script" uid="uid://ba4cwpknmdorv" path="res://actors/script/player/player_hurtbox.gd" id="8_2fab3"]
-[ext_resource type="Texture2D" uid="uid://dscdj1gqvds5k" path="res://assets/player/Soldier/Soldier-Air-Attack.png" id="8_n4r3a"]
-[ext_resource type="Texture2D" uid="uid://clshjgq7hqu74" path="res://assets/player/Soldier/Soldier-Air-Arrow.png" id="9_wlyqf"]
-[ext_resource type="Texture2D" uid="uid://huwsarrgk7y7" path="res://assets/player/Soldier/Parry.png" id="10_ii4c0"]
+[ext_resource type="Texture2D" uid="uid://dscdj1gqvds5k" path="res://assets/player/Soldier-Air-Attack.png" id="8_n4r3a"]
+[ext_resource type="Texture2D" uid="uid://clshjgq7hqu74" path="res://assets/player/Soldier-Air-Arrow.png" id="9_wlyqf"]
+[ext_resource type="Texture2D" uid="uid://huwsarrgk7y7" path="res://assets/player/Parry.png" id="10_ii4c0"]
 [ext_resource type="Script" uid="uid://sixnx7xvau4o" path="res://actors/script/player/player_atk.gd" id="11_gdopa"]
 [ext_resource type="Script" uid="uid://o0cwlky1oa73" path="res://actors/script/player/player_parry.gd" id="12_un1rg"]
 
@@ -26,7 +27,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -510,6 +511,58 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_3luku"]
+resource_name = "successful_parry"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gdopa")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parry/parry_area:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
 [sub_resource type="Animation" id="Animation_opp7g"]
 resource_name = "walk"
 length = 0.8
@@ -586,6 +639,7 @@ _data = {
 &"jump": SubResource("Animation_g4jua"),
 &"parry": SubResource("Animation_un1rg"),
 &"shoot": SubResource("Animation_jglmw"),
+&"successful_parry": SubResource("Animation_3luku"),
 &"walk": SubResource("Animation_opp7g")
 }
 
@@ -615,9 +669,8 @@ script = ExtResource("1_33vod")
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("9_wlyqf")
-hframes = 9
-frame = 6
+texture = ExtResource("2_gdopa")
+hframes = 4
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")
@@ -629,11 +682,12 @@ speed_scale = 1.5
 [node name="arrow_point" type="Marker2D" parent="body"]
 position = Vector2(5, 2)
 
-[node name="sword_attack" type="Area2D" parent="body"]
+[node name="sword_attack" type="Area2D" parent="body" node_paths=PackedStringArray("player")]
 position = Vector2(19, 1)
 collision_layer = 64
 collision_mask = 36
 script = ExtResource("11_gdopa")
+player = NodePath("../..")
 
 [node name="attack_area" type="CollisionShape2D" parent="body/sword_attack"]
 position = Vector2(-3, -1)
@@ -655,19 +709,21 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="hurtbox" type="Area2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 16
 collision_mask = 164
 script = ExtResource("8_2fab3")
+player = NodePath("..")
 
 [node name="hurbox_area" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CapsuleShape2D_3luku")
 debug_color = Color(1, 0, 0, 0.560784)
 
-[node name="parry" type="Area2D" parent="."]
+[node name="parry" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 16
 collision_mask = 64
 script = ExtResource("12_un1rg")
+player = NodePath("..")
 
 [node name="parry_area" type="CollisionShape2D" parent="parry"]
 shape = SubResource("CapsuleShape2D_kxo2m")
