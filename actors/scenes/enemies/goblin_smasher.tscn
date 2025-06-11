@@ -1,12 +1,12 @@
 [gd_scene load_steps=21 format=3 uid="uid://dx3af1d0magoi"]
 
 [ext_resource type="Script" uid="uid://bji8ktcdsgfut" path="res://actors/script/enemies/goblin_smasher/goblin_smasher.gd" id="1_ksjmm"]
-[ext_resource type="Texture2D" uid="uid://bded3wh2ubu5j" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_sprite.png" id="2_ujhxc"]
-[ext_resource type="Texture2D" uid="uid://dpx7b47473r08" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_attack_outline.png" id="3_ifray"]
-[ext_resource type="Texture2D" uid="uid://hrpitx2cxmi" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_death_outline.png" id="4_61ljm"]
-[ext_resource type="Texture2D" uid="uid://cduaqiyy8n607" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_hurt_outline.png" id="5_mjn0a"]
-[ext_resource type="Texture2D" uid="uid://bnnyjahhuiija" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_idle_outline.png" id="6_5k45i"]
-[ext_resource type="Texture2D" uid="uid://dhnmcxuiuvolf" path="res://assets/enemies/goblin_spiked_club/goblinsmasher_run_outline.png" id="7_be3f0"]
+[ext_resource type="Texture2D" uid="uid://bded3wh2ubu5j" path="res://assets/enemies/goblin_smasher/goblinsmasher_sprite.png" id="2_ujhxc"]
+[ext_resource type="Texture2D" uid="uid://dpx7b47473r08" path="res://assets/enemies/goblin_smasher/goblinsmasher_attack_outline.png" id="3_ifray"]
+[ext_resource type="Texture2D" uid="uid://hrpitx2cxmi" path="res://assets/enemies/goblin_smasher/goblinsmasher_death_outline.png" id="4_61ljm"]
+[ext_resource type="Texture2D" uid="uid://cduaqiyy8n607" path="res://assets/enemies/goblin_smasher/goblinsmasher_hurt_outline.png" id="5_mjn0a"]
+[ext_resource type="Texture2D" uid="uid://bnnyjahhuiija" path="res://assets/enemies/goblin_smasher/goblinsmasher_idle_outline.png" id="6_5k45i"]
+[ext_resource type="Texture2D" uid="uid://dhnmcxuiuvolf" path="res://assets/enemies/goblin_smasher/goblinsmasher_run_outline.png" id="7_be3f0"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="8_3l614"]
 [ext_resource type="Script" uid="uid://btrclshakplla" path="res://actors/script/enemies/goblin_smasher/goblin_smasher_atk.gd" id="8_ujhxc"]
 
@@ -131,7 +131,7 @@ tracks/3/path = NodePath("body/attack_area/attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -387,8 +387,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nbqcl"]
-radius = 6.94575
-height = 16.0
+radius = 8.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v03dw"]
 radius = 6.0
@@ -436,8 +436,10 @@ script = ExtResource("8_ujhxc")
 
 [node name="attack" type="CollisionShape2D" parent="body/attack_area"]
 position = Vector2(16, 2)
+rotation = 1.5708
 scale = Vector2(1.00781, 1)
 shape = SubResource("CapsuleShape2D_nbqcl")
+debug_color = Color(0.660625, 0.514343, 0, 0.42)
 
 [node name="hitbox" parent="body" instance=ExtResource("8_3l614")]
 collision_layer = 32

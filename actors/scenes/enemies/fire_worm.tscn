@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://dcjsatgutqpc5"]
 
 [ext_resource type="Script" uid="uid://dorxovmwk425k" path="res://actors/script/enemies/fire_worm/fire_worm.gd" id="1_y7fuk"]
-[ext_resource type="Texture2D" uid="uid://cygkokih6gvt5" path="res://assets/enemies/Fire _Worm/Idle.png" id="2_c5hsy"]
-[ext_resource type="Texture2D" uid="uid://dobiyt2l6o7y7" path="res://assets/enemies/Fire _Worm/Attack.png" id="3_njoqq"]
-[ext_resource type="Texture2D" uid="uid://d0boaiqj0dtmf" path="res://assets/enemies/Fire _Worm/Death.png" id="4_1rnco"]
-[ext_resource type="Texture2D" uid="uid://dhltppftx5w8v" path="res://assets/enemies/Fire _Worm/Get Hit.png" id="5_g7rhp"]
-[ext_resource type="Texture2D" uid="uid://dbb0rpnhcbqj0" path="res://assets/enemies/Fire _Worm/Walk.png" id="6_j5g56"]
+[ext_resource type="Texture2D" uid="uid://cygkokih6gvt5" path="res://assets/enemies/Fire_Worm/Idle.png" id="2_c5hsy"]
+[ext_resource type="Texture2D" uid="uid://dobiyt2l6o7y7" path="res://assets/enemies/Fire_Worm/Attack.png" id="3_njoqq"]
+[ext_resource type="Texture2D" uid="uid://d0boaiqj0dtmf" path="res://assets/enemies/Fire_Worm/Death.png" id="4_1rnco"]
+[ext_resource type="Texture2D" uid="uid://dhltppftx5w8v" path="res://assets/enemies/Fire_Worm/Get Hit.png" id="5_g7rhp"]
+[ext_resource type="Texture2D" uid="uid://dbb0rpnhcbqj0" path="res://assets/enemies/Fire_Worm/Walk.png" id="6_j5g56"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://actors/scenes/others/hitbox.tscn" id="8_luva3"]
 
 [sub_resource type="Animation" id="Animation_daps1"]

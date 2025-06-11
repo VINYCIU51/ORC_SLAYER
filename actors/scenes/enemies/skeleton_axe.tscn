@@ -459,7 +459,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nbqcl"]
-radius = 7.33333
+radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v03dw"]
 radius = 5.0
@@ -508,6 +508,7 @@ script = ExtResource("8_yerr7")
 position = Vector2(16, 4)
 scale = Vector2(1.5, 1)
 shape = SubResource("CapsuleShape2D_nbqcl")
+debug_color = Color(0.668301, 0.510243, 0, 0.42)
 
 [node name="hitbox" parent="body" instance=ExtResource("11_ope54")]
 collision_layer = 32

@@ -417,7 +417,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="floor_edge" type="RayCast2D" parent="body"]
-position = Vector2(0, 6)
+position = Vector2(21, 6)
 target_position = Vector2(20, 24)
 
 [node name="step_ahead" type="RayCast2D" parent="body"]
