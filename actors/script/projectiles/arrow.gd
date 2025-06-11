@@ -1,7 +1,7 @@
 class_name Arrow
 extends CharacterBody2D
 
-@onready var wall_collision := $wall_collision as RayCast2D
+@onready var wall_collision : RayCast2D = $body/wall_collision
 
 const SPEED := 300
 const ARROW_DURATION := 3.5
@@ -32,8 +32,7 @@ func stop_and_disappear():
 # ajusta a direcao da flecha
 func set_direction(dir):
 	direction = dir
-	$sprite.flip_h = direction < 0
-	$wall_collision.target_position.x = $wall_collision.target_position.x * direction
+	$body.scale.x = sign(direction)
 
 # faz a flecha desaparecer ao sair da tela
 func _on_visibility_screen_exited() -> void:

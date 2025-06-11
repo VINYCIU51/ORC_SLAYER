@@ -90,7 +90,9 @@ func _physics_process(delta):
 	# Verifica se terminou o ataque
 	if is_attacking:
 		velocity.x = 0
-		if !animation.is_playing(): is_attacking = false
+		if !animation.is_playing() or current_state != "attack": 
+			$body/sword_attack/attack_area.disabled = true
+			is_attacking = false
 	
 	# Verifica o fim do tiro
 	if is_shooting:
@@ -144,7 +146,7 @@ func take_damage(damage := 1):
 
 	if life <= 0: is_dead = true
 
-func shoot_arrow():
+func shoot():
 	var arrow_instance = ARROW.instantiate()
 	add_sibling(arrow_instance, true)
 	
