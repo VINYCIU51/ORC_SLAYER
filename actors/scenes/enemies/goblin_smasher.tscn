@@ -429,10 +429,11 @@ target_position = Vector2(20, 0)
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
 
-[node name="attack_area" type="Area2D" parent="body" groups=["enemies_attacks"]]
+[node name="attack_area" type="Area2D" parent="body" node_paths=PackedStringArray("mob") groups=["enemies_attacks"]]
 collision_layer = 64
 collision_mask = 18
 script = ExtResource("8_ujhxc")
+mob = NodePath("../..")
 
 [node name="attack" type="CollisionShape2D" parent="body/attack_area"]
 position = Vector2(16, 2)
@@ -450,6 +451,7 @@ shape = SubResource("CapsuleShape2D_v03dw")
 debug_color = Color(0.7, 0, 0.0984375, 0.42)
 
 [node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_7u7dx")
 
 [connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]

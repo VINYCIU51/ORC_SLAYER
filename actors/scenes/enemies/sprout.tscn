@@ -428,10 +428,11 @@ target_position = Vector2(20, 0)
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
 
-[node name="attack_area" type="Area2D" parent="body" groups=["enemies_attacks"]]
+[node name="attack_area" type="Area2D" parent="body" node_paths=PackedStringArray("mob") groups=["enemies_attacks"]]
 collision_layer = 64
 collision_mask = 18
 script = ExtResource("8_2uju4")
+mob = NodePath("../..")
 
 [node name="attack" type="CollisionShape2D" parent="body/attack_area"]
 position = Vector2(27, -5)
