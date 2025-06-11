@@ -129,7 +129,7 @@ func take_damage(damage: int):
 func calculate_position():
 	distance = global_position.distance_to(player.global_position)
 	horizontal_difference = abs(global_position.x - player.global_position.x)
-	is_below_player = global_position.y > player.global_position.y
+	is_below_player = global_position.y > player.global_position.y or global_position.y < player.global_position.y
 	is_exactly_below = horizontal_difference < 2 and is_below_player
 	
 func hit_blink():

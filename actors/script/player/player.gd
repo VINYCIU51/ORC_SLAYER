@@ -12,7 +12,6 @@ const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 
 var life := 5
-var is_dead := false
 
 var jump_height := 80
 var time_to_top_height := 0.5
@@ -22,6 +21,7 @@ var fall_gravity
 
 var direction = 0.0
 
+var is_dead := false
 var is_invincible := false
 var is_damaged := false
 var is_attacking := false
@@ -42,6 +42,8 @@ func _physics_process(delta):
 
 	if is_dead:
 		velocity.x = 0
+		velocity.y += fall_gravity * delta
+		move_and_slide()
 		set_state()
 		return
 
@@ -105,7 +107,6 @@ func _physics_process(delta):
 
 	# Verifica fim de dano
 	if is_damaged:
-		knockback()
 		if !animation.is_playing(): is_damaged = false
 
 	move_and_slide()
@@ -137,10 +138,11 @@ func set_state():
 func fall_off_screen():
 	get_tree().reload_current_scene()
 
-func take_damage(damage := 1):
+func take_damage(damage : int, enemie_position := Vector2.ZERO):
 	if is_invincible or is_dead or has_parried: return
 
 	is_damaged = true
+	knockback(enemie_position)
 	enable_invincibility()
 	life -= damage
 
@@ -157,8 +159,8 @@ func shoot():
 func flip_sprite(dir):
 	$body.scale.x = sign(dir)
 
-func knockback():
-	var knock_direction = -sign($body.scale.x)
+func knockback(dir):
+	var knock_direction = sign(global_position.x - dir.x)
 	velocity.x = knock_direction * 100
 
 func enable_invincibility():

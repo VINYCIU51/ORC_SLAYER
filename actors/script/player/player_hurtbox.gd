@@ -4,8 +4,8 @@ func _on_body_entered(body: Node2D) -> void:
 	var player = get_player()
 	
 	# aplica dano ao player por tocar em um inimigo
-	if body.is_in_group("enemies") or body.is_in_group("enemies_attacks"):
-		player.take_damage()
+	if body.is_in_group("enemies") or body.is_in_group("enemies_projectiles"):
+		player.take_damage(1, body.global_position)
 
 # encontra o nó raiz ou o nó que pertence aà classe especificada
 func get_player():
