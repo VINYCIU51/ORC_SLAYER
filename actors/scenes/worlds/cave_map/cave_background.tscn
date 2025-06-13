@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cejifiwbcvmne"]
 
-[ext_resource type="Texture2D" uid="uid://bqn4iseykwrrk" path="res://assets/maps/caves/background1.png" id="1_y3ltw"]
-[ext_resource type="Texture2D" uid="uid://dfdhk6b3on7a" path="res://assets/maps/caves/background2.png" id="2_o76xk"]
-[ext_resource type="Texture2D" uid="uid://dldfoq7iknw0d" path="res://assets/maps/caves/background3.png" id="3_0j37h"]
-[ext_resource type="Texture2D" uid="uid://crjsotofj4652" path="res://assets/maps/caves/background4b.png" id="4_lpvv4"]
+[ext_resource type="Texture2D" uid="uid://bqn4iseykwrrk" path="res://assets/maps/caves/background/background1.png" id="1_y3ltw"]
+[ext_resource type="Texture2D" uid="uid://dfdhk6b3on7a" path="res://assets/maps/caves/background/background2.png" id="2_o76xk"]
+[ext_resource type="Texture2D" uid="uid://dldfoq7iknw0d" path="res://assets/maps/caves/background/background3.png" id="3_0j37h"]
+[ext_resource type="Texture2D" uid="uid://crjsotofj4652" path="res://assets/maps/caves/background/background4b.png" id="4_lpvv4"]
 
 [node name="cave_background" type="Node2D"]
 
@@ -11,7 +11,7 @@
 follow_viewport_enabled = true
 
 [node name="cave_deepths" type="Parallax2D" parent="parallax_bg"]
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 3
 
@@ -20,7 +20,7 @@ position = Vector2(0, -1)
 texture = ExtResource("1_y3ltw")
 
 [node name="distante_rocks" type="Parallax2D" parent="parallax_bg"]
-scroll_scale = Vector2(0.7, 0.7)
+scroll_scale = Vector2(0.7, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 3
 
@@ -29,7 +29,7 @@ position = Vector2(0, -1)
 texture = ExtResource("2_o76xk")
 
 [node name="median_rocks" type="Parallax2D" parent="parallax_bg"]
-scroll_scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 3
 
@@ -39,7 +39,7 @@ texture = ExtResource("3_0j37h")
 
 [node name="near_rocks" type="Parallax2D" parent="parallax_bg"]
 scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.9, 0.9)
+scroll_scale = Vector2(0.9, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 3
 
