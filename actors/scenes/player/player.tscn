@@ -696,19 +696,6 @@ shape = SubResource("CapsuleShape2D_nuiia")
 disabled = true
 debug_color = Color(0.629037, 0.530222, 1.92523e-07, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-limit_left = -100
-limit_top = -350
-limit_bottom = 350
-limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_top_margin = 0.4
-drag_bottom_margin = 0.4
-editor_draw_limits = true
-editor_draw_drag_margin = true
-
 [node name="hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 16
 collision_mask = 164
@@ -741,9 +728,7 @@ one_shot = true
 [node name="blink_timer" type="Timer" parent="."]
 wait_time = 0.1
 
-[connection signal="body_entered" from="body/sword_attack" to="." method="_on_melee_body_entered"]
 [connection signal="body_entered" from="body/sword_attack" to="body/sword_attack" method="_on_body_entered"]
-[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="hurtbox" to="hurtbox" method="_on_body_entered"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
 [connection signal="timeout" from="invincible_timer" to="." method="_on_invincible_timer_timeout"]
