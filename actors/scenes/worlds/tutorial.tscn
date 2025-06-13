@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2d6xjf0w4bxb"]
+
+[ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://actors/scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_3gigv"]
+[ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://actors/scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_pxdhg"]
+[ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://actors/scenes/player/player.tscn" id="3_o0nb0"]
+[ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://actors/scenes/others/camera.tscn" id="4_jj35j"]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="tutorial_background" parent="." instance=ExtResource("1_3gigv")]
+
+[node name="TutorialMap" parent="." instance=ExtResource("2_pxdhg")]
+position = Vector2(-98, 160)
+
+[node name="player" parent="." instance=ExtResource("3_o0nb0")]
+position = Vector2(-2, -45)
+
+[node name="camera" parent="." instance=ExtResource("4_jj35j")]
