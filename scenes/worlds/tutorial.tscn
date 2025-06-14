@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2d6xjf0w4bxb"]
+
+[ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_q0ygy"]
+[ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_lirtl"]
+[ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="3_1bcfs"]
+[ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="4_5g6ke"]
+[ext_resource type="PackedScene" uid="uid://2owqjofsg2rs" path="res://scenes/NPCs/training_dummy.tscn" id="5_djvpm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ygy"]
+size = Vector2(20, 416)
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="tutorial_background" parent="." instance=ExtResource("1_q0ygy")]
+
+[node name="TutorialMap" parent="." instance=ExtResource("2_lirtl")]
+position = Vector2(-100, 160)
+
+[node name="invisible_limit" type="StaticBody2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="invisible_limit"]
+position = Vector2(-90, 47)
+shape = SubResource("RectangleShape2D_q0ygy")
+debug_color = Color(4.81307e-07, 0.639319, 0.366356, 0.42)
+
+[node name="camera" parent="." instance=ExtResource("4_5g6ke")]
+
+[node name="player" parent="." instance=ExtResource("3_1bcfs")]
+position = Vector2(29, 152)
+
+[node name="training_dummy" parent="." instance=ExtResource("5_djvpm")]
+position = Vector2(434, 148)
