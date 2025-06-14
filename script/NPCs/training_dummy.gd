@@ -14,20 +14,28 @@ var direction := -1
 var has_parried := false
 var is_damaged := false
 var is_attacking := false
+var is_active := false
 
 var current_state := "idle"
 
 func _physics_process(delta: float) -> void:
 	calculate_position()
 
-	is_attacking = distance <= DIST_ATTACK
+	if distance > DIST_ATTACK:
+		is_active = false
+
+	if distance <= DIST_ATTACK and is_active:
+		is_attacking = true
 		
-		
+	if is_attacking and current_state == "attack":
+		if !animation.is_playing():
+			await get_tree().create_timer(0.5).timeout
+			is_attacking = false
+	
 	if has_parried:
 		$attack_area/attack.disabled = true
 		has_parried = false
 	
-	print(is_attacking)
 	set_state()
 	move_and_slide()
 
@@ -48,6 +56,7 @@ func set_state():
 func take_damage(damage: int):
 	hit_blink()
 	is_damaged = true
+	is_active = true
 
 func calculate_position():
 	distance = global_position.distance_to(player.global_position)
