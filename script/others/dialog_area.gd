@@ -1,11 +1,12 @@
 extends Area2D
 
-@onready var label: Label = $Label
+@export var label: Label
 var typing := false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		typing = true
+		body.velocity.x = 100
 		
 		for i in range(label.get_total_character_count()):
 			if !typing:
