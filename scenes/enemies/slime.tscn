@@ -262,7 +262,6 @@ scale = Vector2(1.00508, 1)
 target_position = Vector2(20, 10)
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
-collision_layer = 32
 collision_mask = 10
 
 [node name="hit_collision" type="CollisionShape2D" parent="hitbox"]

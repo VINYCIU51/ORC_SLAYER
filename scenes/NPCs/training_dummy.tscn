@@ -172,6 +172,7 @@ vframes = 3
 libraries = {
 &"": SubResource("AnimationLibrary_l5f7w")
 }
+autoplay = "idle"
 
 [node name="attack_area" parent="." node_paths=PackedStringArray("mob") instance=ExtResource("2_dkcov")]
 mob = NodePath("..")
