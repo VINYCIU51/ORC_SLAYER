@@ -9,7 +9,6 @@ const DIST_ATTACK := 40
 const DAMAGE := 0
 
 var distance := 0.0
-var direction := -1
 
 var has_parried := false
 var is_damaged := false
@@ -24,18 +23,21 @@ func _physics_process(delta: float) -> void:
 	if distance > DIST_ATTACK:
 		is_active = false
 
-	if distance <= DIST_ATTACK and is_active:
+	if distance <= DIST_ATTACK and is_active and !is_attacking:
 		is_attacking = true
-		
-	if is_attacking and current_state == "attack":
+
+	if is_attacking:
 		if !animation.is_playing():
-			await get_tree().create_timer(0.5).timeout
 			is_attacking = false
-	
+
+	if is_damaged:
+		if !animation.is_playing():
+			is_damaged = false
+
 	if has_parried:
 		$attack_area/attack.disabled = true
 		has_parried = false
-	
+
 	set_state()
 	move_and_slide()
 
@@ -65,11 +67,3 @@ func hit_blink():
 	$sprite.self_modulate = Color(50,50,50,1)
 	await get_tree().create_timer(0.1).timeout
 	$sprite.self_modulate = Color(1,1,1,1)
-
-
-func _on_animation_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "attack":
-		is_attacking = false
-		
-	if anim_name == "hurt":
-		is_damaged = false
