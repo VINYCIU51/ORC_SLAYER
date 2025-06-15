@@ -1,0 +1,51 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5tophuk42vyq"]
+
+[ext_resource type="PackedScene" uid="uid://m77gyi0qm1su" path="res://scenes/enemies/slime.tscn" id="1_ebjk8"]
+[ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="1_ie2gg"]
+[ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://scenes/worlds/cave_map/cave_entrance.tscn" id="1_li40o"]
+[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://scenes/worlds/cave_map/cave_background.tscn" id="1_rux5h"]
+[ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="3_lpa1q"]
+[ext_resource type="PackedScene" uid="uid://c13fg4s25upwf" path="res://scenes/enemies/blue_golem.tscn" id="5_rux5h"]
+[ext_resource type="PackedScene" uid="uid://bqnqhdqrwweo2" path="res://scenes/enemies/goblin_axe.tscn" id="6_li40o"]
+[ext_resource type="PackedScene" uid="uid://b6nr6y57apkr8" path="res://scenes/enemies/skeleton_axe.tscn" id="7_ris6f"]
+[ext_resource type="PackedScene" uid="uid://dx3af1d0magoi" path="res://scenes/enemies/goblin_smasher.tscn" id="8_ryoc1"]
+[ext_resource type="PackedScene" uid="uid://f670w4drtve6" path="res://scenes/enemies/sprout.tscn" id="9_ljagv"]
+[ext_resource type="PackedScene" uid="uid://dcjsatgutqpc5" path="res://scenes/enemies/fire_worm.tscn" id="10_2svlx"]
+[ext_resource type="PackedScene" uid="uid://n0aqnps0relb" path="res://scenes/enemies/skeleton_seeker.tscn" id="10_qk5lc"]
+
+[node name="world-1" type="Node2D"]
+
+[node name="cave_entrance" parent="." instance=ExtResource("1_li40o")]
+position = Vector2(-2, 212)
+
+[node name="cave_background" parent="." instance=ExtResource("1_rux5h")]
+
+[node name="camera" parent="." instance=ExtResource("3_lpa1q")]
+limit_top = -350
+limit_bottom = 350
+
+[node name="goblin_axe" parent="." instance=ExtResource("6_li40o")]
+position = Vector2(288, 160)
+
+[node name="player" parent="." instance=ExtResource("1_ie2gg")]
+
+[node name="slime" parent="." instance=ExtResource("1_ebjk8")]
+position = Vector2(1006, 122)
+
+[node name="blue_golem" parent="." instance=ExtResource("5_rux5h")]
+position = Vector2(594, 196)
+
+[node name="skeleton_axe" parent="." instance=ExtResource("7_ris6f")]
+position = Vector2(861, 181)
+
+[node name="goblin_smasher" parent="." instance=ExtResource("8_ryoc1")]
+position = Vector2(-220, 136)
+
+[node name="sprout" parent="." instance=ExtResource("9_ljagv")]
+position = Vector2(754, 189)
+
+[node name="skeleton_seeker" parent="." instance=ExtResource("10_qk5lc")]
+position = Vector2(2004, -28)
+
+[node name="fire_worm" parent="." instance=ExtResource("10_2svlx")]
+position = Vector2(1562, 193)

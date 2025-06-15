@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://deci31t3kjw7s"]
+
+[ext_resource type="Script" uid="uid://d04i0ke6b8ox2" path="res://script/others/dialog_area.gd" id="1_dxdsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvfpw"]
+size = Vector2(123, 90.5)
+
+[node name="dialog_area" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dxdsm")
+
+[node name="area" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, -17.75)
+shape = SubResource("RectangleShape2D_tvfpw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

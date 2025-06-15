@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://kiugy4837xh8"]
+
+[ext_resource type="Script" uid="uid://k8as57pn1ib0" path="res://script/others/camera.gd" id="1_48xk1"]
+
+[node name="camera" type="Camera2D"]
+zoom = Vector2(3, 3)
+limit_left = -100
+limit_top = -150
+limit_bottom = 250
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.4
+drag_bottom_margin = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_48xk1")
+target_path = NodePath("../player")
