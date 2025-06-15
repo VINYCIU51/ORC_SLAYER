@@ -35,9 +35,6 @@ var is_following := false
 
 var current_state := "idle"
 
-func _ready():
-	randomize()
-
 func _physics_process(delta: float) -> void:
 	at_edge = !floor_edge.is_colliding()
 	at_wall = step_ahead.is_colliding()

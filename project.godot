@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="knight"
-run/main_scene="uid://c5tophuk42vyq"
+run/main_scene="uid://c2d6xjf0w4bxb"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-global_levels="*res://actors/script/worlds/global_levels.gd"
+global_levels="*res://script/worlds/global_levels.gd"
 
 [display]
 
@@ -28,6 +28,7 @@ window/size/viewport_height=900
 
 enemies=""
 enemies_attacks=""
+enemies_projectiles=""
 
 [input]
 
@@ -80,10 +81,11 @@ scroll_click={
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
-2d_physics/layer_4="projectile"
+2d_physics/layer_4="player_projectiles"
 2d_physics/layer_5="player_hitbox"
 2d_physics/layer_6="enemie_hitbox"
 2d_physics/layer_7="attack_hitbox"
+2d_physics/layer_8="dangerous_projectiles"
 
 [rendering]
 

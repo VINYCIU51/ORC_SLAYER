@@ -1,10 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2d6xjf0w4bxb"]
+[gd_scene load_steps=15 format=3 uid="uid://c2d6xjf0w4bxb"]
 
 [ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_q0ygy"]
 [ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_lirtl"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="3_1bcfs"]
 [ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="4_5g6ke"]
 [ext_resource type="PackedScene" uid="uid://2owqjofsg2rs" path="res://scenes/NPCs/training_dummy.tscn" id="5_djvpm"]
+[ext_resource type="PackedScene" uid="uid://bmwt6etpegtai" path="res://scenes/NPCs/man_young.tscn" id="6_kiskg"]
+[ext_resource type="PackedScene" uid="uid://dfb1572uymqcm" path="res://scenes/NPCs/woman_young.tscn" id="6_tosb4"]
+[ext_resource type="PackedScene" uid="uid://cmoji6xiw2xhl" path="res://scenes/NPCs/woman_old.tscn" id="8_l6qam"]
+[ext_resource type="PackedScene" uid="uid://mkekw4oel36s" path="res://scenes/NPCs/chicken_white.tscn" id="9_3yciw"]
+[ext_resource type="PackedScene" uid="uid://n6pk6bqh5xaq" path="res://scenes/NPCs/chicken_brown.tscn" id="10_8li8l"]
+[ext_resource type="PackedScene" uid="uid://bdkig4nb7hp4c" path="res://scenes/NPCs/king.tscn" id="11_nyk56"]
+[ext_resource type="PackedScene" uid="uid://cpe005q76g1kk" path="res://scenes/NPCs/queen.tscn" id="12_11akb"]
+[ext_resource type="PackedScene" uid="uid://deci31t3kjw7s" path="res://scenes/others/dialog_area.tscn" id="13_11akb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ygy"]
 size = Vector2(20, 416)
@@ -26,7 +34,53 @@ debug_color = Color(4.81307e-07, 0.639319, 0.366356, 0.42)
 [node name="camera" parent="." instance=ExtResource("4_5g6ke")]
 
 [node name="player" parent="." instance=ExtResource("3_1bcfs")]
-position = Vector2(29, 152)
+position = Vector2(135, 133)
 
 [node name="training_dummy" parent="." instance=ExtResource("5_djvpm")]
-position = Vector2(434, 148)
+position = Vector2(2979, 148)
+
+[node name="training_dummy2" parent="." instance=ExtResource("5_djvpm")]
+position = Vector2(3018, 148)
+scale = Vector2(-1, 1)
+
+[node name="man_1" parent="." instance=ExtResource("6_kiskg")]
+position = Vector2(963, 144)
+
+[node name="woman_1" parent="." instance=ExtResource("6_tosb4")]
+position = Vector2(417, 144)
+
+[node name="woman_2" parent="." instance=ExtResource("8_l6qam")]
+position = Vector2(762, 136)
+
+[node name="man_2" parent="." instance=ExtResource("6_kiskg")]
+position = Vector2(1369, 130)
+
+[node name="man_3" parent="." instance=ExtResource("6_kiskg")]
+position = Vector2(1823, 125)
+
+[node name="chicken_1" parent="." instance=ExtResource("9_3yciw")]
+position = Vector2(456, 153)
+
+[node name="chicken_3" parent="." instance=ExtResource("9_3yciw")]
+position = Vector2(1931, 145)
+
+[node name="chicken_4" parent="." instance=ExtResource("9_3yciw")]
+position = Vector2(2312, 132)
+
+[node name="chicken_2" parent="." instance=ExtResource("10_8li8l")]
+position = Vector2(1049, 150)
+
+[node name="chicken_5" parent="." instance=ExtResource("10_8li8l")]
+position = Vector2(2130, 144)
+
+[node name="chicken_6" parent="." instance=ExtResource("10_8li8l")]
+position = Vector2(1660, 148)
+
+[node name="king" parent="." instance=ExtResource("11_nyk56")]
+position = Vector2(71, 153)
+
+[node name="queen" parent="." instance=ExtResource("12_11akb")]
+position = Vector2(92, 153)
+
+[node name="dialog_area" parent="." instance=ExtResource("13_11akb")]
+position = Vector2(82, 139)
