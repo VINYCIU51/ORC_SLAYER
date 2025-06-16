@@ -19,9 +19,7 @@ var life := 6
 var parry_resistance := 3
 
 var direction := 0
-var horizontal_difference := 0
-var is_exactly_below := 0
-var is_below_player := 0
+var is_below := 0
 var at_edge := false
 var at_wall := false
 var should_jump := false
@@ -46,13 +44,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 	if !is_dead:
-		calculate_position()
+		distance = Mobs.distance_to(self, player)
+		is_below = Mobs.is_below(self, player)
 		rotate_sprite()
 
-	if is_exactly_below:
+	if is_below:
 		velocity.x = 0
 
-	is_following = distance <= DIST_FOLLOW and !is_exactly_below and !at_edge and !jump_clear.is_colliding() and !is_stuned and !player.is_dead
+	is_following = distance <= DIST_FOLLOW and !is_below and !at_edge and !jump_clear.is_colliding() and !is_stuned and !player.is_dead
 
 	if is_following and should_jump:
 		velocity.y = JUMP_HEIGHT
@@ -79,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		$body/attack_area/attack.disabled = true
 			
 	if parry_resistance <= 0:
-		take_stun()
+		Mobs.take_stun(self, 2)
 	
 	set_state()
 	move_and_slide()
@@ -105,36 +104,14 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
-func take_stun():
-	is_stuned = true
-	await get_tree().create_timer(2.0).timeout
-	is_stuned = false
-	parry_resistance = 3
-
 func rotate_sprite():
 	direction = 1 if global_position.x < player.global_position.x else -1
 	$body.scale.x = direction
+	$collision.position.x = direction * -3
 
-func take_damage(damage: int):
-	if is_dead or damage == 0: return
-		
-	hit_blink()
-	is_damaged = true
-	life -= damage
-	
-	if life <= 0:
-		is_dead = true
-
-func calculate_position():
-	distance = global_position.distance_to(player.global_position)
-	horizontal_difference = abs(global_position.x - player.global_position.x)
-	is_below_player = global_position.y > player.global_position.y or global_position.y < player.global_position.y
-	is_exactly_below = horizontal_difference < 2 and is_below_player
-	
-func hit_blink():
-	$body/sprite.self_modulate = Color(50,50,50,1)
-	await get_tree().create_timer(0.1).timeout
-	$body/sprite.self_modulate = Color(1,1,1,1)
+func take_damage(damage : int):
+	if Mobs.apply_damage(self, damage):
+		Mobs.hit_blink($body/sprite)
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":

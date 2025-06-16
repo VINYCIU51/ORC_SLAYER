@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @onready var wall_collision : RayCast2D = $body/wall_collision
 
-const SPEED := 300
+const SPEED := 350
 const ARROW_DURATION := 3.5
 
 var has_collided := false

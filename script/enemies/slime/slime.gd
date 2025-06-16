@@ -34,24 +34,13 @@ func _physics_process(delta: float) -> void:
 	set_state()
 	move_and_slide()
 	
-func take_damage(damage: int):
-	if is_dead: return
-	
-	hit_blink()
-	is_damaged = true
-	life -= damage
-	
-	if life <= 0:
-		is_dead = true
+func take_damage(damage : int):
+	if Mobs.apply_damage(self, damage):
+		Mobs.hit_blink($body/sprite)
 
 func flip_sprite():
 	direction *= -1
 	$body.scale.x = direction
-
-func hit_blink():
-	$body/sprite.self_modulate = Color(50,50,50,1)
-	await get_tree().create_timer(0.1).timeout
-	$body/sprite.self_modulate = Color(1,1,1,1)
 
 func set_state():
 	var new_state = ""
