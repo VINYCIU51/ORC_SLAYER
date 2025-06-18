@@ -23,20 +23,20 @@ func is_below(parent : Node, target : Node):
 	
 	return is_exactly_below
 	
-func take_stun(target: Node,default_resistance : int, duration := 2.0):
+func take_stun(target: Node, duration := 2.0):
 	target.is_stuned = true
 	await get_tree().create_timer(duration).timeout
-	
+
 	if is_instance_valid(target):
 		target.is_stuned = false
-		target.parry_resistance = default_resistance
+		target.parry_resistance = target.max_parry_resistance
 	
 func apply_damage(target: Node, damage: int):
 	if target.is_dead or damage == 0:
 		return false
 	
 	target.is_damaged = true
-	target.life -= damage
+	target.life -= damage *2 if target.is_stuned else damage
 	
 	if target.life <= 0:
 		target.is_dead = true
