@@ -33,6 +33,7 @@ var is_blocking := false
 var current_state := "idle"
 
 func _ready():
+	add_to_group("player")
 	jump_velocity = (jump_height * 2) / time_to_top_height
 	gravity = (jump_height * 2) / pow(time_to_top_height, 2)
 	fall_gravity = gravity * 2
