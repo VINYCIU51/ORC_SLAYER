@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://m77gyi0qm1su"]
+[gd_scene load_steps=13 format=3 uid="uid://m77gyi0qm1su"]
 
 [ext_resource type="Texture2D" uid="uid://c5de47hqwdwlc" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
 [ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://script/enemies/slime/slime.gd" id="1_rjbn8"]
 [ext_resource type="Texture2D" uid="uid://c4eccorarf8cc" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
+[ext_resource type="PackedScene" uid="uid://bp0s1ukob2e4l" path="res://constructors/type_patrol.tscn" id="4_ankfk"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="4_ft43y"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]
@@ -248,14 +249,19 @@ autoplay = "walk"
 texture = ExtResource("2_4pt07")
 flip_h = true
 
-[node name="wall_detector" type="RayCast2D" parent="body"]
+[node name="TypePatrol" parent="body" node_paths=PackedStringArray("mob", "edge_sensor", "step_sensor") instance=ExtResource("4_ankfk")]
+mob = NodePath("../..")
+edge_sensor = NodePath("floor_detector")
+step_sensor = NodePath("wall_detector")
+
+[node name="wall_detector" type="RayCast2D" parent="body/TypePatrol"]
 light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
 target_position = Vector2(14, 0)
 collision_mask = 5
 
-[node name="floor_detector" type="RayCast2D" parent="body"]
+[node name="floor_detector" type="RayCast2D" parent="body/TypePatrol"]
 light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
