@@ -14,14 +14,16 @@ var at_step := false
 var was_at_edge := false
 var was_at_step := false
 
+func _ready() -> void:
+	# Seta o inimigo como tipo patrulha no Enemy.gd
+	mob.type_patrol = true
+	
 func _physics_process(delta: float) -> void:
 	# Calculos de posicao
 	distance = Mobs.distance_to(mob, mob.player)
 	at_edge = !edge_sensor.is_colliding()
 	at_step = step_sensor.is_colliding()
 
-	# Ativacao da variavel de controle de direcao no Enemy.gd
-	mob.is_patrolling = true
 
 	# flipa apenas se ele colidir com algo e logo antes nao estivesse colidindo
 	if (at_step and !was_at_step) or (at_edge and !was_at_edge):

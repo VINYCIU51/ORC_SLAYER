@@ -15,6 +15,10 @@ var at_edge := false
 var at_step := false
 var at_jumpable_block := false
 
+func _ready() -> void:
+	# Seta o inimigo como tipo perseguidor no Enemy.gd
+	mob.type_follower = true
+
 func _process(delta: float) -> void:
 	mob.distance = distance
 	
@@ -34,7 +38,6 @@ func _process(delta: float) -> void:
 		and !mob.is_stuned
 		and !mob.is_attacking
 		and !mob.is_shooting
-		and !at_step
 		and !high_wall_sensor.is_colliding()
 	)
 	
