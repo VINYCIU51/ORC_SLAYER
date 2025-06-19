@@ -382,11 +382,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_agjj3")
 disabled = true
 
-[node name="hitbox" parent="." instance=ExtResource("3_lrdse")]
+[node name="hitbox" parent="body" instance=ExtResource("3_lrdse")]
 collision_mask = 73
 
-[node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(-0.5, 16)
+[node name="hit_collision" type="CollisionShape2D" parent="body/hitbox"]
+position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_o735a")
 debug_color = Color(1, 0.0086283, 0.0413556, 0.42)
 

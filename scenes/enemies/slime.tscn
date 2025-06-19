@@ -246,6 +246,7 @@ libraries = {
 autoplay = "walk"
 
 [node name="sprite" type="Sprite2D" parent="body"]
+position = Vector2(2, 0)
 texture = ExtResource("2_4pt07")
 flip_h = true
 
@@ -268,16 +269,17 @@ scale = Vector2(1.00508, 1)
 target_position = Vector2(20, 10)
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
+position = Vector2(1, 0)
 collision_mask = 10
 
 [node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(-1, 4.5)
+position = Vector2(0, 4.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ft43y")
 debug_color = Color(1, 0.00696271, 0.0518057, 0.42)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5.5)
+position = Vector2(1, 5.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_huaw6")
 
