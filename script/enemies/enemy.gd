@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var body: Node2D = $body
 @onready var sprite: Sprite2D = $body/sprite
 
+var type_patrol := false
+var type_follower := false
+
 var speed := 100
 var jump_height := -130
 var dist_follow := 300
@@ -15,7 +18,7 @@ var dist_shoot := 200
 var damage := 1
 var life := 3
 var max_parry_resistance := 2
-var parry_resistance : int
+var parry_resistance := 0
 var num_attacks := 1
 
 var direction := -1
@@ -31,16 +34,14 @@ var is_damaged := false
 var is_attacking := false
 var is_shooting := false
 var is_following := false
-var is_patrolling := false
 var has_spawned := false
 var is_spawning := false
-var is_below := false
+
 
 var current_attack := 1
 var current_state := "idle"
 
 func _ready():
-	parry_resistance = max_parry_resistance
 	randomize()
 
 func _physics_process(delta: float) -> void:
@@ -49,6 +50,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func update_logic(delta: float):
+	if parry_resistance <= 0:
+		parry_resistance = max_parry_resistance
+	
 	if is_dead:
 		velocity.x = 0
 		remove_from_group("enemies")
@@ -60,7 +64,7 @@ func update_logic(delta: float):
 	if is_following and can_jump:
 		velocity.y = jump_height
 	
-	velocity.x = direction * speed if is_following or is_patrolling else 0
+	velocity.x = direction * speed if is_following or type_patrol else 0
 
 	if is_attacking:
 		velocity.x = 0
@@ -105,11 +109,11 @@ func take_damage(damage: int):
 		Mobs.hit_blink(sprite)
 
 func flip_sprite():
-	if is_following:
-		direction = 1 if global_position.x < player.global_position.x else -1
-
-	if is_patrolling:
+	if type_patrol:
 		direction *= -1
+		
+	if type_follower:
+		direction = 1 if global_position.x < player.global_position.x else -1
 
 	body.scale.x = direction
 
