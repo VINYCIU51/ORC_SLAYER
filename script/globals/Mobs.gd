@@ -29,7 +29,6 @@ func take_stun(target: Node, duration := 2.0):
 
 	if is_instance_valid(target):
 		target.is_stuned = false
-		target.parry_resistance = target.max_parry_resistance
 	
 func apply_damage(target: Node, damage: int):
 	if target.is_dead or damage == 0:
