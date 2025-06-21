@@ -1,4 +1,4 @@
-# Resgate da Princesa - Jogo de Aventura  
+# Orc Slayer - Jogo de Aventura  
 
 ## Descrição do Projeto  
 **Resgate da Princesa** é um jogo 2D de ação e aventura desenvolvido como parte da disciplina de **Engenharia de Software**. O jogo foi criado utilizando a engine **Godot** e conta a história de um cavaleiro corajoso que foi encarregado de resgatar uma princesa sequestrada por criaturas malignas.  
