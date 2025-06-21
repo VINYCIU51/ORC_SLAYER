@@ -38,11 +38,13 @@ func _process(delta: float) -> void:
 		and !mob.is_stuned
 		and !mob.is_attacking
 		and !mob.is_shooting
+		and mob.has_spawned
 		and !high_wall_sensor.is_colliding()
 	)
 	
 	# Flipa o mob para ele sempre estar de frente para o player
-	mob.flip_sprite()
+	if !mob.is_dead and mob.has_spawned and !mob.is_attacking and !mob.is_shooting:
+		mob.flip_sprite()
 	
 	# Controla se o mob pode saltar degraus ou nao
 	mob.can_jump = (

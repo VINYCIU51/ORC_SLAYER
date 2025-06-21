@@ -18,7 +18,8 @@ func _physics_process(delta: float) -> void:
 		and !mob.player.is_dead 
 		and !mob.is_stuned 
 		and !mob.is_attacking
-		and !mob.is_shooting):
+		and !mob.is_shooting
+		and mob.has_spawned):
 			
 		mob.is_attacking = true
 

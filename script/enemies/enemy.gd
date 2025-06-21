@@ -14,6 +14,7 @@ var jump_height := -130
 var dist_follow := 300
 var dist_mellee := 35
 var dist_shoot := 200
+var dist_spawn := 50
 
 var damage := 1
 var life := 3
@@ -34,9 +35,8 @@ var is_damaged := false
 var is_attacking := false
 var is_shooting := false
 var is_following := false
-var has_spawned := false
+var has_spawned := true
 var is_spawning := false
-
 
 var current_attack := 1
 var current_state := "idle"
@@ -99,6 +99,8 @@ func set_state():
 		new_state = "shoot"
 	elif velocity.x != 0:
 		new_state = "walk"
+	elif is_spawning:
+		new_state = "spawn"
 
 	if current_state != new_state:
 		animation.play(new_state)
@@ -120,6 +122,10 @@ func flip_sprite():
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":
 		queue_free()
+		
+	elif anim_name == "spawn":
+		is_spawning = false
+		has_spawned = true
 
 	elif anim_name == "parried" and has_parried:
 		has_parried = false
