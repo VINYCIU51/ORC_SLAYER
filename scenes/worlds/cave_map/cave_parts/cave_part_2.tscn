@@ -1,7 +1,14 @@
 [gd_scene load_steps=5 format=4 uid="uid://df6e8wftmk8mp"]
 
 [ext_resource type="Texture2D" uid="uid://d3lp15ktwlbu" path="res://assets/maps/caves/terrain.png" id="1_kq20t"]
-[ext_resource type="Script" uid="uid://b7nmpa0w8wrf8" path="res://script/worlds/cave/generate_parts.gd" id="1_n7ufj"]
+
+[sub_resource type="GDScript" id="GDScript_kwewi"]
+script/source = "extends Node2D
+
+func _ready():
+	await get_tree().create_timer(0.5).timeout
+	LevelsGen.generate_parts(\"res://scenes/worlds/cave_map/cave_parts/cave_part_\",self , $fusion_point.position)
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7ufj"]
 texture = ExtResource("1_kq20t")
@@ -921,7 +928,7 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_n7ufj")
 
 [node name="cave_part_2" type="Node2D"]
-script = ExtResource("1_n7ufj")
+script = SubResource("GDScript_kwewi")
 
 [node name="fusion_point" type="Marker2D" parent="."]
 position = Vector2(752, 0)

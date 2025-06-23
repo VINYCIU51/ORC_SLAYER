@@ -9,6 +9,7 @@
 
 [node name="parallax_bg" type="ParallaxBackground" parent="."]
 follow_viewport_enabled = true
+scroll_ignore_camera_zoom = true
 
 [node name="cave_deepths" type="Parallax2D" parent="parallax_bg"]
 scroll_scale = Vector2(0.6, 1)
