@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5tophuk42vyq"]
+[gd_scene load_steps=8 format=3 uid="uid://c5tophuk42vyq"]
 
 [ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://scenes/worlds/cave_map/cave_entrance.tscn" id="1_72ucr"]
 [ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://scenes/worlds/cave_map/cave_background.tscn" id="2_e8l3g"]
@@ -7,7 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://f670w4drtve6" path="res://scenes/enemies/sprout.tscn" id="5_hh537"]
 [ext_resource type="PackedScene" uid="uid://n0aqnps0relb" path="res://scenes/enemies/skeleton_seeker.tscn" id="6_vho6u"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72ucr"]
+size = Vector2(21, 727)
+
 [node name="world-1" type="Node2D"]
+
+[node name="invisible_limit" type="StaticBody2D" parent="."]
+position = Vector2(-24, -3)
+
+[node name="collision" type="CollisionShape2D" parent="invisible_limit"]
+position = Vector2(-84.5, 2.5)
+shape = SubResource("RectangleShape2D_72ucr")
+debug_color = Color(4.81307e-07, 0.639319, 0.366356, 0.42)
 
 [node name="cave_entrance" parent="." instance=ExtResource("1_72ucr")]
 position = Vector2(-2, 212)
