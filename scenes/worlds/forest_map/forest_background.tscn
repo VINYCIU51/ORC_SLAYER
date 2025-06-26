@@ -30,7 +30,7 @@ repeat_times = 6
 texture = ExtResource("12_wc0fe")
 
 [node name="Parallax2D2" type="Parallax2D" parent="ParallaxBackground"]
-scroll_scale = Vector2(0.4, 1)
+scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -38,7 +38,7 @@ repeat_times = 6
 texture = ExtResource("11_xblac")
 
 [node name="Parallax2D3" type="Parallax2D" parent="ParallaxBackground"]
-scroll_scale = Vector2(0.7, 1)
+scroll_scale = Vector2(0.3, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -46,6 +46,7 @@ repeat_times = 6
 texture = ExtResource("10_3adv7")
 
 [node name="Parallax2D4" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.4, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -53,6 +54,7 @@ repeat_times = 6
 texture = ExtResource("9_aouay")
 
 [node name="Parallax2D5" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -60,6 +62,7 @@ repeat_times = 6
 texture = ExtResource("8_x347f")
 
 [node name="Parallax2D6" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -67,6 +70,7 @@ repeat_times = 6
 texture = ExtResource("7_yg654")
 
 [node name="Parallax2D7" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.7, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -74,6 +78,7 @@ repeat_times = 6
 texture = ExtResource("6_eb648")
 
 [node name="Parallax2D8" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
@@ -81,6 +86,7 @@ repeat_times = 6
 texture = ExtResource("5_q2mom")
 
 [node name="Parallax2D9" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.9, 1)
 repeat_size = Vector2(928, 0)
 repeat_times = 6
 
