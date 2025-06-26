@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var attack_area:= $body/sword_attack/attack_area
 
 const ARROW := preload("res://scenes/projectiles/arrow.tscn")
-const SPEED := 200
+const SPEED := 180
 const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 

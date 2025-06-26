@@ -12,6 +12,15 @@ func hit_blink(sprite : Node):
 	await get_tree().create_timer(0.1).timeout
 	sprite.self_modulate = Color(1,1,1,1)
 
+func get_player(node: Node) -> Node:
+	var current_node = node
+	while current_node != null:
+		var player = current_node.get_node_or_null("player")
+		if player != null:
+			return player
+		current_node = current_node.get_parent()
+	return null
+
 func distance_to(parent : Node, target : Node):
 	var distance = parent.global_position.distance_to(target.global_position)
 	return distance

@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@onready var player = owner.get_node("player")
+@onready var player := owner.get_node("../player")
 @onready var animation: AnimationPlayer = $body/animation
 @onready var body: Node2D = $body
 @onready var sprite: Sprite2D = $body/sprite
@@ -11,7 +11,7 @@ var type_follower := false
 
 var speed := 100
 var jump_height := -130
-var dist_follow := 300
+var dist_follow := 250
 var dist_mellee := 35
 var dist_shoot := 200
 var dist_spawn := 50
