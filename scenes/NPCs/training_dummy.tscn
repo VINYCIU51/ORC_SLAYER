@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c3cvyd5ytgvc2" path="res://assets/NPCs/Training Dummy Sprite Sheet.png" id="1_0mnfe"]
 [ext_resource type="Script" uid="uid://6iuvnpgrdppf" path="res://script/NPCs/training_dummy.gd" id="1_0vy4p"]
-[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://scenes/others/enemy_attack_area.tscn" id="2_dkcov"]
+[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="2_dkcov"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="2_lg82q"]
 
 [sub_resource type="Animation" id="Animation_0vy4p"]
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack_area/attack:disabled")
+tracks/2/path = NodePath("attack_area/collision:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +74,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack_area/attack:disabled")
+tracks/2/path = NodePath("attack_area/collision:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -174,10 +174,11 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="attack_area" parent="." node_paths=PackedStringArray("mob") instance=ExtResource("2_dkcov")]
+[node name="attack_area" parent="." node_paths=PackedStringArray("mob", "collision") instance=ExtResource("2_dkcov")]
 mob = NodePath("..")
+collision = NodePath("collision")
 
-[node name="attack" type="CollisionShape2D" parent="attack_area"]
+[node name="collision" type="CollisionShape2D" parent="attack_area"]
 position = Vector2(-19, 1)
 shape = SubResource("CapsuleShape2D_0vy4p")
 disabled = true

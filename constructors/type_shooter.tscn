@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://chvuwfvxdoyh6"]
+
+[sub_resource type="GDScript" id="GDScript_1i81s"]
+script/source = "extends Node
+
+@export var mob : Enemy
+@export var projectile : PackedScene
+@export var shoot_point : Marker2D
+
+var distance
+var is_below := false
+var was_shoot := false
+
+func _physics_process(delta: float) -> void:
+	
+	# Calcula a distancia entre o mob e o player
+	distance = Mobs.distance_to(mob, mob.player)
+	
+	# Ativa o tiro
+	if (distance <= mob.dist_shoot
+		and !mob.player.is_dead 
+		and !mob.is_stuned 
+		and !mob.is_attacking
+		and !was_shoot
+		and !is_below):
+			
+		mob.is_shooting = true
+	
+	# Variavel de segurança para impedir que ele fique com o shoot sempre ativo e nao flipe
+	was_shoot = mob.is_shooting
+
+# Funçao que faz o disparo
+func shoot():
+	var shoot_position = shoot_point.global_position
+	Mobs.shoot(projectile, mob, shoot_position, mob.direction)
+"
+
+[node name="TypeShooter" type="Node2D"]
+script = SubResource("GDScript_1i81s")

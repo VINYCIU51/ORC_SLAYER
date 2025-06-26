@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global_levels="*res://script/worlds/global_levels.gd"
+LevelsGen="*res://script/globals/LevelsGen.gd"
+Mobs="*res://script/globals/Mobs.gd"
 
 [display]
 

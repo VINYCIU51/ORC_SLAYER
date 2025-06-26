@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bcoxdgumuidky" path="res://assets/projectiles/Arrow01-32x32.png" id="2_7k75j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
-size = Vector2(17, 3)
+size = Vector2(17, 2)
 
 [node name="arrow" type="CharacterBody2D"]
 collision_layer = 8
@@ -14,6 +14,7 @@ script = ExtResource("1_yi3td")
 [node name="body" type="Node2D" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="body"]
+position = Vector2(0, 0.4)
 texture = ExtResource("2_7k75j")
 
 [node name="wall_collision" type="RayCast2D" parent="body"]
@@ -21,7 +22,7 @@ position = Vector2(0, 1)
 target_position = Vector2(11, 0)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_ql5rp")
 one_way_collision = true
 debug_color = Color(0.625242, 0.532028, 1.92523e-07, 0.42)

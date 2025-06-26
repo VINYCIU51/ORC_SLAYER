@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfspjxyl0h3vk"]
+
+[ext_resource type="PackedScene" uid="uid://calbgw7ddowlm" path="res://scenes/worlds/forest_map/forest_background.tscn" id="1_be2bv"]
+[ext_resource type="PackedScene" uid="uid://bxy2agm4y6f8k" path="res://scenes/worlds/forest_map/forest_entrance.tscn" id="1_pbr2d"]
+[ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="1_ya7pn"]
+[ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="3_mwn27"]
+[ext_resource type="Texture2D" uid="uid://bni3mjedi02gv" path="res://assets/NPCs/villagers/MiniBlacksmith.png" id="3_rd7mg"]
+[ext_resource type="Texture2D" uid="uid://cuhsuu4nuxisd" path="res://assets/NPCs/villagers/MiniGraveDigger.png" id="4_0l2d2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya7pn"]
+size = Vector2(15, 712)
+
+[node name="Forest" type="Node2D"]
+
+[node name="invisible_limit" type="StaticBody2D" parent="."]
+position = Vector2(-21, 101)
+
+[node name="collision" type="CollisionShape2D" parent="invisible_limit"]
+position = Vector2(-87.5, -101)
+shape = SubResource("RectangleShape2D_ya7pn")
+debug_color = Color(4.81307e-07, 0.639319, 0.366356, 0.42)
+
+[node name="forest_background" parent="." instance=ExtResource("1_be2bv")]
+scale = Vector2(6, 6)
+
+[node name="dead_bodys" type="Node" parent="forest_background"]
+
+[node name="MiniBlacksmith" type="Sprite2D" parent="forest_background/dead_bodys"]
+position = Vector2(222, 276)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_rd7mg")
+hframes = 10
+vframes = 8
+frame = 74
+
+[node name="MiniGraveDigger" type="Sprite2D" parent="forest_background/dead_bodys"]
+position = Vector2(260, 276)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_0l2d2")
+hframes = 14
+vframes = 8
+frame = 103
+
+[node name="forest_entrance" parent="." instance=ExtResource("1_pbr2d")]
+z_index = 0
+position = Vector2(0, 293)
+
+[node name="camera" parent="." instance=ExtResource("1_ya7pn")]
+limit_top = -350
+limit_bottom = 350
+
+[node name="player" parent="." instance=ExtResource("3_mwn27")]
+position = Vector2(1170, 147)

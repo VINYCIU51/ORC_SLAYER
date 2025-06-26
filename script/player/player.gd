@@ -4,10 +4,11 @@ extends CharacterBody2D
 @onready var animation := $body/animation
 @onready var invincible_timer := $invincible_timer
 @onready var blink_timer := $blink_timer
-@onready var sprite := $body/sprite
+@onready var parry_area:= $parry/parry_area
+@onready var attack_area:= $body/sword_attack/attack_area
 
 const ARROW := preload("res://scenes/projectiles/arrow.tscn")
-const SPEED := 200
+const SPEED := 180
 const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 
@@ -32,6 +33,7 @@ var is_blocking := false
 var current_state := "idle"
 
 func _ready():
+	add_to_group("player")
 	jump_velocity = (jump_height * 2) / time_to_top_height
 	gravity = (jump_height * 2) / pow(time_to_top_height, 2)
 	fall_gravity = gravity * 2
@@ -92,7 +94,7 @@ func _physics_process(delta):
 	if is_blocking:
 		velocity.x = 0
 		if !animation.is_playing() or current_state != "parry": 
-			$parry/parry_area.disabled = true
+			parry_area.disabled = true
 			is_blocking = false
 
 	# Verifica o fim da animacao de parry bem sucedido (com faiscas)
@@ -105,7 +107,7 @@ func _physics_process(delta):
 	if is_attacking:
 		velocity.x = 0
 		if !animation.is_playing() or current_state != "attack": 
-			$body/sword_attack/attack_area.disabled = true
+			attack_area.disabled = true
 			is_attacking = false
 	
 	# Verifica o fim do tiro
@@ -167,12 +169,9 @@ func take_damage(damage : int, enemie_position := Vector2.ZERO):
 
 # Efetua o disparo da flecha
 func shoot():
-	var arrow_instance = ARROW.instantiate()
-	add_sibling(arrow_instance, true)
-	
-	var direct = sign($body.scale.x)
-	arrow_instance.set_direction(direct)
-	arrow_instance.position = $body/arrow_point.global_position
+	var shoot_position = $body/arrow_point.global_position
+	var direct = $body.scale.x
+	Mobs.shoot(ARROW, self, shoot_position, direct)
 
 # Inverte a direcao do sprite do personagem
 func flip_sprite(dir):
@@ -195,8 +194,8 @@ func _on_invincible_timer_timeout() -> void:
 	is_invincible = false
 	set_collision_mask_value(3,true)
 	blink_timer.stop()
-	sprite.visible = true
+	$body/sprite.visible = true
 
 # Faz o efeito de "piscar" do personagem
 func _on_blink_timer_timeout() -> void:
-	sprite.visible = !sprite.visible
+	$body/sprite.visible = !$body/sprite.visible

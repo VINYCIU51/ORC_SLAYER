@@ -200,7 +200,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("13_68qv1")
 text = "Escalada: 
 Flechas podem ser utilizadas para escalar lugares altos.
-lance uma flecha no segundo andar da torre e salte sobre ela
+lance uma flecha no segundo andar da torre  e salte sobre ela
 "
 autowrap_mode = 3
 ellipsis_char = ""

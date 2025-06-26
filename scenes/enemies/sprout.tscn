@@ -1,11 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://f670w4drtve6"]
+[gd_scene load_steps=21 format=3 uid="uid://f670w4drtve6"]
 
 [ext_resource type="Script" uid="uid://c6jkk3luimlix" path="res://script/enemies/sprout/sprout.gd" id="1_vwx0b"]
 [ext_resource type="Texture2D" uid="uid://vq3h5aooa780" path="res://assets/enemies/Sprout/Sprout_idle.png" id="2_4iquk"]
 [ext_resource type="Texture2D" uid="uid://ieajutmactgb" path="res://assets/enemies/Sprout/Sprout-death.png" id="3_g3lt3"]
 [ext_resource type="Texture2D" uid="uid://drrslknyhtrid" path="res://assets/enemies/Sprout/Sprout-damage.png" id="4_vwx0b"]
 [ext_resource type="Texture2D" uid="uid://btsr3r0rh2xj6" path="res://assets/enemies/Sprout/Sprout_move.png" id="6_8546x"]
-[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://scenes/others/enemy_attack_area.tscn" id="7_mrh10"]
+[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="7_mrh10"]
+[ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="7_nhi18"]
 [ext_resource type="Texture2D" uid="uid://p4yoothddnd8" path="res://assets/enemies/Sprout/Sprout_attack.png" id="9_vwx0b"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="11_jp7aw"]
 
@@ -62,7 +63,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("body/attack_area/attack:disabled")
+tracks/4/path = NodePath("body/TypeFollower/type_mellee/attack:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -85,7 +86,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_67jdw"]
-resource_name = "attack"
+resource_name = "attack_1"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -102,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("body/attack_area/attack:disabled")
+tracks/1/path = NodePath("body/TypeFollower/type_mellee/attack:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -259,7 +260,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("body/attack_area/attack:disabled")
+tracks/2/path = NodePath("body/TypeFollower/type_mellee/attack:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -352,7 +353,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("body/attack_area/attack:disabled")
+tracks/2/path = NodePath("body/TypeFollower/type_mellee/attack:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -377,7 +378,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
 &"RESET": SubResource("Animation_daps1"),
-&"attack": SubResource("Animation_67jdw"),
+&"attack_1": SubResource("Animation_67jdw"),
 &"die": SubResource("Animation_y02my"),
 &"hurt": SubResource("Animation_ad0aq"),
 &"idle": SubResource("Animation_o735a"),
@@ -416,22 +417,29 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="floor_edge" type="RayCast2D" parent="body"]
+[node name="TypeFollower" parent="body" node_paths=PackedStringArray("mob", "edge_sensor", "step_sensor", "high_wall_sensor") instance=ExtResource("7_nhi18")]
+mob = NodePath("../..")
+edge_sensor = NodePath("floor_edge")
+step_sensor = NodePath("step_ahead")
+high_wall_sensor = NodePath("jump_clear")
+
+[node name="floor_edge" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(21, 6)
 target_position = Vector2(20, 24)
 
-[node name="step_ahead" type="RayCast2D" parent="body"]
+[node name="step_ahead" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, 4)
 target_position = Vector2(20, 0)
 
-[node name="jump_clear" type="RayCast2D" parent="body"]
+[node name="jump_clear" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
 
-[node name="attack_area" parent="body" node_paths=PackedStringArray("mob") instance=ExtResource("7_mrh10")]
-mob = NodePath("../..")
+[node name="type_mellee" parent="body/TypeFollower" node_paths=PackedStringArray("mob", "collision") instance=ExtResource("7_mrh10")]
+mob = NodePath("../../..")
+collision = NodePath("attack")
 
-[node name="attack" type="CollisionShape2D" parent="body/attack_area"]
+[node name="attack" type="CollisionShape2D" parent="body/TypeFollower/type_mellee"]
 position = Vector2(27, -5)
 scale = Vector2(1.00781, 1)
 shape = SubResource("CapsuleShape2D_nbqcl")

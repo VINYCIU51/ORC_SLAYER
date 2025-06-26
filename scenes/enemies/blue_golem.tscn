@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c13fg4s25upwf"]
+[gd_scene load_steps=22 format=3 uid="uid://c13fg4s25upwf"]
 
 [ext_resource type="Texture2D" uid="uid://brhnk5cxkpa1b" path="res://assets/enemies/golem_blue/Golem_1.png" id="1_370ft"]
 [ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://script/enemies/golem_blue/golem_blue.gd" id="1_ad0aq"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bkukeblh63gm2" path="res://assets/enemies/golem_blue/Golem_1_idle.png" id="4_daps1"]
 [ext_resource type="Texture2D" uid="uid://dl0c1iivk5vmi" path="res://assets/enemies/golem_blue/Golem_1_die.png" id="5_ad0aq"]
 [ext_resource type="Texture2D" uid="uid://cc6ns8kpur1vr" path="res://assets/enemies/golem_blue/Golem_1_hurt.png" id="6_daps1"]
-[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://scenes/others/enemy_attack_area.tscn" id="8_c3aco"]
+[ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="8_agjj3"]
+[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="9_agjj3"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -51,7 +52,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
+tracks/3/path = NodePath("body/Type_mellee/collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -62,7 +63,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_67jdw"]
-resource_name = "attack"
+resource_name = "attack_1"
 length = 1.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -103,7 +104,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
+tracks/3/path = NodePath("body/Type_mellee/collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -233,18 +234,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_pufdi"]
 resource_name = "parried"
@@ -329,7 +318,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
 &"RESET": SubResource("Animation_daps1"),
-&"attack": SubResource("Animation_67jdw"),
+&"attack_1": SubResource("Animation_67jdw"),
 &"die": SubResource("Animation_y02my"),
 &"hurt": SubResource("Animation_ad0aq"),
 &"idle": SubResource("Animation_o735a"),
@@ -338,7 +327,6 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_agjj3"]
-height = 33.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o735a"]
 radius = 15.0
@@ -366,30 +354,39 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="floor_edge" type="RayCast2D" parent="body"]
+[node name="TypeFollower" parent="body" node_paths=PackedStringArray("mob", "edge_sensor", "step_sensor", "high_wall_sensor") instance=ExtResource("8_agjj3")]
+mob = NodePath("../..")
+edge_sensor = NodePath("floor_edge")
+step_sensor = NodePath("step_ahead")
+high_wall_sensor = NodePath("jump_clear")
+
+[node name="floor_edge" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(15, 31)
 target_position = Vector2(20, 24)
 
-[node name="step_ahead" type="RayCast2D" parent="body"]
+[node name="step_ahead" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, 27)
 target_position = Vector2(20, 0)
 
-[node name="attack_area" parent="body" node_paths=PackedStringArray("mob") instance=ExtResource("8_c3aco")]
-position = Vector2(23, 22)
-mob = NodePath("../..")
+[node name="jump_clear" type="RayCast2D" parent="body/TypeFollower"]
+target_position = Vector2(20, 0)
 
-[node name="attack" type="CollisionShape2D" parent="body/attack_area"]
-position = Vector2(-1, 0)
+[node name="Type_mellee" parent="body" node_paths=PackedStringArray("mob", "collision") instance=ExtResource("9_agjj3")]
+position = Vector2(30, 19)
+mob = NodePath("../..")
+collision = NodePath("collision")
+
+[node name="collision" type="CollisionShape2D" parent="body/Type_mellee"]
+position = Vector2(-6, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_agjj3")
 disabled = true
-debug_color = Color(0.675856, 0.50611, 0, 0.42)
 
-[node name="hitbox" parent="." instance=ExtResource("3_lrdse")]
+[node name="hitbox" parent="body" instance=ExtResource("3_lrdse")]
 collision_mask = 73
 
-[node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(-0.5, 16)
+[node name="hit_collision" type="CollisionShape2D" parent="body/hitbox"]
+position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_o735a")
 debug_color = Color(1, 0.0086283, 0.0413556, 0.42)
 

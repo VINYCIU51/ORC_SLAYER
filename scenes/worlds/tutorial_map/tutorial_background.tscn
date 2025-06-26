@@ -19,7 +19,7 @@ repeat_times = 5
 texture = ExtResource("1_doc6b")
 
 [node name="clouds" type="Parallax2D" parent="tutorial_bg"]
-scroll_scale = Vector2(0.4, 1)
+scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(576, 0)
 repeat_times = 5
 
@@ -27,7 +27,7 @@ repeat_times = 5
 texture = ExtResource("2_4l2ex")
 
 [node name="distante_hills" type="Parallax2D" parent="tutorial_bg"]
-scroll_scale = Vector2(0.7, 1)
+scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(576, 0)
 repeat_times = 5
 

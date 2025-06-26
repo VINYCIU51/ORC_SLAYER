@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dx3af1d0magoi"]
+[gd_scene load_steps=22 format=3 uid="uid://dx3af1d0magoi"]
 
 [ext_resource type="Script" uid="uid://bji8ktcdsgfut" path="res://script/enemies/goblin_smasher/goblin_smasher.gd" id="1_ksjmm"]
 [ext_resource type="Texture2D" uid="uid://bded3wh2ubu5j" path="res://assets/enemies/goblin_smasher/goblinsmasher_sprite.png" id="2_ujhxc"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bnnyjahhuiija" path="res://assets/enemies/goblin_smasher/goblinsmasher_idle_outline.png" id="6_5k45i"]
 [ext_resource type="Texture2D" uid="uid://dhnmcxuiuvolf" path="res://assets/enemies/goblin_smasher/goblinsmasher_run_outline.png" id="7_be3f0"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="8_3l614"]
-[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://scenes/others/enemy_attack_area.tscn" id="8_72uj4"]
+[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="8_72uj4"]
+[ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="8_slypc"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -63,7 +64,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("body/attack_area/attack:disabled")
+tracks/4/path = NodePath("body/type_mellee/attack:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -86,7 +87,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_67jdw"]
-resource_name = "attack"
+resource_name = "attack_1"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -127,7 +128,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
+tracks/3/path = NodePath("body/type_mellee/attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -272,7 +273,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
+tracks/3/path = NodePath("body/type_mellee/attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -365,7 +366,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("body/attack_area/attack:disabled")
+tracks/3/path = NodePath("body/type_mellee/attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -378,7 +379,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
 &"RESET": SubResource("Animation_daps1"),
-&"attack": SubResource("Animation_67jdw"),
+&"attack_1": SubResource("Animation_67jdw"),
 &"die": SubResource("Animation_y02my"),
 &"hurt": SubResource("Animation_ad0aq"),
 &"idle": SubResource("Animation_o735a"),
@@ -417,22 +418,29 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="floor_edge" type="RayCast2D" parent="body"]
+[node name="TypeFollower" parent="body" node_paths=PackedStringArray("mob", "edge_sensor", "step_sensor", "high_wall_sensor") instance=ExtResource("8_slypc")]
+mob = NodePath("../..")
+edge_sensor = NodePath("floor_edge")
+step_sensor = NodePath("step_ahead")
+high_wall_sensor = NodePath("jump_clear")
+
+[node name="floor_edge" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, 6)
 target_position = Vector2(20, 24)
 
-[node name="step_ahead" type="RayCast2D" parent="body"]
+[node name="step_ahead" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, 4)
 target_position = Vector2(20, 0)
 
-[node name="jump_clear" type="RayCast2D" parent="body"]
+[node name="jump_clear" type="RayCast2D" parent="body/TypeFollower"]
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
 
-[node name="attack_area" parent="body" node_paths=PackedStringArray("mob") instance=ExtResource("8_72uj4")]
+[node name="type_mellee" parent="body" node_paths=PackedStringArray("mob", "collision") instance=ExtResource("8_72uj4")]
 mob = NodePath("../..")
+collision = NodePath("attack")
 
-[node name="attack" type="CollisionShape2D" parent="body/attack_area"]
+[node name="attack" type="CollisionShape2D" parent="body/type_mellee"]
 position = Vector2(16, 2)
 rotation = 1.5708
 scale = Vector2(1.00781, 1)
@@ -440,7 +448,6 @@ shape = SubResource("CapsuleShape2D_nbqcl")
 debug_color = Color(0.660625, 0.514343, 0, 0.42)
 
 [node name="hitbox" parent="body" instance=ExtResource("8_3l614")]
-collision_layer = 32
 collision_mask = 73
 
 [node name="hit_collision" type="CollisionShape2D" parent="body/hitbox"]

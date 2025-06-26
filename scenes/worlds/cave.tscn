@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5tophuk42vyq"]
+
+[ext_resource type="PackedScene" uid="uid://cpvmldfxdrnkl" path="res://scenes/worlds/cave_map/cave_entrance.tscn" id="1_72ucr"]
+[ext_resource type="PackedScene" uid="uid://cejifiwbcvmne" path="res://scenes/worlds/cave_map/cave_background.tscn" id="2_e8l3g"]
+[ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="3_tf33f"]
+[ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="4_mnj5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72ucr"]
+size = Vector2(21, 727)
+
+[node name="world-1" type="Node2D"]
+
+[node name="invisible_limit" type="StaticBody2D" parent="."]
+position = Vector2(-24, -3)
+
+[node name="collision" type="CollisionShape2D" parent="invisible_limit"]
+position = Vector2(-84.5, 2.5)
+shape = SubResource("RectangleShape2D_72ucr")
+debug_color = Color(4.81307e-07, 0.639319, 0.366356, 0.42)
+
+[node name="cave_entrance" parent="." instance=ExtResource("1_72ucr")]
+position = Vector2(-2, 212)
+
+[node name="cave_background" parent="." instance=ExtResource("2_e8l3g")]
+
+[node name="camera" parent="." instance=ExtResource("3_tf33f")]
+limit_top = -350
+limit_bottom = 350
+
+[node name="player" parent="." instance=ExtResource("4_mnj5i")]
+position = Vector2(1177, 172)

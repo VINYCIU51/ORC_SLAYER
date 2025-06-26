@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp0s1ukob2e4l"]
+
+[sub_resource type="GDScript" id="GDScript_4fofe"]
+script/source = "extends Node
+
+@export var mob : Enemy
+
+@export var edge_sensor: RayCast2D
+@export var step_sensor: RayCast2D
+
+var distance
+var at_edge := false
+var at_step := false
+var was_at_edge := false
+var was_at_step := false
+
+func _ready() -> void:
+	# Seta o inimigo como tipo patrulha no Enemy.gd
+	mob.type_patrol = true
+	
+func _physics_process(delta: float) -> void:
+	# Calculos de posicao
+	distance = Mobs.distance_to(mob, mob.player)
+	at_edge = !edge_sensor.is_colliding()
+	at_step = step_sensor.is_colliding()
+
+
+	# flipa apenas se ele colidir com algo e logo antes nao estivesse colidindo
+	if (at_step and !was_at_step) or (at_edge and !was_at_edge):
+		mob.flip_sprite()
+
+	# Controle para guardar o estado de colisao por um tempo para evitar flip infinito
+	was_at_edge = at_edge
+	was_at_step = at_step
+"
+
+[node name="TypePatrol" type="Node2D"]
+script = SubResource("GDScript_4fofe")

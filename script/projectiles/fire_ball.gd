@@ -2,6 +2,7 @@ class_name Fire_ball
 extends CharacterBody2D
 
 @onready var wall_collision := $body/wall_collision as RayCast2D
+@onready var wall_collision_2: RayCast2D = $body/wall_collision2
 @onready var animation: AnimationPlayer = $body/animation
 
 const SPEED := 300
@@ -12,13 +13,13 @@ var direction := -1
 
 var current_state = "move"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 	
 	if !has_collided:
 		velocity.x = SPEED * direction
 		move_and_slide()
 		
-	if wall_collision.is_colliding():
+	if wall_collision.is_colliding() or wall_collision_2.is_colliding():
 		has_collided = true
 	
 	set_state()
