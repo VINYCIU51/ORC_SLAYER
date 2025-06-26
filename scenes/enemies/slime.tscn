@@ -266,7 +266,7 @@ collision_mask = 5
 light_mask = 4
 position = Vector2(0, 4)
 scale = Vector2(1.00508, 1)
-target_position = Vector2(20, 10)
+target_position = Vector2(20, 24)
 
 [node name="hitbox" parent="." instance=ExtResource("4_ft43y")]
 position = Vector2(1, 0)
