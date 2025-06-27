@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://f670w4drtve6"]
 
-[ext_resource type="Script" uid="uid://c6jkk3luimlix" path="res://script/enemies/sprout/sprout.gd" id="1_vwx0b"]
+[ext_resource type="Script" uid="uid://c6jkk3luimlix" path="res://script/enemies/sprout.gd" id="1_vwx0b"]
 [ext_resource type="Texture2D" uid="uid://vq3h5aooa780" path="res://assets/enemies/Sprout/Sprout_idle.png" id="2_4iquk"]
 [ext_resource type="Texture2D" uid="uid://ieajutmactgb" path="res://assets/enemies/Sprout/Sprout-death.png" id="3_g3lt3"]
 [ext_resource type="Texture2D" uid="uid://drrslknyhtrid" path="res://assets/enemies/Sprout/Sprout-damage.png" id="4_vwx0b"]
