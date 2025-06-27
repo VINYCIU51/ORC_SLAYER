@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var wall_collision_2: RayCast2D = $body/wall_collision2
 @onready var animation: AnimationPlayer = $body/animation
 
-const SPEED := 300
+const SPEED := 350
 
 var has_collided := false
 var damage := 1
