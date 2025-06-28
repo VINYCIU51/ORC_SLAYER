@@ -9,7 +9,6 @@ extends CharacterBody2D
 
 const ARROW := preload("res://scenes/projectiles/arrow.tscn")
 const SPEED := 180
-const DEATH_HEIGHT := 500
 const SWORD_DAMAGE := 2
 
 var life := 5
@@ -39,8 +38,6 @@ func _ready():
 	fall_gravity = gravity * 2
 
 func _physics_process(delta):
-	if global_position.y > DEATH_HEIGHT:
-		fall_off_screen()
 
 	# Bloqueios para impedir açoes pós morte
 	if is_dead:
@@ -72,13 +69,12 @@ func _physics_process(delta):
 		else:
 			velocity.y += fall_gravity * delta
 
-	# Tiro no ar
-	if !is_on_floor() and Input.is_action_just_pressed("interact") and !is_attacking and !is_air_shooting:
-		is_air_shooting = true
-
-	# Tiro no chão
-	if is_on_floor() and Input.is_action_just_pressed("interact") and !is_shooting and !is_attacking and !is_blocking:
-		is_shooting = true
+	# Tiro
+	if Input.is_action_just_pressed("interact") and !is_attacking and !is_air_shooting and !is_shooting and !is_blocking:
+		if !is_on_floor():
+			is_air_shooting = true
+		if is_on_floor():
+			is_shooting = true
 
 	# Ataque corpo-a-corpo
 	if is_on_floor() and Input.is_action_just_pressed("left_click") and !is_attacking and !is_shooting and !is_blocking:
@@ -151,10 +147,6 @@ func set_state():
 	if current_state != new_state:
 		animation.play(new_state)
 		current_state = new_state
-
-# Faz ele reaparecer ao cair dos limites da tela
-func fall_off_screen():
-	get_tree().reload_current_scene()
 
 # Efetua as verificaçoes e ativaçoes ao tomar um hit
 func take_damage(damage : int, enemie_position := Vector2.ZERO):
