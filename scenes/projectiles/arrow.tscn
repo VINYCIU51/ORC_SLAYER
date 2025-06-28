@@ -1,7 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://di36nuyh1dumg"]
+[gd_scene load_steps=8 format=3 uid="uid://di36nuyh1dumg"]
 
 [ext_resource type="Script" uid="uid://dw0q2c0hap3yb" path="res://script/projectiles/arrow.gd" id="1_yi3td"]
-[ext_resource type="Texture2D" uid="uid://bcoxdgumuidky" path="res://assets/projectiles/Arrow01-32x32.png" id="2_7k75j"]
+[ext_resource type="Texture2D" uid="uid://2sahbgsfxbf" path="res://assets/projectiles/arrow/arrow_collide-Sheet.png" id="2_iyfe7"]
+
+[sub_resource type="Animation" id="Animation_nl28u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m2i7i"]
+resource_name = "collide"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_36eux"]
+resource_name = "fly"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhd7i"]
+_data = {
+&"RESET": SubResource("Animation_nl28u"),
+&"collide": SubResource("Animation_m2i7i"),
+&"fly": SubResource("Animation_36eux")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
 size = Vector2(17, 2)
@@ -13,16 +55,21 @@ script = ExtResource("1_yi3td")
 
 [node name="body" type="Node2D" parent="."]
 
-[node name="sprite" type="Sprite2D" parent="body"]
-position = Vector2(0, 0.4)
-texture = ExtResource("2_7k75j")
+[node name="Sprite2D" type="Sprite2D" parent="body"]
+texture = ExtResource("2_iyfe7")
+hframes = 6
+
+[node name="animation" type="AnimationPlayer" parent="body"]
+libraries = {
+&"": SubResource("AnimationLibrary_hhd7i")
+}
 
 [node name="wall_collision" type="RayCast2D" parent="body"]
 position = Vector2(0, 1)
 target_position = Vector2(11, 0)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
+position = Vector2(-2.5, 1)
 shape = SubResource("RectangleShape2D_ql5rp")
 one_way_collision = true
 debug_color = Color(0.625242, 0.532028, 1.92523e-07, 0.42)
