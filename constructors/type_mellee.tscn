@@ -11,7 +11,6 @@ var distance
 var in_attack_cooldown := false
 
 func _physics_process(delta: float) -> void:
-	
 	# Calcula a distancia entre o mob e o player
 	distance = Mobs.distance_to(mob, mob.player)
 	
@@ -26,14 +25,14 @@ func _physics_process(delta: float) -> void:
 			
 		mob.is_attacking = true
 		in_attack_cooldown = true
-		mob.speed /= 3
+		mob.speed /= 5
 		atk_cooldown.start()
 		
 
 func _on_body_entered(body: Node2D) -> void:
 	if collision.disabled: return
 	# se o player tiver entrado em contato com a area, ele toma o dano referente á força do mob
-	if body.name == \"player\":
+	if body is Player:
 		body.take_damage(mob.damage, global_position)
 		
 
@@ -49,7 +48,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 func _on_attack_cooldown_timeout() -> void:
 	in_attack_cooldown = false
-	mob.speed *= 3
+	mob.speed *= 5
 "
 
 [node name="type_mellee" type="Area2D" groups=["enemies_attacks"]]

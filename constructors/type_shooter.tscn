@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 # Funçao que faz o disparo
 func shoot():
 	var shoot_position = shoot_point.global_position
-	Mobs.shoot(projectile, mob.get_node(\"../..\"), shoot_position, mob.direction)
+	Mobs.shoot(projectile, Mobs.get_main_scene(mob), shoot_position, mob.direction)
 
 
 func _on_shoot_cooldown_timeout() -> void:
