@@ -40,7 +40,6 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	# se  player estiver com o parry ativo no momento do impacto, o mob recebe um parry
 	if area.name == \"parry\":
-		mob.speed = 0
 		collision.set_deferred(\"disabled\", true)
 		mob.has_parried = true
 		
