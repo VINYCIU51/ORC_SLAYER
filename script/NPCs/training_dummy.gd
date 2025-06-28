@@ -61,7 +61,7 @@ func take_damage(damage: int):
 	is_active = true
 
 func calculate_position():
-	distance = global_position.distance_to(player.global_position)
+	distance = Mobs.distance_to(self, player)
 	
 func hit_blink():
 	$sprite.self_modulate = Color(50,50,50,1)
