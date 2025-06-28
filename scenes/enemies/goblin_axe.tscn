@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bqnqhdqrwweo2"]
 
-[ext_resource type="Script" uid="uid://vl84hqno3cc2" path="res://script/enemies/goblin_axe/goblin_axe.gd" id="1_wxm2g"]
+[ext_resource type="Script" uid="uid://vl84hqno3cc2" path="res://script/enemies/goblin_axe.gd" id="1_wxm2g"]
 [ext_resource type="Texture2D" uid="uid://dcc1ihl4kq0kp" path="res://assets/enemies/goblin_axe/Goblin-sprite.png" id="2_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://bc18wa5g8yboa" path="res://assets/enemies/goblin_axe/Goblin-Death.png" id="3_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://br12x1o1aq3pq" path="res://assets/enemies/goblin_axe/Goblin-Hurt.png" id="4_v03dw"]

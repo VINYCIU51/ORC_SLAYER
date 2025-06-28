@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dx3af1d0magoi"]
 
-[ext_resource type="Script" uid="uid://bji8ktcdsgfut" path="res://script/enemies/goblin_smasher/goblin_smasher.gd" id="1_ksjmm"]
+[ext_resource type="Script" uid="uid://bji8ktcdsgfut" path="res://script/enemies/goblin_smasher.gd" id="1_ksjmm"]
 [ext_resource type="Texture2D" uid="uid://bded3wh2ubu5j" path="res://assets/enemies/goblin_smasher/goblinsmasher_sprite.png" id="2_ujhxc"]
 [ext_resource type="Texture2D" uid="uid://dpx7b47473r08" path="res://assets/enemies/goblin_smasher/goblinsmasher_attack_outline.png" id="3_ifray"]
 [ext_resource type="Texture2D" uid="uid://hrpitx2cxmi" path="res://assets/enemies/goblin_smasher/goblinsmasher_death_outline.png" id="4_61ljm"]

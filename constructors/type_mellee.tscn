@@ -5,11 +5,12 @@ script/source = "extends Area2D
 
 @export var mob : Enemy
 @export var collision: CollisionShape2D
+@onready var atk_cooldown: Timer = $attack_cooldown
 
 var distance
+var in_attack_cooldown := false
 
 func _physics_process(delta: float) -> void:
-	
 	# Calcula a distancia entre o mob e o player
 	distance = Mobs.distance_to(mob, mob.player)
 	
@@ -19,21 +20,25 @@ func _physics_process(delta: float) -> void:
 		and !mob.is_stuned 
 		and !mob.is_attacking
 		and !mob.is_shooting
+		and !in_attack_cooldown
 		and mob.has_spawned):
 			
 		mob.is_attacking = true
+		in_attack_cooldown = true
+		mob.speed /= 5
+		atk_cooldown.start()
+		
 
 func _on_body_entered(body: Node2D) -> void:
 	if collision.disabled: return
 	# se o player tiver entrado em contato com a area, ele toma o dano referente á força do mob
-	if body.name == \"player\":
+	if body is Player:
 		body.take_damage(mob.damage, global_position)
 		
 
 func _on_area_entered(area: Area2D) -> void:
 	# se  player estiver com o parry ativo no momento do impacto, o mob recebe um parry
 	if area.name == \"parry\":
-		mob.velocity.x = 0
 		collision.set_deferred(\"disabled\", true)
 		mob.has_parried = true
 		
@@ -41,6 +46,9 @@ func _on_area_entered(area: Area2D) -> void:
 	if mob.parry_resistance <= 0:
 		collision.set_deferred(\"disabled\", true)
 		
+func _on_attack_cooldown_timeout() -> void:
+	in_attack_cooldown = false
+	mob.speed *= 5
 "
 
 [node name="type_mellee" type="Area2D" groups=["enemies_attacks"]]
@@ -48,5 +56,11 @@ collision_layer = 64
 collision_mask = 18
 script = SubResource("GDScript_4m5br")
 
+[node name="attack_cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.4
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

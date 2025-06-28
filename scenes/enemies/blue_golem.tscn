@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://c13fg4s25upwf"]
 
 [ext_resource type="Texture2D" uid="uid://brhnk5cxkpa1b" path="res://assets/enemies/golem_blue/Golem_1.png" id="1_370ft"]
-[ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://script/enemies/golem_blue/golem_blue.gd" id="1_ad0aq"]
+[ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://script/enemies/golem_blue.gd" id="1_ad0aq"]
 [ext_resource type="Texture2D" uid="uid://uw23l8vv4g6v" path="res://assets/enemies/golem_blue/Golem_1_walk.png" id="2_jasww"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="3_lrdse"]
 [ext_resource type="Texture2D" uid="uid://dsomvp3y3dtbj" path="res://assets/enemies/golem_blue/Golem_1_attack.png" id="3_phf0r"]

@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 		
 		if wall_collision.is_colliding():
 			has_collided = true
+			$body/animation.play("collide")
 			damage = 0
 			stop_and_disappear()
 
@@ -32,6 +33,7 @@ func stop_and_disappear():
 # ajusta a direcao da flecha
 func set_direction(dir):
 	direction = dir
+	$collision.position.x *= direction
 	$body.scale.x = sign(direction)
 
 # faz a flecha desaparecer ao sair da tela

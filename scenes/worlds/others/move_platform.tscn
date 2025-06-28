@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3 uid="uid://drgek54gt1yyf"]
+
+[sub_resource type="GDScript" id="GDScript_v8qvb"]
+script/source = "extends Node2D
+
+@export var platform_texture: TileMapLayer
+@export var plat_path : Path2D
+@export var plat_collision : CollisionShape2D
+
+@onready var platform: CharacterBody2D = $platform
+@onready var follow: PathFollow2D = $path_follow/follow
+@onready var animation: AnimationPlayer = $animation
+
+var is_stoped := false
+
+func _ready() -> void:
+	await get_tree().process_frame
+	update_nodes()
+
+func update_nodes():
+	# atualiza a textura da plataforma
+	if platform_texture.get_parent() != platform:
+		platform_texture.get_parent().remove_child(platform_texture)
+		platform.add_child(platform_texture)
+		
+	# atualiza a colisao
+	if plat_collision.get_parent() != platform:
+		plat_collision.get_parent().remove_child(plat_collision)
+		platform.add_child(plat_collision)
+		
+	# atualiza o caminho da plataforma
+	if follow.get_parent() != plat_path:
+		follow.get_parent().remove_child(follow)
+		plat_path.add_child(follow)
+"
+
+[sub_resource type="Animation" id="Animation_hjkak"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("path_follow/follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animation:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.05]
+}
+
+[sub_resource type="Animation" id="Animation_6a3n2"]
+resource_name = "zigzag"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("path_follow/follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animation:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.01, 0.15, 0.15, 0.01, 0.15, 0.15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py3ml"]
+_data = {
+&"RESET": SubResource("Animation_hjkak"),
+&"zigzag": SubResource("Animation_6a3n2")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_pr4yx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.716228, 0)
+}
+point_count = 2
+
+[node name="move_plat" type="Node2D"]
+script = SubResource("GDScript_v8qvb")
+
+[node name="platform" type="CharacterBody2D" parent="."]
+scale = Vector2(1.3962, -0.852784)
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_py3ml")
+}
+autoplay = "zigzag"
+speed_scale = 0.05
+
+[node name="path_follow" type="Path2D" parent="."]
+scale = Vector2(1.3962, -0.852784)
+curve = SubResource("Curve2D_pr4yx")
+
+[node name="follow" type="PathFollow2D" parent="path_follow"]
+rotates = false
+loop = false
+
+[node name="remote" type="RemoteTransform2D" parent="path_follow/follow"]
+remote_path = NodePath("../../../platform")

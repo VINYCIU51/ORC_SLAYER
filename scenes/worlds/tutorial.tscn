@@ -211,4 +211,4 @@ visible_ratio = 0.0
 limit_top = -160
 
 [node name="player" parent="." instance=ExtResource("3_1bcfs")]
-position = Vector2(-22, 137)
+position = Vector2(3081, 118)

@@ -18,5 +18,5 @@ func _physics_process(delta: float) -> void:
 		mob.is_spawning = true
 "
 
-[node name="TypePatrol" type="Node2D"]
+[node name="TypeSpawn" type="Node2D"]
 script = SubResource("GDScript_4fofe")

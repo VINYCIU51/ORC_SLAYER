@@ -46,6 +46,7 @@ z_index = 0
 position = Vector2(0, 293)
 
 [node name="camera" parent="." instance=ExtResource("1_ya7pn")]
+scale = Vector2(1.0017, 0.916889)
 limit_top = -350
 limit_bottom = 350
 

@@ -6,7 +6,9 @@ script/source = "extends Node
 @export var mob : Enemy
 @export var projectile : PackedScene
 @export var shoot_point : Marker2D
+@onready var shoot_cooldown: Timer = $shoot_cooldown
 
+var in_shoot_cooldown := false
 var distance
 var is_below := false
 var was_shoot := false
@@ -21,10 +23,13 @@ func _physics_process(delta: float) -> void:
 		and !mob.player.is_dead 
 		and !mob.is_stuned 
 		and !mob.is_attacking
+		and !in_shoot_cooldown
 		and !was_shoot
 		and !is_below):
 			
 		mob.is_shooting = true
+		in_shoot_cooldown = true
+		shoot_cooldown.start()
 	
 	# Variavel de segurança para impedir que ele fique com o shoot sempre ativo e nao flipe
 	was_shoot = mob.is_shooting
@@ -32,8 +37,19 @@ func _physics_process(delta: float) -> void:
 # Funçao que faz o disparo
 func shoot():
 	var shoot_position = shoot_point.global_position
-	Mobs.shoot(projectile, mob, shoot_position, mob.direction)
+	Mobs.shoot(projectile, Mobs.get_main_scene(mob), shoot_position, mob.direction)
+
+
+func _on_shoot_cooldown_timeout() -> void:
+	in_shoot_cooldown = false
 "
 
 [node name="TypeShooter" type="Node2D"]
 script = SubResource("GDScript_1i81s")
+
+[node name="shoot_cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.2
+one_shot = true
+
+[connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]

@@ -1,17 +1,18 @@
 class_name Enemy
 extends CharacterBody2D
 
-@onready var player := owner.get_node("../player")
+@onready var player = Mobs.get_main_scene(self).get_node("player")
 @onready var animation: AnimationPlayer = $body/animation
 @onready var body: Node2D = $body
 @onready var sprite: Sprite2D = $body/sprite
+@onready var collision: CollisionShape2D = $collision
 
 var type_patrol := false
 var type_follower := false
 
 var speed := 100
 var jump_height := -130
-var dist_follow := 250
+var dist_follow := 280
 var dist_mellee := 35
 var dist_shoot := 200
 var dist_spawn := 50
@@ -22,10 +23,10 @@ var max_parry_resistance := 2
 var parry_resistance := 0
 var num_attacks := 1
 
-var direction := -1
 var distance
-
+var direction := -1
 var should_jump := true
+var flip_compensation := 0
 
 var can_jump := false
 var is_stuned := false
@@ -87,7 +88,7 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif is_damaged and !is_attacking:
+	elif is_damaged and !is_attacking and !is_shooting:
 		new_state = "hurt"
 	elif has_parried:
 		new_state = "parried"
@@ -106,8 +107,8 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
-func take_damage(damage: int):
-	if Mobs.apply_damage(self, damage):
+func take_damage(dmg: int):
+	if Mobs.apply_damage(self, dmg):
 		Mobs.hit_blink(sprite)
 
 func flip_sprite():
@@ -116,6 +117,9 @@ func flip_sprite():
 		
 	if type_follower:
 		direction = 1 if global_position.x < player.global_position.x else -1
+	
+	if flip_compensation != 0:
+		collision.position.x = direction * flip_compensation
 
 	body.scale.x = direction
 
