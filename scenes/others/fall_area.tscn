@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd2f7l8k5k36q"]
+
+[sub_resource type="GDScript" id="GDScript_jid73"]
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		get_tree().reload_current_scene()
+"
+
+[node name="fall_area" type="Area2D"]
+script = SubResource("GDScript_jid73")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
