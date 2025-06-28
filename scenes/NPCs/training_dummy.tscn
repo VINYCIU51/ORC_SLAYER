@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://c3cvyd5ytgvc2" path="res://assets/NPCs/Training Dummy Sprite Sheet.png" id="1_0mnfe"]
 [ext_resource type="Script" uid="uid://6iuvnpgrdppf" path="res://script/NPCs/training_dummy.gd" id="1_0vy4p"]
-[ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="2_dkcov"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="2_lg82q"]
 
 [sub_resource type="Animation" id="Animation_0vy4p"]
@@ -34,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack_area/collision:disabled")
+tracks/2/path = NodePath("attack_area/attack:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +73,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack_area/collision:disabled")
+tracks/2/path = NodePath("attack_area/attack:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -149,6 +148,19 @@ _data = {
 &"idle": SubResource("Animation_l5f7w")
 }
 
+[sub_resource type="GDScript" id="GDScript_dkcov"]
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.take_damage(0)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.name == \"parry\":
+		owner.has_parried = true
+"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vy4p"]
 height = 26.0
 
@@ -174,11 +186,12 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="attack_area" parent="." node_paths=PackedStringArray("mob", "collision") instance=ExtResource("2_dkcov")]
-mob = NodePath("..")
-collision = NodePath("collision")
+[node name="attack_area" type="Area2D" parent="." groups=["enemies_attacks"]]
+collision_layer = 64
+collision_mask = 18
+script = SubResource("GDScript_dkcov")
 
-[node name="collision" type="CollisionShape2D" parent="attack_area"]
+[node name="attack" type="CollisionShape2D" parent="attack_area"]
 position = Vector2(-19, 1)
 shape = SubResource("CapsuleShape2D_0vy4p")
 disabled = true
@@ -193,3 +206,6 @@ debug_color = Color(0.980806, 0, 0.376526, 0.42)
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_lg82q")
 one_way_collision = true
+
+[connection signal="area_entered" from="attack_area" to="attack_area" method="_on_area_entered"]
+[connection signal="body_entered" from="attack_area" to="attack_area" method="_on_body_entered"]
