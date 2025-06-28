@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://bem64646s57a2"]
+[gd_scene load_steps=7 format=4 uid="uid://bem64646s57a2"]
 
 [ext_resource type="Texture2D" uid="uid://oavgfrerdva" path="res://assets/maps/forest/terrain.png" id="1_4i64q"]
+[ext_resource type="PackedScene" uid="uid://cd2f7l8k5k36q" path="res://scenes/others/fall_area.tscn" id="2_jm2n4"]
 
 [sub_resource type="GDScript" id="GDScript_4i64q"]
 script/source = "extends Node2D
@@ -420,6 +421,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_jm2n4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve50w"]
+size = Vector2(1167, 20)
+
 [node name="water" type="Node2D"]
 script = SubResource("GDScript_4i64q")
 
@@ -429,3 +433,11 @@ tile_set = SubResource("TileSet_ve50w")
 
 [node name="repeat_point" type="Marker2D" parent="."]
 position = Vector2(1168, 0)
+
+[node name="fall_area" parent="." instance=ExtResource("2_jm2n4")]
+position = Vector2(0, 92)
+collision_mask = 2
+
+[node name="collision" type="CollisionShape2D" parent="fall_area"]
+position = Vector2(583.5, 0)
+shape = SubResource("RectangleShape2D_ve50w")
