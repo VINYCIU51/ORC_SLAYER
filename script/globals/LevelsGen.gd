@@ -13,3 +13,8 @@ func generate_parts(path: String, parent : Node ,position : Vector2):
 		part.position = position
 		parent.add_child(part)
 		parts_to_create -= 1
+
+func repeat_part (path: String, parent : Node ,position : Vector2):
+	var part = load(path).instantiate()
+	part.position = position
+	parent.add_child(part)
