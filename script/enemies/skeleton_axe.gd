@@ -10,3 +10,4 @@ func _ready() -> void:
 	parry_resistance = 2
 	dist_mellee = 25
 	should_jump = true
+	flip_compensation = -3
