@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://c6cg30ay6tu0s"]
 
-[ext_resource type="Texture2D" uid="uid://hg2eu1xhgyhx" path="res://assets/enemies/trash_bear/Trash Monster-Sheet.png" id="1_ak3ko"]
+[ext_resource type="Texture2D" uid="uid://hg2eu1xhgyhx" path="res://assets/enemies/dead_bear/Dead_bear-Sheet.png" id="1_ak3ko"]
 [ext_resource type="Script" uid="uid://0kho3c67k7k2" path="res://script/enemies/dead_bear.gd" id="1_wdbfx"]
 [ext_resource type="PackedScene" uid="uid://d1gfpyvfxrtjw" path="res://constructors/type_spawn.tscn" id="8_dkrgf"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="9_jjsnh"]
