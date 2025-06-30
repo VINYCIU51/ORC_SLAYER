@@ -369,6 +369,7 @@ position = Vector2(0, 27)
 target_position = Vector2(20, 0)
 
 [node name="jump_clear" type="RayCast2D" parent="body/TypeFollower"]
+position = Vector2(0, 18)
 target_position = Vector2(20, 0)
 
 [node name="Type_mellee" parent="body" node_paths=PackedStringArray("mob", "collision") instance=ExtResource("9_agjj3")]
