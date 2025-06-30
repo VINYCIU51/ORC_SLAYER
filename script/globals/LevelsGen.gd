@@ -1,7 +1,7 @@
 extends Node
 
-var max_level_parts := 3
-var min_level_parts := 3
+var max_level_parts := 2
+var min_level_parts := 2
 var parts_to_create := 0
 
 func generate_parts(path: String, parent : Node ,position : Vector2):
@@ -14,13 +14,13 @@ func generate_parts(path: String, parent : Node ,position : Vector2):
 		parent.add_child(part)
 		parts_to_create -= 1
 		
-	if parts_to_create <= 0:
+	elif parts_to_create < 1:
 		var part = load(path + "boss.tscn").instantiate()
 		part.position = position
 		parent.add_child(part)
 
 func repeat_part (path: String, parent : Node ,position : Vector2):
-	if parts_to_create >= 1:
+	if parts_to_create > 0:
 		var part = load(path).instantiate()
 		part.position = position
 		parent.add_child(part)
