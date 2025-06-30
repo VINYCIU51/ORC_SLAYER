@@ -2872,7 +2872,7 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_amem1")
 sources/0 = SubResource("TileSetAtlasSource_x7y5v")
 
-[node name="ForestPart1" type="Node2D"]
+[node name="ForestPart2" type="Node2D"]
 script = SubResource("GDScript_xocdo")
 
 [node name="fusion_point" type="Marker2D" parent="."]
