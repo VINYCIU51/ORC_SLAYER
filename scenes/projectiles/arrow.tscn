@@ -65,7 +65,10 @@ libraries = {
 }
 
 [node name="wall_collision" type="RayCast2D" parent="body"]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
+target_position = Vector2(11, 0)
+
+[node name="wall_collision2" type="RayCast2D" parent="body"]
 target_position = Vector2(11, 0)
 
 [node name="collision" type="CollisionShape2D" parent="."]
