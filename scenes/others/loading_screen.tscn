@@ -10,18 +10,19 @@ script/source = "extends Node2D
 @onready var layer: CanvasLayer = $layer
 @onready var sprite: AnimatedSprite2D = $layer/AnimatedSprite2D
 
+# animacao de fade-in 
 func start():
 	layer.visible = true
-	PauseMenu.pause_enabled = false
 	animation.play(\"start_load\")
 	await animation.animation_finished
-	
+
+# animacao de fade-out
 func end():
 	animation.play(\"end_load\")
 	await animation.animation_finished
 	layer.visible = false
-	PauseMenu.pause_enabled = true
-	
+
+# funcoes para ativar o sprite durante o carregamento, evitando a configuracao pelo animation_player
 func show_sprite():
 	sprite.visible = true
 	

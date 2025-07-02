@@ -3,6 +3,7 @@
 [sub_resource type="GDScript" id="GDScript_3rf4r"]
 script/source = "extends CanvasLayer
 
+# variavel de controle para evitar pausas em determinados momentos
 var pause_enabled := true
 
 func _process(delta: float) -> void:
@@ -15,16 +16,19 @@ func _process(delta: float) -> void:
 		else:
 			pause()
 
+# pausa o jogo e ativa o mouse
 func pause() -> void:
 	visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
 
+# despausa e desabilita o mouse
 func resume() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	visible = false
 	get_tree().paused = false
 
+# verificacoes de click
 func _on_resume_pressed() -> void:
 	resume()
 
