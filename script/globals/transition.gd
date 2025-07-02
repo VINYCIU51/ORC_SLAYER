@@ -1,6 +1,6 @@
 extends Node
 
-var scenes : Dictionary = {"Menu_principal":"res://UI/menu_principal/scenes/menuprincipal.tscn",
+var scenes : Dictionary = {"menu":"res://scenes/interface/main_menu.tscn",
 						  "tutorial":"res://scenes/worlds/tutorial.tscn",
 						  "forest":"res://scenes/worlds/forest.tscn",
 						  "cave":"res://scenes/worlds/cave.tscn"
