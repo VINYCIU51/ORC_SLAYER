@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1m8olakcx5in"]
+
+[sub_resource type="GDScript" id="GDScript_3rf4r"]
+script/source = "extends CanvasLayer
+
+var pause_enabled := true
+
+func _process(delta: float) -> void:
+	if pause_enabled == false:
+		return
+	
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		if get_tree().paused:
+			resume()
+		else:
+			pause()
+
+func pause() -> void:
+	visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = true
+
+func resume() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	visible = false
+	get_tree().paused = false
+
+func _on_resume_pressed() -> void:
+	resume()
+
+func _on_back_menu_pressed() -> void:
+	resume()
+	Transition.to(\"menu\")
+"
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = SubResource("GDScript_3rf4r")
+
+[node name="pause" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.133333)
+
+[node name="Label" type="Label" parent="pause"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 197.0
+offset_right = 165.0
+offset_bottom = 307.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Pausado"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -57.5
+offset_right = 115.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="resume" type="Button" parent="pause/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Continuar"
+
+[node name="back_menu" type="Button" parent="pause/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Voltar ao menu"
+
+[connection signal="pressed" from="pause/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pause/VBoxContainer/back_menu" to="." method="_on_back_menu_pressed"]
