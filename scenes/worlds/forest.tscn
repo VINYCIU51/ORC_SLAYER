@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfspjxyl0h3vk"]
+[gd_scene load_steps=9 format=3 uid="uid://dfspjxyl0h3vk"]
 
+[ext_resource type="AudioStream" uid="uid://cr7aci4lbrvlu" path="res://sounds/maps/Forest_Music.wav" id="1_0l2d2"]
 [ext_resource type="PackedScene" uid="uid://calbgw7ddowlm" path="res://scenes/worlds/forest_map/forest_background.tscn" id="1_be2bv"]
 [ext_resource type="PackedScene" uid="uid://bxy2agm4y6f8k" path="res://scenes/worlds/forest_map/forest_entrance.tscn" id="1_pbr2d"]
 [ext_resource type="PackedScene" uid="uid://kiugy4837xh8" path="res://scenes/others/camera.tscn" id="1_ya7pn"]
@@ -11,6 +12,12 @@
 size = Vector2(15, 712)
 
 [node name="Forest" type="Node2D"]
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_0l2d2")
+volume_db = 0.8
+autoplay = true
+max_distance = 1e+15
 
 [node name="invisible_limit" type="StaticBody2D" parent="."]
 position = Vector2(-21, 101)
