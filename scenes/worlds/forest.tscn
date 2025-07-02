@@ -51,4 +51,4 @@ limit_top = -350
 limit_bottom = 350
 
 [node name="player" parent="." instance=ExtResource("3_mwn27")]
-position = Vector2(2827, 169)
+position = Vector2(-37, 266)

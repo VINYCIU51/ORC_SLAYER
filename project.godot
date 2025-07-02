@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 LevelsGen="*res://script/globals/LevelsGen.gd"
 Mobs="*res://script/globals/Mobs.gd"
+Transition="*res://script/globals/transition.gd"
+LoadingScreen="*res://scenes/others/loading_screen.tscn"
 
 [display]
 
