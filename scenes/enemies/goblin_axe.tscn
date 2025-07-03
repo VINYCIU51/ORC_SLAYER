@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://bqnqhdqrwweo2"]
+[gd_scene load_steps=27 format=3 uid="uid://bqnqhdqrwweo2"]
 
 [ext_resource type="Script" uid="uid://vl84hqno3cc2" path="res://script/enemies/goblin_axe.gd" id="1_wxm2g"]
 [ext_resource type="Texture2D" uid="uid://dcc1ihl4kq0kp" path="res://assets/enemies/goblin_axe/Goblin-sprite.png" id="2_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://bc18wa5g8yboa" path="res://assets/enemies/goblin_axe/Goblin-Death.png" id="3_0q6c0"]
+[ext_resource type="AudioStream" uid="uid://c6pd75y3ma38j" path="res://sounds/enemies/PENITENT_ENEMY_HIT_3.wav" id="4_ggyu8"]
 [ext_resource type="Texture2D" uid="uid://br12x1o1aq3pq" path="res://assets/enemies/goblin_axe/Goblin-Hurt.png" id="4_v03dw"]
 [ext_resource type="Texture2D" uid="uid://dfl1icg240ueb" path="res://assets/enemies/goblin_axe/Goblin-Idle.png" id="5_7u7dx"]
 [ext_resource type="Texture2D" uid="uid://ci64x5r0pvqkw" path="res://assets/enemies/goblin_axe/Goblin_parry.png" id="6_nbqcl"]
+[ext_resource type="AudioStream" uid="uid://cjn8xsj6k4dno" path="res://sounds/enemies/PENITENT_ENEMY_HIT_1.wav" id="6_qm15l"]
 [ext_resource type="Texture2D" uid="uid://badynlt4k8fd4" path="res://assets/enemies/goblin_axe/Goblin-Walk.png" id="7_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://biwpn0hit4agd" path="res://assets/enemies/goblin_axe/Goblin-Attack01.png" id="8_3mtab"]
 [ext_resource type="Texture2D" uid="uid://ctwplja6u2gus" path="res://assets/enemies/goblin_axe/Goblin-Attack02.png" id="9_qqhgt"]
@@ -127,6 +129,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.165,
+"start_offset": 0.0,
+"stream": ExtResource("4_ggyu8")
+}],
+"times": PackedFloat32Array(0.233333)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_wug8b"]
 resource_name = "attack_2"
@@ -191,6 +208,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound_effect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.308,
+"start_offset": 0.0,
+"stream": ExtResource("6_qm15l")
+}],
+"times": PackedFloat32Array(0.266667)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_y02my"]
 resource_name = "die"
@@ -457,6 +489,8 @@ height = 14.0
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_wxm2g")
+
+[node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
 
 [node name="body" type="Node2D" parent="."]
 

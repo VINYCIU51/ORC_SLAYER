@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1rwx8o6naulv"]
+
+[ext_resource type="Texture2D" uid="uid://brqp2ww0snnov" path="res://assets/interface/Player_health_bar.png" id="1_vhh52"]
+
+[sub_resource type="GDScript" id="GDScript_vhh52"]
+script/source = "extends CanvasLayer
+
+@onready var life_bar: ProgressBar = $life_bar
+
+var player
+
+func _process(_delta):
+	if player == null:
+		player = Utils.get_player()
+		return
+		
+	if life_bar.value > player.life:
+		life_bar.value -= 0.1
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhh52"]
+bg_color = Color(0.564685, 0.060272, 0.0743726, 0.290196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yikvk"]
+bg_color = Color(0.847491, 0, 0.102021, 1)
+
+[node name="PlayerInterface" type="CanvasLayer"]
+visible = false
+script = SubResource("GDScript_vhh52")
+
+[node name="life_bar" type="ProgressBar" parent="."]
+offset_left = 155.0
+offset_top = 88.0
+offset_right = 437.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vhh52")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yikvk")
+max_value = 5.0
+value = 5.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="life_sprite" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(269, 104)
+scale = Vector2(5, 5)
+texture = ExtResource("1_vhh52")
+region_rect = Rect2(0, 92.8599, 101, 22.7854)

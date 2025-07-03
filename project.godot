@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="knight"
-run/main_scene="uid://c2d6xjf0w4bxb"
+run/main_scene="uid://baqe4hvi2yjut"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 LevelsGen="*res://script/globals/LevelsGen.gd"
 Mobs="*res://script/globals/Mobs.gd"
+Transition="*res://script/globals/transition.gd"
+LoadingScreen="*res://scenes/others/loading_screen.tscn"
+PauseMenu="*res://scenes/interface/pause_menu.tscn"
+PlayerInterface="*res://scenes/interface/player_interface.tscn"
+Utils="*res://scenes/others/Utils.tscn"
 
 [display]
 
@@ -30,6 +35,7 @@ window/size/viewport_height=900
 enemies=""
 enemies_attacks=""
 enemies_projectiles=""
+player=""
 
 [input]
 

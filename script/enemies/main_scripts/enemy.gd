@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@onready var player = Mobs.get_main_scene(self).get_node("player")
+@onready var player = Utils.get_main_scene(self).get_node("player")
 @onready var animation: AnimationPlayer = $body/animation
 @onready var body: Node2D = $body
 @onready var sprite: Sprite2D = $body/sprite

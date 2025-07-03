@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2d6xjf0w4bxb"]
+[gd_scene load_steps=18 format=3 uid="uid://c2d6xjf0w4bxb"]
 
 [ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_q0ygy"]
 [ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_lirtl"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpe005q76g1kk" path="res://scenes/NPCs/queen.tscn" id="12_11akb"]
 [ext_resource type="PackedScene" uid="uid://deci31t3kjw7s" path="res://scenes/others/dialog_area.tscn" id="13_11akb"]
 [ext_resource type="FontFile" uid="uid://itj0mwupgk6s" path="res://fonts/FiraSansCondensed-Bold.ttf" id="13_68qv1"]
+[ext_resource type="PackedScene" uid="uid://bxy40a5eqt1kn" path="res://scenes/others/transition_area.tscn" id="14_apw5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ygy"]
 size = Vector2(20, 416)
@@ -207,8 +208,12 @@ ellipsis_char = ""
 visible_characters = 0
 visible_ratio = 0.0
 
+[node name="TransitionArea" parent="." instance=ExtResource("14_apw5s")]
+position = Vector2(3986, 156)
+scene_destine = "forest"
+
 [node name="camera" parent="." instance=ExtResource("4_5g6ke")]
 limit_top = -160
 
 [node name="player" parent="." instance=ExtResource("3_1bcfs")]
-position = Vector2(3081, 118)
+position = Vector2(3801, 118)

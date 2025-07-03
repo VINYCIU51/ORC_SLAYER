@@ -18,7 +18,7 @@ func _ready() -> void:
 	# Seta o inimigo como tipo patrulha no Enemy.gd
 	mob.type_patrol = true
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Calculos de posicao
 	distance = Mobs.distance_to(mob, mob.player)
 	at_edge = !edge_sensor.is_colliding()

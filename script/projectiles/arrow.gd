@@ -2,6 +2,7 @@ class_name Arrow
 extends CharacterBody2D
 
 @onready var wall_collision : RayCast2D = $body/wall_collision
+@onready var wall_collision_2: RayCast2D = $body/wall_collision2
 
 const SPEED := 350
 const ARROW_DURATION := 3.5
@@ -11,12 +12,12 @@ var damage := 1
 var direction := 1
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !has_collided:
 		velocity.x = SPEED * direction
 		move_and_slide()
 		
-		if wall_collision.is_colliding():
+		if wall_collision.is_colliding() or wall_collision_2.is_colliding():
 			has_collided = true
 			$body/animation.play("collide")
 			damage = 0

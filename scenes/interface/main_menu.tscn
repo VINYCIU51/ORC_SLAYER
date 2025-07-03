@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://baqe4hvi2yjut"]
+
+[sub_resource type="GDScript" id="GDScript_106gw"]
+script/source = "extends Control
+
+# bloqueia o pause e habilita o mouse
+func _ready() -> void:
+	PauseMenu.pause_enabled = false
+	PlayerInterface.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+# efetua a transicao para o primeiro nivel do jogo
+func _on_start_pressed() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	Transition.to(\"tutorial\")
+
+# fecha o jogo
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_106gw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(5.41471e-08, 0.174474, 0.174516, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 232.0
+offset_right = 117.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "orc slayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -56.0
+offset_right = 48.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "iniciar"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "sair"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

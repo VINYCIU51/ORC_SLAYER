@@ -41,4 +41,4 @@ func set_state():
 
 func randow_move():
 	direction = randi_range(-1,1)
-	move_cooldow = randi_range(1.0, 2.0)
+	move_cooldow = randf_range(1.0, 3.0)
