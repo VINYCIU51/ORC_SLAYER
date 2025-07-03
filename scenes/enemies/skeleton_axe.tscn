@@ -1,15 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6nr6y57apkr8"]
+[gd_scene load_steps=26 format=3 uid="uid://b6nr6y57apkr8"]
 
 [ext_resource type="Script" uid="uid://b36vdgp3jjrlq" path="res://script/enemies/skeleton_axe.gd" id="1_5dww5"]
 [ext_resource type="Texture2D" uid="uid://dpfad6ea0lq22" path="res://assets/enemies/skeleton_axe/Skeleton sprite.png" id="2_yerr7"]
 [ext_resource type="Texture2D" uid="uid://boeopuhxvf8" path="res://assets/enemies/skeleton_axe/Skeleton Dead.png" id="3_sn1wq"]
-[ext_resource type="AudioStream" uid="uid://d0xtgs446lvc2" path="res://sounds/enemies/PENITENT_ENEMY_HIT_4.wav" id="4_0qrlu"]
+[ext_resource type="AudioStream" uid="uid://d0xtgs446lvc2" path="res://sounds/enemies/goblin/heapon_hit.wav" id="4_0qrlu"]
 [ext_resource type="Texture2D" uid="uid://dujnbli0s3l0v" path="res://assets/enemies/skeleton_axe/Skeleton Hit.png" id="4_80nvu"]
+[ext_resource type="AudioStream" uid="uid://ciu5v7mgnt362" path="res://sounds/enemies/skeleton/skeleton_death.mp3" id="4_pwt4h"]
 [ext_resource type="Texture2D" uid="uid://26rkgumyvdfk" path="res://assets/enemies/skeleton_axe/Skeleton Idle.png" id="5_8xkm6"]
 [ext_resource type="Texture2D" uid="uid://d4j12gy8msois" path="res://assets/enemies/skeleton_axe/Skeleton Walk.png" id="7_xgwyn"]
 [ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="8_0msco"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="8_juuht"]
+[ext_resource type="AudioStream" uid="uid://dw8iaeei25qn2" path="res://sounds/enemies/skeleton/skeleton_hit.mp3" id="8_s3yqs"]
 [ext_resource type="Texture2D" uid="uid://ctj2bjwj8hw1g" path="res://assets/enemies/skeleton_axe/Skeleton Attack.png" id="8_sn1wq"]
+[ext_resource type="AudioStream" uid="uid://dot0gbgp46yad" path="res://sounds/enemies/skeleton/skeleton_steps.mp3" id="11_ny13m"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="11_ope54"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7u7dx"]
@@ -162,11 +165,15 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
+"end_offset": 1.5923,
+"start_offset": 1.04,
+"stream": ExtResource("4_pwt4h")
+}, {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("4_0qrlu")
 }],
-"times": PackedFloat32Array(0.6)
+"times": PackedFloat32Array(0.2, 0.6)
 }
 tracks/5/use_blend = true
 
@@ -233,6 +240,21 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound_effect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.7848,
+"start_offset": 0.7245,
+"stream": ExtResource("4_pwt4h")
+}],
+"times": PackedFloat32Array(0.0666667)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ad0aq"]
 resource_name = "hurt"
@@ -285,6 +307,21 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-2, 0)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_s3yqs")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o735a"]
 resource_name = "idle"
@@ -467,6 +504,25 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound_effect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.5275,
+"start_offset": 0.0,
+"stream": ExtResource("11_ny13m")
+}, {
+"end_offset": 0.591,
+"start_offset": 0.0,
+"stream": ExtResource("11_ny13m")
+}],
+"times": PackedFloat32Array(0, 0.633333)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
