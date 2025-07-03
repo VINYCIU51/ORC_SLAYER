@@ -10,7 +10,7 @@ func _ready():
 		target = get_node(target_path)
 	self.enabled = true
 
-func _process(delta):
+func _process(_delta):
 	# faz a camera seguir o player 
 	if target and is_instance_valid(target):
 		global_position = target.global_position

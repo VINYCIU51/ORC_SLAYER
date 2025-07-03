@@ -19,7 +19,7 @@ func _ready() -> void:
 	# Seta o inimigo como tipo perseguidor no Enemy.gd
 	mob.type_follower = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	mob.distance = distance
 	
 	# Verifica os sensores de colisao

@@ -17,7 +17,7 @@ var is_active := false
 
 var current_state := "idle"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	calculate_position()
 
 	if distance > DIST_ATTACK:
@@ -55,7 +55,7 @@ func set_state():
 		current_state = new_state
 
 
-func take_damage(damage: int):
+func take_damage(_damage: int):
 	hit_blink()
 	is_damaged = true
 	is_active = true

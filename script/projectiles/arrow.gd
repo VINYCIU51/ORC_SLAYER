@@ -12,7 +12,7 @@ var damage := 1
 var direction := 1
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !has_collided:
 		velocity.x = SPEED * direction
 		move_and_slide()

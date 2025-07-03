@@ -13,7 +13,7 @@ var distance
 var is_below := false
 var was_shoot := false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	# Calcula a distancia entre o mob e o player
 	distance = Mobs.distance_to(mob, mob.player)
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 # Funçao que faz o disparo
 func shoot():
 	var shoot_position = shoot_point.global_position
-	Mobs.shoot(projectile, Mobs.get_main_scene(mob), shoot_position, mob.direction)
+	Mobs.shoot(projectile, Utils.get_main_scene(mob), shoot_position, mob.direction)
 
 
 func _on_shoot_cooldown_timeout() -> void:

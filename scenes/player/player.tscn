@@ -169,7 +169,7 @@ tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bncfn"]
 resource_name = "attack"
-length = 0.54
+length = 0.55
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -824,8 +824,8 @@ volume_db = 11.0
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("9_wlyqf")
-hframes = 9
+texture = ExtResource("3_n4r3a")
+hframes = 6
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")
