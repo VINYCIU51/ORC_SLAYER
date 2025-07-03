@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var wall_collision : RayCast2D = $body/wall_collision
 @onready var wall_collision_2: RayCast2D = $body/wall_collision2
+@onready var animation: AnimationPlayer = $body/animation
 
 const SPEED := 350
 const ARROW_DURATION := 3.5
@@ -19,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if wall_collision.is_colliding() or wall_collision_2.is_colliding():
 			has_collided = true
-			$body/animation.play("collide")
+			animation.play("collide")
 			damage = 0
 			stop_and_disappear()
 
