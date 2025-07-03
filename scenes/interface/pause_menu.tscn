@@ -6,7 +6,7 @@ script/source = "extends CanvasLayer
 # variavel de controle para evitar pausas em determinados momentos
 var pause_enabled := true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if pause_enabled == false:
 		return
 	
@@ -34,6 +34,7 @@ func _on_resume_pressed() -> void:
 
 func _on_back_menu_pressed() -> void:
 	resume()
+	PlayerInterface.hide()
 	Transition.to(\"menu\")
 "
 

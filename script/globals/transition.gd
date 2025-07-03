@@ -14,6 +14,7 @@ func to(level : String):
 		PauseMenu.pause_enabled = false # desativa o pause durante a transicao
 		await LoadingScreen.start()
 		
+		PlayerInterface.show() # exibe a vida do player
 		get_tree().change_scene_to_file(scene_path) # faz a transicao no momento em que a tela esta escura
 
 		await get_tree().process_frame

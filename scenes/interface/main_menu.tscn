@@ -6,12 +6,12 @@ script/source = "extends Control
 # bloqueia o pause e habilita o mouse
 func _ready() -> void:
 	PauseMenu.pause_enabled = false
+	PlayerInterface.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # efetua a transicao para o primeiro nivel do jogo
 func _on_start_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	PauseMenu.pause_enabled = true
 	Transition.to(\"tutorial\")
 
 # fecha o jogo
