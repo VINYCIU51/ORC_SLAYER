@@ -22,6 +22,8 @@ Mobs="*res://script/globals/Mobs.gd"
 Transition="*res://script/globals/transition.gd"
 LoadingScreen="*res://scenes/others/loading_screen.tscn"
 PauseMenu="*res://scenes/interface/pause_menu.tscn"
+PlayerInterface="*res://scenes/interface/player_interface.tscn"
+Utils="*res://scenes/others/Utils.tscn"
 
 [display]
 
@@ -33,6 +35,7 @@ window/size/viewport_height=900
 enemies=""
 enemies_attacks=""
 enemies_projectiles=""
+player=""
 
 [input]
 
