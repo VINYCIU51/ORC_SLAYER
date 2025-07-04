@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2d6xjf0w4bxb"]
+[gd_scene load_steps=19 format=3 uid="uid://c2d6xjf0w4bxb"]
 
+[ext_resource type="AudioStream" uid="uid://bwfqlfqu36ly8" path="res://sounds/maps/village_music.wav" id="1_cm0nb"]
 [ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_q0ygy"]
 [ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_lirtl"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="3_1bcfs"]
@@ -21,6 +22,13 @@
 size = Vector2(20, 416)
 
 [node name="Tutorial" type="Node2D"]
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_cm0nb")
+volume_db = 0.7
+pitch_scale = 0.8
+autoplay = true
+max_distance = 1e+15
 
 [node name="tutorial_background" parent="." instance=ExtResource("1_q0ygy")]
 
@@ -172,6 +180,8 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("13_68qv1")
 text = "Parry:
 para executar um parry, pressione mouse direito no momento do ataque
+
+Após alguns parrys, o inimigo ficará estunado, recebendo o dobro de dano
 "
 autowrap_mode = 3
 ellipsis_char = ""
@@ -216,4 +226,4 @@ scene_destine = "forest"
 limit_top = -160
 
 [node name="player" parent="." instance=ExtResource("3_1bcfs")]
-position = Vector2(3801, 118)
+position = Vector2(-56, 149)
