@@ -14,7 +14,7 @@ var speed := 100
 var jump_height := -130
 var dist_follow := 280
 var dist_mellee := 35
-var dist_shoot := 200
+var dist_range_attack := 200
 var dist_spawn := 50
 
 var damage := 1
@@ -22,11 +22,13 @@ var life := 3
 var max_parry_resistance := 2
 var parry_resistance := 0
 var num_attacks := 1
+var num_range_attacks := 1
 
 var distance
 var direction := -1
 var should_jump := true
 var flip_compensation := 0
+var position_compensation := 0
 
 var can_jump := false
 var is_stuned := false
@@ -34,12 +36,13 @@ var has_parried := false
 var is_dead := false
 var is_damaged := false
 var is_attacking := false
-var is_shooting := false
+var is_range_attacking := false
 var is_following := false
 var has_spawned := true
 var is_spawning := false
 
 var current_attack := 1
+var current_range_attack := 1
 var current_state := "idle"
 
 func _ready():
@@ -73,10 +76,11 @@ func update_logic(delta: float):
 			is_attacking = false
 			current_attack = randi_range(1, num_attacks)
 
-	if is_shooting:
+	if is_range_attacking:
 		velocity.x = 0
 		if !animation.is_playing():
-			is_shooting = false
+			is_range_attacking = false
+			current_range_attack = randi_range(1, num_range_attacks)
 
 	if is_damaged:
 		velocity.x = 0
@@ -88,7 +92,7 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif is_damaged and !is_attacking and !is_shooting:
+	elif is_damaged and !is_attacking and !is_range_attacking:
 		new_state = "hurt"
 	elif has_parried:
 		new_state = "parried"
@@ -96,8 +100,8 @@ func set_state():
 		new_state = "idle"
 	elif is_attacking:
 		new_state = "attack_" + str(current_attack)
-	elif is_shooting:
-		new_state = "shoot"
+	elif is_range_attacking:
+		new_state = "range_attack_" + str(current_range_attack)
 	elif velocity.x != 0:
 		new_state = "walk"
 	elif is_spawning:
@@ -119,7 +123,10 @@ func flip_sprite():
 		direction = 1 if global_position.x < player.global_position.x else -1
 	
 	if flip_compensation != 0:
-		collision.position.x = direction * flip_compensation
+		collision.position.x = direction * (flip_compensation + position_compensation)
+		
+	if position_compensation != 0:
+		body.position.x = direction * position_compensation
 
 	body.scale.x = direction
 
@@ -133,6 +140,7 @@ func _on_animation_animation_finished(anim_name: StringName) -> void:
 
 	elif anim_name == "parried" and has_parried:
 		has_parried = false
+		print("taaqui")
 		parry_resistance -= 1
 		
 		if parry_resistance <= 0:

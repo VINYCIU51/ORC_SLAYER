@@ -34,8 +34,8 @@ window/size/viewport_height=900
 
 enemies=""
 enemies_attacks=""
-enemies_projectiles=""
 player=""
+enemies_ranged_attacks=""
 
 [input]
 
