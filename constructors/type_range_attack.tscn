@@ -4,14 +4,15 @@
 script/source = "extends Node
 
 @export var mob : Enemy
-@export var projectile : PackedScene
-@export var shoot_point : Marker2D
+@export var projectile : PackedScene = null
+@export var summon : PackedScene = null
+@export var shoot_point : Marker2D = null
 @onready var shoot_cooldown: Timer = $shoot_cooldown
 
-var in_shoot_cooldown := false
+var in_attack_cooldown := false
 var distance
 var is_below := false
-var was_shoot := false
+var was_attacked := false
 
 func _physics_process(_delta: float) -> void:
 	
@@ -19,29 +20,38 @@ func _physics_process(_delta: float) -> void:
 	distance = Mobs.distance_to(mob, mob.player)
 	
 	# Ativa o tiro
-	if (distance <= mob.dist_shoot
+	if (distance <= mob.dist_range_attack
+		and distance > (mob.dist_mellee * 3)
 		and !mob.player.is_dead 
 		and !mob.is_stuned 
 		and !mob.is_attacking
-		and !in_shoot_cooldown
-		and !was_shoot
+		and !in_attack_cooldown
+		and !was_attacked
 		and !is_below):
 			
-		mob.is_shooting = true
-		in_shoot_cooldown = true
+		mob.is_range_attacking = true
+		in_attack_cooldown = true
 		shoot_cooldown.start()
 	
 	# Variavel de segurança para impedir que ele fique com o shoot sempre ativo e nao flipe
-	was_shoot = mob.is_shooting
+	was_attacked = mob.is_range_attacking
 
 # Funçao que faz o disparo
 func shoot():
 	var shoot_position = shoot_point.global_position
 	Mobs.shoot(projectile, Utils.get_main_scene(mob), shoot_position, mob.direction)
 
+# Funçao que teleporta o mob para as costas do player
+func teleport():
+	mob.global_position.x = mob.player.global_position.x + ((mob.player.direction * -1) * 60)
+
+# Funçao que sumona algo logo acima do player
+func summon_on_player():
+	var summon_position = Vector2(mob.player.position.x, mob.player.position.y - 40 )
+	Mobs.summon(summon, Utils.get_main_scene(mob), summon_position)
 
 func _on_shoot_cooldown_timeout() -> void:
-	in_shoot_cooldown = false
+	in_attack_cooldown = false
 "
 
 [node name="TypeShooter" type="Node2D"]
