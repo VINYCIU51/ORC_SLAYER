@@ -226,7 +226,7 @@ tracks/5/keys = {
 "start_offset": 0.5273,
 "stream": ExtResource("10_ym7li")
 }, {
-"end_offset": 0.1907,
+"end_offset": 0.2012,
 "start_offset": 0.0,
 "stream": ExtResource("5_n3u63")
 }],
@@ -293,7 +293,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
-"end_offset": 1.6211,
+"end_offset": 1.6381,
 "start_offset": 0.6258,
 "stream": ExtResource("8_n3u63")
 }, {

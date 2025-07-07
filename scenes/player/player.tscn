@@ -502,7 +502,7 @@ tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_un1rg"]
 resource_name = "parry"
-length = 0.3
+length = 0.26
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -559,7 +559,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
-"end_offset": 0.42,
+"end_offset": 0.4895,
 "start_offset": 0.0,
 "stream": ExtResource("11_uf5tr")
 }],
@@ -856,8 +856,8 @@ volume_db = 11.0
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("9_wlyqf")
-hframes = 9
+texture = ExtResource("10_ii4c0")
+hframes = 3
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")

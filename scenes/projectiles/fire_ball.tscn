@@ -215,7 +215,7 @@ _data = {
 radius = 5.0
 height = 17.0
 
-[node name="fire_ball" type="CharacterBody2D" groups=["enemies_projectiles"]]
+[node name="fire_ball" type="CharacterBody2D" groups=["enemies_ranged_attacks"]]
 collision_layer = 128
 collision_mask = 17
 script = ExtResource("1_mregq")
