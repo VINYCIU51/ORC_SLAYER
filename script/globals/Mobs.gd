@@ -8,6 +8,13 @@ func shoot(projectile : PackedScene, where_should_create : Node, position : Vect
 	projectile_instance.set_direction(sign(direction))
 	projectile_instance.position = position
 
+# Faz aparecer um summon na posicao especificada
+func summon(summon : PackedScene, where_should_create : Node, position : Vector2):
+	var summon_instance = summon.instantiate()
+	where_should_create.add_sibling(summon_instance, true)
+	
+	summon_instance.position = position
+	
 # Faz o sprite piscar em branco, informando que tomou um hit
 func hit_blink(sprite : Node):
 	sprite.self_modulate = Color(50,50,50,1)
