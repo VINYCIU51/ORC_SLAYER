@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwffx4ihofkx8"]
+[gd_scene load_steps=23 format=3 uid="uid://dwffx4ihofkx8"]
 
 [ext_resource type="Script" uid="uid://cr3kluyx2nwd8" path="res://script/enemies/boss_forest.gd" id="1_5462e"]
 [ext_resource type="Texture2D" uid="uid://cp5apncjga3df" path="res://assets/enemies/bosses/Bringer-of-Death-SpritSheet.png" id="1_wr1lk"]
+[ext_resource type="AudioStream" uid="uid://bdbhygn1hmj0c" path="res://sounds/enemies/beasts/bear_bite.mp3" id="3_n7vyo"]
+[ext_resource type="AudioStream" uid="uid://d0xtgs446lvc2" path="res://sounds/enemies/goblin/heapon_hit.wav" id="4_fef1k"]
 [ext_resource type="PackedScene" uid="uid://chvuwfvxdoyh6" path="res://constructors/type_range_attack.tscn" id="4_ri067"]
 [ext_resource type="PackedScene" uid="uid://mgstarbb5sen" path="res://scenes/projectiles/boss_forest_summon.tscn" id="5_d7kcw"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="14_g0ei0"]
@@ -109,6 +111,25 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(1, 1)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.4062,
+"start_offset": 0.449,
+"stream": ExtResource("3_n7vyo")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_fef1k")
+}],
+"times": PackedFloat32Array(0.166667, 0.4)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_n7vyo"]
 resource_name = "die"
@@ -175,10 +196,9 @@ tracks/0/keys = {
 "values": [Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(0, 3), Vector2i(1, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_ri067"]
-resource_name = "walk"
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_d7kcw"]
+resource_name = "range_attack_1"
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -186,10 +206,24 @@ tracks/0/path = NodePath("body/sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.100311, 0.201775, 0.302086, 0.400091, 0.501556, 0.600714, 0.700842),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0991581, 0.199469, 0.29978, 0.398938, 0.500403, 0.600714, 0.698719, 0.801336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
+"values": [Vector2i(7, 4), Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/TypeRangeAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"summon_on_player"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_jxwhp"]
@@ -222,9 +256,10 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_d7kcw"]
-resource_name = "range_attack_1"
-length = 0.9
+[sub_resource type="Animation" id="Animation_ri067"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -232,24 +267,10 @@ tracks/0/path = NodePath("body/sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0991581, 0.199469, 0.29978, 0.398938, 0.500403, 0.600714, 0.698719, 0.801336),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.100311, 0.201775, 0.302086, 0.400091, 0.501556, 0.600714, 0.700842),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(7, 4), Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("body/TypeRangeAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"summon_on_player"
-}]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16faf"]

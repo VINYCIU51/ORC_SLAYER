@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://baqe4hvi2yjut"]
+[gd_scene load_steps=4 format=3 uid="uid://baqe4hvi2yjut"]
 
+[ext_resource type="AudioStream" uid="uid://bwfqlfqu36ly8" path="res://sounds/maps/main_menu.wav" id="1_b5nk6"]
 [ext_resource type="Texture2D" uid="uid://vmc4trjnlhr8" path="res://assets/interface/main_menu_bg.png" id="1_uidtg"]
 
 [sub_resource type="GDScript" id="GDScript_106gw"]
@@ -29,6 +30,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_106gw")
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_b5nk6")
+volume_db = 0.5
+autoplay = true
+max_distance = 1e+15
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1

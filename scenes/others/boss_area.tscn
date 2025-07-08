@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6r865peq26qt"]
+
+[ext_resource type="AudioStream" uid="uid://cw6noluxjbblk" path="res://sounds/maps/boss_default.wav" id="1_r7o17"]
+
+[sub_resource type="GDScript" id="GDScript_31c22"]
+script/source = "extends Area2D
+
+@export var active_area: CollisionShape2D
+@export var boss : Enemy
+
+@onready var map_music : AudioStreamPlayer2D = Utils.get_main_scene(self).get_node(\"map_music\")
+@onready var music: AudioStreamPlayer2D = $boss_music
+@onready var limit: CollisionShape2D = $block_entrance/limit
+
+var is_activated := false
+
+func _physics_process(_delta: float) -> void:
+	
+	if boss == null:
+		limit.call_deferred(\"set_disabled\", true)
+		music.stop()
+		map_music.stream_paused = false
+		map_music.seek(0)
+	
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player and !is_activated:
+		is_activated = true
+		map_music.stream_paused = true
+		music.play()
+		limit.call_deferred(\"set_disabled\", false)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbym0"]
+size = Vector2(14, 416)
+
+[node name="Boss_area" type="Area2D"]
+collision_mask = 2
+script = SubResource("GDScript_31c22")
+
+[node name="boss_music" type="AudioStreamPlayer2D" parent="."]
+z_index = 4
+stream = ExtResource("1_r7o17")
+volume_db = 2.3
+pitch_scale = 1.5
+max_distance = 1e+15
+
+[node name="block_entrance" type="StaticBody2D" parent="."]
+collision_mask = 18
+
+[node name="limit" type="CollisionShape2D" parent="block_entrance"]
+position = Vector2(-315, 1)
+shape = SubResource("RectangleShape2D_hbym0")
+disabled = true
+debug_color = Color(2.06962e-06, 0.643051, 0.307013, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

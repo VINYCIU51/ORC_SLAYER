@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://c2d6xjf0w4bxb"]
 
-[ext_resource type="AudioStream" uid="uid://bwfqlfqu36ly8" path="res://sounds/maps/village_music.wav" id="1_cm0nb"]
+[ext_resource type="AudioStream" uid="uid://b2506kyskuff5" path="res://sounds/maps/vilage.wav" id="1_cm0nb"]
 [ext_resource type="PackedScene" uid="uid://ch2ic8cu0lm4o" path="res://scenes/worlds/tutorial_map/tutorial_background.tscn" id="1_q0ygy"]
 [ext_resource type="PackedScene" uid="uid://dtl86v1yffp6q" path="res://scenes/worlds/tutorial_map/tutorial_map.tscn" id="2_lirtl"]
 [ext_resource type="PackedScene" uid="uid://gkhbgo55eaaq" path="res://scenes/player/player.tscn" id="3_1bcfs"]
@@ -25,8 +25,7 @@ size = Vector2(20, 416)
 
 [node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_cm0nb")
-volume_db = 0.7
-pitch_scale = 0.8
+volume_db = 0.5
 autoplay = true
 max_distance = 1e+15
 

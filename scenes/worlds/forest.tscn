@@ -13,9 +13,8 @@ size = Vector2(15, 712)
 
 [node name="Forest" type="Node2D"]
 
-[node name="music" type="AudioStreamPlayer2D" parent="."]
+[node name="map_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_0l2d2")
-volume_db = 0.8
 autoplay = true
 max_distance = 1e+15
 

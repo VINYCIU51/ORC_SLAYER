@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://bcyh3dcbplani"]
+[gd_scene load_steps=11 format=4 uid="uid://bcyh3dcbplani"]
 
 [ext_resource type="Texture2D" uid="uid://oavgfrerdva" path="res://assets/maps/forest/terrain.png" id="1_31c22"]
 [ext_resource type="Texture2D" uid="uid://1m04o4eq88ue" path="res://assets/maps/caves/decorations/Dungeon.png" id="3_u3h3k"]
 [ext_resource type="PackedScene" uid="uid://dwffx4ihofkx8" path="res://scenes/enemies/Boss_forest.tscn" id="4_hbym0"]
+[ext_resource type="PackedScene" uid="uid://c6r865peq26qt" path="res://scenes/others/boss_area.tscn" id="6_bjh1o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggouc"]
 texture = ExtResource("1_31c22")
@@ -957,6 +958,9 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_77ha6")
 sources/0 = SubResource("TileSetAtlasSource_c4xx2")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjh1o"]
+size = Vector2(97, 264)
+
 [node name="BossPart" type="Node2D"]
 
 [node name="backgrounds" type="TileMapLayer" parent="."]
@@ -969,3 +973,12 @@ tile_set = SubResource("TileSet_u0dud")
 
 [node name="boss_forest" parent="." instance=ExtResource("4_hbym0")]
 position = Vector2(1243, -55)
+
+[node name="Boss_area" parent="." node_paths=PackedStringArray("active_area", "boss") instance=ExtResource("6_bjh1o")]
+position = Vector2(857, -95)
+active_area = NodePath("area")
+boss = NodePath("../boss_forest")
+
+[node name="area" type="CollisionShape2D" parent="Boss_area"]
+position = Vector2(71, -36)
+shape = SubResource("RectangleShape2D_bjh1o")
