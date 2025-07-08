@@ -84,6 +84,9 @@ func update_logic(delta: float):
 
 	if is_damaged:
 		velocity.x = 0
+		if !has_spawned:
+			is_spawning = true
+		
 		if !animation.is_playing():
 			is_damaged = false
 
@@ -92,7 +95,7 @@ func set_state():
 
 	if is_dead:
 		new_state = "die"
-	elif is_damaged and !is_attacking and !is_range_attacking:
+	elif is_damaged and !is_attacking and !is_range_attacking and has_spawned:
 		new_state = "hurt"
 	elif has_parried:
 		new_state = "parried"
@@ -140,7 +143,6 @@ func _on_animation_animation_finished(anim_name: StringName) -> void:
 
 	elif anim_name == "parried" and has_parried:
 		has_parried = false
-		print("taaqui")
 		parry_resistance -= 1
 		
 		if parry_resistance <= 0:
