@@ -8,14 +8,26 @@ script/source = "extends CanvasLayer
 @onready var life_bar: ProgressBar = $life_bar
 
 var player
+var has_shown := false
 
 func _process(_delta):
-	if player == null:
+	
+	if player == null: # verifica a existencia do player
 		player = Utils.get_player()
 		return
-		
-	if life_bar.value > player.life:
+
+	if life_bar.value > player.life: # diminui a vida com um certo delay
 		life_bar.value -= 0.1
+
+	elif life_bar.value < player.life: # enche a vida novamente ao ressucitar
+		life_bar.value = player.life
+
+	if !player.is_dead and has_shown: # desliga a variavel de controle
+		has_shown = false
+
+	if player.is_dead and !has_shown: # exibe o menu e ativa a variavel de controle
+		DeathMenu.show_menu(player)
+		has_shown = true
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhh52"]
