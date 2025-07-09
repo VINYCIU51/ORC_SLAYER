@@ -24,6 +24,7 @@ LoadingScreen="*res://scenes/others/loading_screen.tscn"
 PauseMenu="*res://scenes/interface/pause_menu.tscn"
 PlayerInterface="*res://scenes/interface/player_interface.tscn"
 Utils="*res://scenes/others/Utils.tscn"
+DeathMenu="*res://scenes/interface/death_menu.tscn"
 
 [display]
 
@@ -34,8 +35,8 @@ window/size/viewport_height=900
 
 enemies=""
 enemies_attacks=""
-enemies_projectiles=""
 player=""
+enemies_ranged_attacks=""
 
 [input]
 
@@ -93,6 +94,7 @@ scroll_click={
 2d_physics/layer_6="enemie_hitbox"
 2d_physics/layer_7="attack_hitbox"
 2d_physics/layer_8="dangerous_projectiles"
+2d_physics/layer_9="invisible_areas"
 
 [rendering]
 

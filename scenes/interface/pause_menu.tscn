@@ -34,12 +34,12 @@ func _on_resume_pressed() -> void:
 
 func _on_back_menu_pressed() -> void:
 	resume()
-	PlayerInterface.hide()
 	Transition.to(\"menu\")
 "
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
+layer = 2
 visible = false
 script = SubResource("GDScript_3rf4r")
 

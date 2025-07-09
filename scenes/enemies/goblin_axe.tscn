@@ -1,19 +1,21 @@
-[gd_scene load_steps=27 format=3 uid="uid://bqnqhdqrwweo2"]
+[gd_scene load_steps=29 format=3 uid="uid://bqnqhdqrwweo2"]
 
 [ext_resource type="Script" uid="uid://vl84hqno3cc2" path="res://script/enemies/goblin_axe.gd" id="1_wxm2g"]
 [ext_resource type="Texture2D" uid="uid://dcc1ihl4kq0kp" path="res://assets/enemies/goblin_axe/Goblin-sprite.png" id="2_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://bc18wa5g8yboa" path="res://assets/enemies/goblin_axe/Goblin-Death.png" id="3_0q6c0"]
-[ext_resource type="AudioStream" uid="uid://c6pd75y3ma38j" path="res://sounds/enemies/PENITENT_ENEMY_HIT_3.wav" id="4_ggyu8"]
 [ext_resource type="Texture2D" uid="uid://br12x1o1aq3pq" path="res://assets/enemies/goblin_axe/Goblin-Hurt.png" id="4_v03dw"]
 [ext_resource type="Texture2D" uid="uid://dfl1icg240ueb" path="res://assets/enemies/goblin_axe/Goblin-Idle.png" id="5_7u7dx"]
+[ext_resource type="AudioStream" uid="uid://d0xtgs446lvc2" path="res://sounds/enemies/goblin/heapon_hit.wav" id="5_n3u63"]
 [ext_resource type="Texture2D" uid="uid://ci64x5r0pvqkw" path="res://assets/enemies/goblin_axe/Goblin_parry.png" id="6_nbqcl"]
-[ext_resource type="AudioStream" uid="uid://cjn8xsj6k4dno" path="res://sounds/enemies/PENITENT_ENEMY_HIT_1.wav" id="6_qm15l"]
 [ext_resource type="Texture2D" uid="uid://badynlt4k8fd4" path="res://assets/enemies/goblin_axe/Goblin-Walk.png" id="7_0q6c0"]
 [ext_resource type="Texture2D" uid="uid://biwpn0hit4agd" path="res://assets/enemies/goblin_axe/Goblin-Attack01.png" id="8_3mtab"]
+[ext_resource type="AudioStream" uid="uid://cy0bi5yg2h4yo" path="res://sounds/enemies/goblin/goblin_death.mp3" id="8_n3u63"]
 [ext_resource type="Texture2D" uid="uid://ctwplja6u2gus" path="res://assets/enemies/goblin_axe/Goblin-Attack02.png" id="9_qqhgt"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="10_eckug"]
 [ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="10_pinub"]
+[ext_resource type="AudioStream" uid="uid://bjhwk7gii4vl" path="res://sounds/enemies/goblin/goblin_hurt.mp3" id="10_ym7li"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="11_0q6c0"]
+[ext_resource type="AudioStream" uid="uid://xawujv28usq2" path="res://sounds/player/walk_grass.wav" id="14_ym7li"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -137,11 +139,15 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
+"end_offset": 1.0253,
+"start_offset": 0.5273,
+"stream": ExtResource("10_ym7li")
+}, {
 "end_offset": 0.165,
 "start_offset": 0.0,
-"stream": ExtResource("4_ggyu8")
+"stream": ExtResource("5_n3u63")
 }],
-"times": PackedFloat32Array(0.233333)
+"times": PackedFloat32Array(0.0333333, 0.233333)
 }
 tracks/4/use_blend = true
 
@@ -191,7 +197,7 @@ tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.233333, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.3, 0.566667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 0.2, 0.2, 1.3, 1.0]
@@ -216,11 +222,15 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
-"end_offset": 0.308,
+"end_offset": 0.9933,
+"start_offset": 0.5273,
+"stream": ExtResource("10_ym7li")
+}, {
+"end_offset": 0.2012,
 "start_offset": 0.0,
-"stream": ExtResource("6_qm15l")
+"stream": ExtResource("5_n3u63")
 }],
-"times": PackedFloat32Array(0.266667)
+"times": PackedFloat32Array(0.0333333, 0.266667)
 }
 tracks/5/use_blend = true
 
@@ -275,6 +285,25 @@ tracks/3/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.6381,
+"start_offset": 0.6258,
+"stream": ExtResource("8_n3u63")
+}, {
+"end_offset": 1.338,
+"start_offset": 1.0036,
+"stream": ExtResource("8_n3u63")
+}],
+"times": PackedFloat32Array(0, 0.233333)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ad0aq"]
 resource_name = "hurt"
@@ -315,6 +344,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 1.0154,
+"start_offset": 0.4988,
+"stream": ExtResource("10_ym7li")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o735a"]
 resource_name = "idle"
@@ -461,6 +505,25 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.2887,
+"start_offset": 0.0,
+"stream": ExtResource("14_ym7li")
+}, {
+"end_offset": 0.2887,
+"start_offset": 0.0,
+"stream": ExtResource("14_ym7li")
+}],
+"times": PackedFloat32Array(0.0666667, 0.566667)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dw0q2c0hap3yb" path="res://script/projectiles/arrow.gd" id="1_yi3td"]
 [ext_resource type="Texture2D" uid="uid://2sahbgsfxbf" path="res://assets/projectiles/arrow/arrow_collide-Sheet.png" id="2_iyfe7"]
+[ext_resource type="AudioStream" uid="uid://dbm54fl5wh6ta" path="res://sounds/player/arrow-fly_collide.mp3" id="3_m2i7i"]
 
 [sub_resource type="Animation" id="Animation_nl28u"]
 length = 0.001
@@ -33,16 +34,26 @@ tracks/0/keys = {
 "update": 1,
 "values": [2, 1, 2, 3, 4, 5]
 }
-
-[sub_resource type="Animation" id="Animation_36eux"]
-resource_name = "fly"
-length = 0.1
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sound_effect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.6948,
+"start_offset": 0.4889,
+"stream": ExtResource("3_m2i7i")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhd7i"]
 _data = {
 &"RESET": SubResource("Animation_nl28u"),
-&"collide": SubResource("Animation_m2i7i"),
-&"fly": SubResource("Animation_36eux")
+&"collide": SubResource("Animation_m2i7i")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql5rp"]
@@ -52,6 +63,8 @@ size = Vector2(17, 2)
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("1_yi3td")
+
+[node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
 
 [node name="body" type="Node2D" parent="."]
 

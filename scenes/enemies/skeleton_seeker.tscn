@@ -1,15 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://n0aqnps0relb"]
+[gd_scene load_steps=29 format=3 uid="uid://n0aqnps0relb"]
 
 [ext_resource type="Script" uid="uid://cqi08r7nijjpy" path="res://script/enemies/skeleton_seeker.gd" id="1_avnel"]
 [ext_resource type="Texture2D" uid="uid://bjxsgv472nvb5" path="res://assets/enemies/Skeleton_Seeker/skeleton_seeker_spawn.png" id="1_dlgb4"]
 [ext_resource type="Texture2D" uid="uid://suipxnrxu18i" path="res://assets/enemies/Skeleton_Seeker/skeleton_skeleton_attack.png" id="2_dlgb4"]
 [ext_resource type="Texture2D" uid="uid://cec5wxx1wngv6" path="res://assets/enemies/Skeleton_Seeker/skeleton_seeker_death.png" id="3_avnel"]
 [ext_resource type="Texture2D" uid="uid://cqmj02adlixgq" path="res://assets/enemies/Skeleton_Seeker/skeleton_seeker_damage.png" id="4_lsdcn"]
+[ext_resource type="AudioStream" uid="uid://1boq45trrb0h" path="res://sounds/enemies/skeleton/floor_impact.mp3" id="5_k4dl8"]
 [ext_resource type="Texture2D" uid="uid://2gh16qmakwpf" path="res://assets/enemies/Skeleton_Seeker/skeleton_seeker_idle.png" id="5_kss01"]
 [ext_resource type="Texture2D" uid="uid://dvgdj1jycp077" path="res://assets/enemies/Skeleton_Seeker/skeleton_seeker_walk.png" id="6_fm6o6"]
+[ext_resource type="AudioStream" uid="uid://ciu5v7mgnt362" path="res://sounds/enemies/skeleton/skeleton_death.mp3" id="7_5dghh"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="8_5s7un"]
 [ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="8_278ia"]
 [ext_resource type="PackedScene" uid="uid://d1gfpyvfxrtjw" path="res://constructors/type_spawn.tscn" id="8_fcies"]
+[ext_resource type="AudioStream" uid="uid://dot0gbgp46yad" path="res://sounds/enemies/skeleton/skeleton_steps.mp3" id="8_k8qmc"]
+[ext_resource type="AudioStream" uid="uid://dw8iaeei25qn2" path="res://sounds/enemies/skeleton/skeleton_hit.mp3" id="9_02ouj"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="9_byvye"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
@@ -173,6 +177,25 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.7188,
+"start_offset": 0.072,
+"stream": ExtResource("8_k8qmc")
+}, {
+"end_offset": 2.9484,
+"start_offset": 0.0,
+"stream": ExtResource("5_k4dl8")
+}],
+"times": PackedFloat32Array(0.0333333, 0.5)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_y02my"]
 resource_name = "die"
@@ -225,6 +248,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [5]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.7144,
+"start_offset": 0.7245,
+"stream": ExtResource("7_5dghh")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ad0aq"]
 resource_name = "hurt"
@@ -265,6 +303,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.149,
+"start_offset": 0.1035,
+"stream": ExtResource("9_02ouj")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o735a"]
 resource_name = "idle"
@@ -523,6 +576,36 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(0, -13), Vector2(0, -17), Vector2(0, -19)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sound_effect")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 2.4173,
+"start_offset": 0.0,
+"stream": ExtResource("5_k4dl8")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/7/use_blend = true
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sound_effect")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 1.6435,
+"start_offset": 0.7546,
+"stream": ExtResource("7_5dghh")
+}],
+"times": PackedFloat32Array(0.533333)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_phf0r"]
 resource_name = "walk"
@@ -576,6 +659,25 @@ tracks/3/keys = {
 "update": 1,
 "values": [6]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.8749,
+"start_offset": 0.0,
+"stream": ExtResource("8_k8qmc")
+}, {
+"end_offset": 0.8749,
+"start_offset": 0.0,
+"stream": ExtResource("8_k8qmc")
+}],
+"times": PackedFloat32Array(0.0666667, 0.666667)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {

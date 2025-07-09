@@ -1,7 +1,7 @@
 extends Node
 
-var max_level_parts := 1
-var min_level_parts := 1
+var max_level_parts := 0
+var min_level_parts := 0
 var parts_to_create := 0
 var repeat := true
 

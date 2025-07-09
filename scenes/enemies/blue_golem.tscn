@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c13fg4s25upwf"]
+[gd_scene load_steps=25 format=3 uid="uid://c13fg4s25upwf"]
 
 [ext_resource type="Texture2D" uid="uid://brhnk5cxkpa1b" path="res://assets/enemies/golem_blue/Golem_1.png" id="1_370ft"]
 [ext_resource type="Script" uid="uid://cdg064eo3fwvy" path="res://script/enemies/golem_blue.gd" id="1_ad0aq"]
@@ -6,10 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="3_lrdse"]
 [ext_resource type="Texture2D" uid="uid://dsomvp3y3dtbj" path="res://assets/enemies/golem_blue/Golem_1_attack.png" id="3_phf0r"]
 [ext_resource type="Texture2D" uid="uid://bkukeblh63gm2" path="res://assets/enemies/golem_blue/Golem_1_idle.png" id="4_daps1"]
+[ext_resource type="AudioStream" uid="uid://cmuwx12su88ol" path="res://sounds/enemies/golem/monster-roar.mp3" id="4_w54fj"]
 [ext_resource type="Texture2D" uid="uid://dl0c1iivk5vmi" path="res://assets/enemies/golem_blue/Golem_1_die.png" id="5_ad0aq"]
 [ext_resource type="Texture2D" uid="uid://cc6ns8kpur1vr" path="res://assets/enemies/golem_blue/Golem_1_hurt.png" id="6_daps1"]
+[ext_resource type="AudioStream" uid="uid://bkjtubf8o7qyt" path="res://sounds/enemies/golem/rock_impact_break.mp3" id="7_734p0"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="8_agjj3"]
 [ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="9_agjj3"]
+[ext_resource type="AudioStream" uid="uid://dgjrcxcm5lbqq" path="res://sounds/enemies/golem/monster-footsteps.mp3" id="10_v8fur"]
 
 [sub_resource type="Animation" id="Animation_daps1"]
 length = 0.001
@@ -113,6 +116,25 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.3903,
+"start_offset": 0.0,
+"stream": ExtResource("4_w54fj")
+}, {
+"end_offset": 5.0045,
+"start_offset": 0.3355,
+"stream": ExtResource("7_734p0")
+}],
+"times": PackedFloat32Array(0.0666667, 0.566667)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_y02my"]
 resource_name = "die"
@@ -153,6 +175,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 4.2382,
+"start_offset": 0.4213,
+"stream": ExtResource("7_734p0")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ad0aq"]
 resource_name = "hurt"
@@ -193,6 +230,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 5.1929,
+"start_offset": 0.4121,
+"stream": ExtResource("7_734p0")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o735a"]
 resource_name = "idle"
@@ -314,6 +366,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 4.106,
+"start_offset": 0.5198,
+"stream": ExtResource("10_v8fur")
+}, {
+"end_offset": 4.106,
+"start_offset": 0.5198,
+"stream": ExtResource("10_v8fur")
+}],
+"times": PackedFloat32Array(0, 0.566667)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0aq"]
 _data = {
@@ -340,6 +411,8 @@ height = 32.0
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_ad0aq")
+
+[node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
 
 [node name="body" type="Node2D" parent="."]
 

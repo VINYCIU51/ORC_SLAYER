@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://m77gyi0qm1su"]
+[gd_scene load_steps=17 format=3 uid="uid://m77gyi0qm1su"]
 
 [ext_resource type="Texture2D" uid="uid://c5de47hqwdwlc" path="res://assets/enemies/slime/slime-Sheet.png" id="1_h41jg"]
 [ext_resource type="Script" uid="uid://pijxk8c151gl" path="res://script/enemies/slime.gd" id="1_rjbn8"]
 [ext_resource type="Texture2D" uid="uid://c4eccorarf8cc" path="res://assets/enemies/slime/slime-idle-0.png" id="2_4pt07"]
 [ext_resource type="PackedScene" uid="uid://bp0s1ukob2e4l" path="res://constructors/type_patrol.tscn" id="4_ankfk"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="4_ft43y"]
+[ext_resource type="AudioStream" uid="uid://cwdcts6rxcs0r" path="res://sounds/enemies/slime/slime_death.mp3" id="4_uhx0m"]
+[ext_resource type="AudioStream" uid="uid://bl76bxctdpyql" path="res://sounds/enemies/slime/slime_hit.mp3" id="5_7uxu4"]
+[ext_resource type="AudioStream" uid="uid://qw8yu788jx1v" path="res://sounds/enemies/slime/slime_walk.mp3" id="6_mdcui"]
 
 [sub_resource type="Animation" id="Animation_ft43y"]
 length = 0.001
@@ -108,6 +111,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 2.782,
+"start_offset": 0.1047,
+"stream": ExtResource("4_uhx0m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_oncw2"]
 resource_name = "hurt"
@@ -160,6 +178,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(2, 2), Vector2i(1, 2), Vector2i(0, 2)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.4206,
+"start_offset": 0.0,
+"stream": ExtResource("5_7uxu4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ankfk"]
 resource_name = "idle"
@@ -266,6 +299,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 17.2291,
+"start_offset": 0.0,
+"stream": ExtResource("6_mdcui")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oncw2"]
 _data = {
@@ -291,6 +339,7 @@ slide_on_ceiling = false
 script = ExtResource("1_rjbn8")
 
 [node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
+max_distance = 300.0
 
 [node name="body" type="Node2D" parent="."]
 

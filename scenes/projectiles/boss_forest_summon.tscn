@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://mgstarbb5sen"]
+
+[ext_resource type="Script" uid="uid://3odsyc7eenqc" path="res://script/projectiles/boss_forest_summon.gd" id="1_epv3r"]
+[ext_resource type="Texture2D" uid="uid://cp5apncjga3df" path="res://assets/enemies/bosses/Bringer-of-Death-SpritSheet.png" id="1_ojqip"]
+[ext_resource type="AudioStream" uid="uid://djlvbwacdxqli" path="res://sounds/enemies/boss_forest/portal.mp3" id="3_o1e7d"]
+[ext_resource type="AudioStream" uid="uid://bdbhygn1hmj0c" path="res://sounds/enemies/beasts/bear_bite.mp3" id="4_e7g4b"]
+
+[sub_resource type="Animation" id="Animation_fbuq8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(4, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../collision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, 4.67879)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o1e7d"]
+resource_name = "attack"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.92521e-05, 0.0988842, 0.2, 0.299595, 0.4, 0.5, 0.59919, 0.698786, 0.799901, 0.899497, 1.00061, 1.09931, 1.20043, 1.29927, 1.4, 1.49903),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../collision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 0.466667, 0.533333, 0.633333, 0.733333, 1.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, -2), Vector2(-5, 10), Vector2(-5, 18), Vector2(-5, 28), Vector2(-5, 35), Vector2(-5, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.03333, 1.59928),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.1955,
+"start_offset": 0.2385,
+"stream": ExtResource("3_o1e7d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../sound_effect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.4425,
+"start_offset": 0.8675,
+"stream": ExtResource("4_e7g4b")
+}],
+"times": PackedFloat32Array(0.7)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1e7d"]
+_data = {
+&"RESET": SubResource("Animation_fbuq8"),
+&"attack": SubResource("Animation_o1e7d")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojqip"]
+
+[node name="BossSummon" type="CharacterBody2D" groups=["enemies_ranged_attacks"]]
+collision_layer = 128
+collision_mask = 16
+script = ExtResource("1_epv3r")
+
+[node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="body"]
+texture = ExtResource("1_ojqip")
+hframes = 8
+vframes = 8
+frame = 52
+
+[node name="animation" type="AnimationPlayer" parent="body"]
+libraries = {
+&"": SubResource("AnimationLibrary_o1e7d")
+}
+autoplay = "attack"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 4.67879)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ojqip")
+
+[connection signal="animation_finished" from="body/animation" to="." method="_on_animation_animation_finished"]

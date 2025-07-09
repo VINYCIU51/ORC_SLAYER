@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://blxj1n4w4gq46"]
+[gd_scene load_steps=11 format=3 uid="uid://blxj1n4w4gq46"]
 
 [ext_resource type="Script" uid="uid://bgsiectk2k3v3" path="res://script/projectiles/fire_ball.gd" id="1_mregq"]
 [ext_resource type="Texture2D" uid="uid://c1fhehjs4c0nr" path="res://assets/projectiles/Fire_Ball/Move.png" id="2_mregq"]
 [ext_resource type="Texture2D" uid="uid://bcdyin52h8g5g" path="res://assets/projectiles/Fire_Ball/Explosion.png" id="3_cwvyg"]
+[ext_resource type="AudioStream" uid="uid://cg0da38o8wgt" path="res://sounds/enemies/fire_worm/fireball_explosion.mp3" id="4_b6dau"]
+[ext_resource type="AudioStream" uid="uid://tdnm48d7k2au" path="res://sounds/enemies/fire_worm/fireball_fly.mp3" id="5_tqtec"]
 
 [sub_resource type="Animation" id="Animation_5wpuf"]
 length = 0.001
@@ -130,6 +132,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../sound_effect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 2.0465,
+"start_offset": 0.337,
+"stream": ExtResource("4_b6dau")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ihgs8"]
 resource_name = "move"
@@ -171,6 +188,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../sound_effect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 4.934,
+"start_offset": 0.0615,
+"stream": ExtResource("5_tqtec")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvolk"]
 _data = {
@@ -183,11 +215,13 @@ _data = {
 radius = 5.0
 height = 17.0
 
-[node name="fire_ball" type="CharacterBody2D" groups=["enemies_projectiles"]]
+[node name="fire_ball" type="CharacterBody2D" groups=["enemies_ranged_attacks"]]
 collision_layer = 128
 collision_mask = 17
 script = ExtResource("1_mregq")
 metadata/_edit_vertical_guides_ = [8.0]
+
+[node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
 
 [node name="body" type="Node2D" parent="."]
 

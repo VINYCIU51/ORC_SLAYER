@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://xawujv28usq2" path="res://sounds/player/walk_grass.wav" id="12_fcs02"]
 [ext_resource type="Script" uid="uid://o0cwlky1oa73" path="res://script/player/player_parry.gd" id="12_un1rg"]
 [ext_resource type="AudioStream" uid="uid://bl0ti1p2x5ag1" path="res://sounds/player/arrow_shoot.mp3" id="15_yj68g"]
-[ext_resource type="AudioStream" uid="uid://bsdb55oq3gpfp" path="res://sounds/player/PENITENT_HIT_DAMAGE_2.wav" id="16_3j4b4"]
+[ext_resource type="AudioStream" uid="uid://bsdb55oq3gpfp" path="res://sounds/player/sucess_parry.wav" id="16_3j4b4"]
 
 [sub_resource type="Animation" id="Animation_ya2v2"]
 length = 0.001
@@ -85,6 +85,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound_effects:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [11.0]
+}
 
 [sub_resource type="Animation" id="Animation_ii4c0"]
 resource_name = "air_shoot"
@@ -132,7 +144,7 @@ tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.9),
+"times": PackedFloat32Array(0, 0.833333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.3, 1.0]
@@ -151,21 +163,33 @@ tracks/4/keys = {
 "method": &"shoot"
 }]
 }
-tracks/5/type = "audio"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sounds/low_volume")
+tracks/5/path = NodePath("sound_effects:volume_db")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.366667, 0.833333, 0.85),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 16.0]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound_effects")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 0.0955,
 "start_offset": 0.0,
 "stream": ExtResource("15_yj68g")
 }],
 "times": PackedFloat32Array(0.533333)
 }
-tracks/5/use_blend = true
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bncfn"]
 resource_name = "attack"
@@ -233,7 +257,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sounds/high_volume")
+tracks/5/path = NodePath("sound_effects")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -288,7 +312,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sounds/high_volume")
+tracks/3/path = NodePath("sound_effects")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -343,7 +367,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sounds/high_volume")
+tracks/3/path = NodePath("sound_effects")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -463,7 +487,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sounds/high_volume")
+tracks/3/path = NodePath("sound_effects")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -478,7 +502,7 @@ tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_un1rg"]
 resource_name = "parry"
-length = 0.3
+length = 0.26
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -530,12 +554,12 @@ tracks/3/keys = {
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("sounds/high_volume")
+tracks/4/path = NodePath("sound_effects")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
-"end_offset": 0.42,
+"end_offset": 0.4895,
 "start_offset": 0.0,
 "stream": ExtResource("11_uf5tr")
 }],
@@ -545,7 +569,7 @@ tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jglmw"]
 resource_name = "shoot"
-length = 0.82
+length = 0.85
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -589,7 +613,7 @@ tracks/3/path = NodePath("body/animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.9),
+"times": PackedFloat32Array(0, 0.833333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.5, 1.0]
@@ -608,21 +632,33 @@ tracks/4/keys = {
 "method": &"shoot"
 }]
 }
-tracks/5/type = "audio"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sounds/low_volume")
+tracks/5/path = NodePath("sound_effects:volume_db")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.433333, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 15.0]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound_effects")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("15_yj68g")
 }],
-"times": PackedFloat32Array(0.433333)
+"times": PackedFloat32Array(0.432015)
 }
-tracks/5/use_blend = true
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3luku"]
 resource_name = "successful_parry"
@@ -678,16 +714,16 @@ tracks/3/keys = {
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("sounds/high_volume")
+tracks/4/path = NodePath("sound_effects")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
-"end_offset": 0.4562,
+"end_offset": 0.5103,
 "start_offset": 0.0,
 "stream": ExtResource("16_3j4b4")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.0333333)
 }
 tracks/4/use_blend = true
 
@@ -758,7 +794,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sounds/high_volume")
+tracks/5/path = NodePath("sound_effects")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -809,23 +845,19 @@ height = 21.0
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 collision_layer = 2
-collision_mask = 9
+collision_mask = 265
 script = ExtResource("1_33vod")
 
-[node name="sounds" type="Node2D" parent="."]
-
-[node name="high_volume" type="AudioStreamPlayer2D" parent="sounds"]
+[node name="sound_effects" type="AudioStreamPlayer2D" parent="."]
 volume_db = 11.0
-
-[node name="low_volume" type="AudioStreamPlayer2D" parent="sounds"]
 
 [node name="body" type="Node2D" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("3_n4r3a")
-hframes = 6
+texture = ExtResource("10_ii4c0")
+hframes = 3
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")

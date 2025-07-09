@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://baqe4hvi2yjut"]
+[gd_scene load_steps=4 format=3 uid="uid://baqe4hvi2yjut"]
+
+[ext_resource type="AudioStream" uid="uid://bwfqlfqu36ly8" path="res://sounds/maps/main_menu.wav" id="1_b5nk6"]
+[ext_resource type="Texture2D" uid="uid://vmc4trjnlhr8" path="res://assets/interface/main_menu_bg.png" id="1_uidtg"]
 
 [sub_resource type="GDScript" id="GDScript_106gw"]
 script/source = "extends Control
@@ -28,27 +31,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_106gw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_b5nk6")
+volume_db = 0.5
+autoplay = true
+max_distance = 1e+15
+
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(5.41471e-08, 0.174474, 0.174516, 1)
+texture = ExtResource("1_uidtg")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -117.0
-offset_top = 232.0
-offset_right = 117.0
-offset_bottom = 301.0
+offset_left = -136.0
+offset_top = 229.0
+offset_right = 107.0
+offset_bottom = 298.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
-text = "orc slayer"
+text = "Orc slayer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -59,10 +73,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.5
-offset_top = -56.0
-offset_right = 48.5
-offset_bottom = 56.0
+offset_left = -100.0
+offset_top = 104.0
+offset_right = 100.0
+offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12

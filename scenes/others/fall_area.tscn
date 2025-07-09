@@ -5,10 +5,12 @@ script/source = "extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		get_tree().reload_current_scene()
+		body.is_dead = true
 "
 
 [node name="fall_area" type="Area2D"]
+collision_layer = 256
+collision_mask = 2
 script = SubResource("GDScript_jid73")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
