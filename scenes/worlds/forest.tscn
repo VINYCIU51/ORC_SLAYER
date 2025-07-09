@@ -20,6 +20,8 @@ max_distance = 1e+15
 
 [node name="invisible_limit" type="StaticBody2D" parent="."]
 position = Vector2(-21, 101)
+collision_layer = 256
+collision_mask = 0
 
 [node name="collision" type="CollisionShape2D" parent="invisible_limit"]
 position = Vector2(-87.5, -101)
