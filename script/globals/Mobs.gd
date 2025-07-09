@@ -9,8 +9,8 @@ func shoot(projectile : PackedScene, where_should_create : Node, position : Vect
 	projectile_instance.position = position
 
 # Faz aparecer um summon na posicao especificada
-func summon(summon : PackedScene, where_should_create : Node, position : Vector2):
-	var summon_instance = summon.instantiate()
+func summon(summon_object : PackedScene, where_should_create : Node, position : Vector2):
+	var summon_instance = summon_object.instantiate()
 	where_should_create.add_sibling(summon_instance, true)
 	
 	summon_instance.position = position
