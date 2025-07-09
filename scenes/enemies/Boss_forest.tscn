@@ -1,11 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwffx4ihofkx8"]
+[gd_scene load_steps=26 format=3 uid="uid://dwffx4ihofkx8"]
 
 [ext_resource type="Script" uid="uid://cr3kluyx2nwd8" path="res://script/enemies/boss_forest.gd" id="1_5462e"]
 [ext_resource type="Texture2D" uid="uid://cp5apncjga3df" path="res://assets/enemies/bosses/Bringer-of-Death-SpritSheet.png" id="1_wr1lk"]
 [ext_resource type="AudioStream" uid="uid://bdbhygn1hmj0c" path="res://sounds/enemies/beasts/bear_bite.mp3" id="3_n7vyo"]
 [ext_resource type="AudioStream" uid="uid://d0xtgs446lvc2" path="res://sounds/enemies/goblin/heapon_hit.wav" id="4_fef1k"]
 [ext_resource type="PackedScene" uid="uid://chvuwfvxdoyh6" path="res://constructors/type_range_attack.tscn" id="4_ri067"]
+[ext_resource type="AudioStream" uid="uid://djlvbwacdxqli" path="res://sounds/enemies/boss_forest/portal.mp3" id="5_16faf"]
 [ext_resource type="PackedScene" uid="uid://mgstarbb5sen" path="res://scenes/projectiles/boss_forest_summon.tscn" id="5_d7kcw"]
+[ext_resource type="AudioStream" uid="uid://eegg3y4xapxu" path="res://sounds/enemies/boss_forest/teleport.mp3" id="6_jxwhp"]
+[ext_resource type="AudioStream" uid="uid://dgjrcxcm5lbqq" path="res://sounds/enemies/golem/monster-footsteps.mp3" id="7_jxwhp"]
 [ext_resource type="PackedScene" uid="uid://b77qqbhtkoncm" path="res://constructors/type_follower.tscn" id="14_g0ei0"]
 [ext_resource type="PackedScene" uid="uid://btpcfo20c7rvp" path="res://constructors/type_mellee.tscn" id="15_esdrm"]
 [ext_resource type="PackedScene" uid="uid://dcqby8u03xloy" path="res://scenes/others/hitbox.tscn" id="16_xg2qg"]
@@ -225,6 +228,21 @@ tracks/1/keys = {
 "method": &"summon_on_player"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sound_effect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.9145,
+"start_offset": 0.227,
+"stream": ExtResource("5_16faf")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jxwhp"]
 resource_name = "range_attack_2"
@@ -255,6 +273,25 @@ tracks/1/keys = {
 "method": &"teleport"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sound_effect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 1.6169,
+"start_offset": 0.0,
+"stream": ExtResource("6_jxwhp")
+}, {
+"end_offset": 1.5336,
+"start_offset": 0.033,
+"stream": ExtResource("6_jxwhp")
+}],
+"times": PackedFloat32Array(0.2, 1.2)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ri067"]
 resource_name = "walk"
@@ -272,6 +309,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sound_effect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 2.8586,
+"start_offset": 1.9751,
+"stream": ExtResource("7_jxwhp")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16faf"]
 _data = {
