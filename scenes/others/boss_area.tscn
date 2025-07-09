@@ -8,7 +8,7 @@ script/source = "extends Area2D
 @export var active_area: CollisionShape2D
 @export var boss : Enemy
 
-@onready var map_music : AudioStreamPlayer2D = Utils.get_main_scene(self).get_node(\"map_music\")
+#@onready var map_music : AudioStreamPlayer2D = Utils.get_main_scene(self).get_node(\"map_music\")
 @onready var music: AudioStreamPlayer2D = $boss_music
 @onready var limit: CollisionShape2D = $block_entrance/limit
 
@@ -19,13 +19,13 @@ func _physics_process(_delta: float) -> void:
 	if boss == null:
 		limit.call_deferred(\"set_disabled\", true)
 		music.stop()
-		map_music.stream_paused = false
-		map_music.seek(0)
+		#map_music.stream_paused = false
+		#map_music.seek(0)
 	
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and !is_activated:
 		is_activated = true
-		map_music.stream_paused = true
+		#map_music.stream_paused = true
 		music.play()
 		limit.call_deferred(\"set_disabled\", false)
 "
@@ -34,6 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 size = Vector2(14, 416)
 
 [node name="Boss_area" type="Area2D"]
+collision_layer = 256
 collision_mask = 2
 script = SubResource("GDScript_31c22")
 
@@ -45,6 +46,7 @@ pitch_scale = 1.5
 max_distance = 1e+15
 
 [node name="block_entrance" type="StaticBody2D" parent="."]
+collision_layer = 256
 collision_mask = 18
 
 [node name="limit" type="CollisionShape2D" parent="block_entrance"]
