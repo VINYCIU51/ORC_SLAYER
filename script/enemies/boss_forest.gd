@@ -9,7 +9,7 @@ func _ready() -> void:
 	damage = 1
 	num_range_attacks = 2
 	max_parry_resistance = 15
-	dist_follow = 350
+	dist_follow = 420
 	dist_mellee = 55
 	flip_compensation = -36
 	position_compensation = 36
