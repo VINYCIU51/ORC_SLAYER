@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1m8olakcx5in"]
+[gd_scene load_steps=3 format=3 uid="uid://d1m8olakcx5in"]
+
+[ext_resource type="FontFile" uid="uid://cap63tknikscs" path="res://fonts/Deutsch.ttf" id="1_1rdxg"]
 
 [sub_resource type="GDScript" id="GDScript_3rf4r"]
 script/source = "extends CanvasLayer
@@ -62,15 +64,19 @@ color = Color(0, 0, 0, 0.133333)
 
 [node name="Label" type="Label" parent="pause"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -165.0
-offset_top = 197.0
-offset_right = 165.0
-offset_bottom = 307.0
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -252.5
+offset_right = 228.0
+offset_bottom = -91.5
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 80
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1rdxg")
+theme_override_font_sizes/font_size = 150
 text = "Pausado"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="pause"]
@@ -80,22 +86,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -115.5
-offset_top = -57.5
-offset_right = 115.5
-offset_bottom = 57.5
+offset_left = -200.0
+offset_top = 25.5
+offset_right = 200.0
+offset_bottom = 164.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
 [node name="resume" type="Button" parent="pause/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("1_1rdxg")
+theme_override_font_sizes/font_size = 50
 text = "Continuar"
 
 [node name="back_menu" type="Button" parent="pause/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("1_1rdxg")
+theme_override_font_sizes/font_size = 50
 text = "Voltar ao menu"
 
 [connection signal="pressed" from="pause/VBoxContainer/resume" to="." method="_on_resume_pressed"]

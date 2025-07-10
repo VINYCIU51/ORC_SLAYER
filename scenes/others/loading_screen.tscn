@@ -1,15 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://c4744c272vkco"]
 
 [ext_resource type="Texture2D" uid="uid://dl176xobnnhjn" path="res://assets/player/Soldier-Walk.png" id="1_16i3j"]
-[ext_resource type="FontFile" uid="uid://itj0mwupgk6s" path="res://fonts/FiraSansCondensed-Bold.ttf" id="1_cxdcp"]
+[ext_resource type="FontFile" uid="uid://cap63tknikscs" path="res://fonts/Deutsch.ttf" id="2_16i3j"]
 
 [sub_resource type="GDScript" id="GDScript_7j4bw"]
 script/source = "extends Node2D
 
 @onready var animation: AnimationPlayer = $layer/animation
 @onready var layer: CanvasLayer = $layer
-@onready var sprite: AnimatedSprite2D = $layer/player_gif
 @onready var map_label: Label = $layer/map_label
+@onready var sprite: AnimatedSprite2D = $layer/VBoxContainer/player_gif
 
 # animacao de fade-in 
 func start():
@@ -290,6 +290,8 @@ _data = {
 light_mask = 0
 visibility_layer = 0
 script = SubResource("GDScript_7j4bw")
+metadata/_edit_vertical_guides_ = [961.0]
+metadata/_edit_horizontal_guides_ = [451.0]
 
 [node name="layer" type="CanvasLayer" parent="."]
 layer = 2
@@ -303,9 +305,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="player_gif" type="AnimatedSprite2D" parent="layer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="layer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -516.0
+offset_top = -113.0
+offset_right = -476.0
+offset_bottom = -73.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="player_gif" type="AnimatedSprite2D" parent="layer/VBoxContainer"]
 visible = false
-position = Vector2(1415, 786)
+position = Vector2(21, 20)
 rotation = -3.14159
 scale = Vector2(7, -7)
 sprite_frames = SubResource("SpriteFrames_n81si")
@@ -313,12 +328,17 @@ animation = &"walking"
 autoplay = "walking"
 
 [node name="load" type="Label" parent="layer"]
-offset_left = 1298.0
-offset_top = 710.0
-offset_right = 1919.0
-offset_bottom = 881.0
-theme_override_fonts/font = ExtResource("1_cxdcp")
-theme_override_font_sizes/font_size = 70
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -621.0
+offset_top = -171.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_16i3j")
+theme_override_font_sizes/font_size = 80
 text = "Loading"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -339,14 +359,20 @@ offset_bottom = -159.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 90
+theme_override_fonts/font = ExtResource("2_16i3j")
+theme_override_font_sizes/font_size = 100
 
 [node name="dots" type="Label" parent="layer"]
-offset_left = 1686.0
-offset_top = 713.0
-offset_right = 1885.0
-offset_bottom = 884.0
-theme_override_fonts/font = ExtResource("1_cxdcp")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_top = -171.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_16i3j")
 theme_override_font_sizes/font_size = 70
 text = ". . ."
 horizontal_alignment = 1

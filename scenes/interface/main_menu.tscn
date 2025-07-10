@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://baqe4hvi2yjut"]
+[gd_scene load_steps=5 format=3 uid="uid://baqe4hvi2yjut"]
 
 [ext_resource type="AudioStream" uid="uid://bwfqlfqu36ly8" path="res://sounds/maps/main_menu.wav" id="1_b5nk6"]
 [ext_resource type="Texture2D" uid="uid://vmc4trjnlhr8" path="res://assets/interface/main_menu_bg.png" id="1_uidtg"]
+[ext_resource type="FontFile" uid="uid://cap63tknikscs" path="res://fonts/Deutsch.ttf" id="3_bvgs0"]
 
 [sub_resource type="GDScript" id="GDScript_106gw"]
 script/source = "extends Control
@@ -51,18 +52,63 @@ grow_vertical = 2
 texture = ExtResource("1_uidtg")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="title" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -136.0
-offset_top = 229.0
-offset_right = 107.0
-offset_bottom = 298.0
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -191.5
+offset_right = 289.0
+offset_bottom = -30.5
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bvgs0")
+theme_override_font_sizes/font_size = 150
 text = "Orc slayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="demo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -100.0
+offset_right = 555.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.305422, 0.584504, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("3_bvgs0")
+theme_override_font_sizes/font_size = 50
+text = "demo
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="by" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1076.0
+offset_top = 357.0
+offset_right = -498.0
+offset_bottom = 534.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bvgs0")
+theme_override_font_sizes/font_size = 30
+text = "Created by Vinycius
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -83,12 +129,14 @@ theme_override_constants/separation = 12
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_bvgs0")
+theme_override_font_sizes/font_size = 50
 text = "iniciar"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_bvgs0")
+theme_override_font_sizes/font_size = 50
 text = "sair"
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
