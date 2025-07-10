@@ -220,8 +220,10 @@ collision_layer = 128
 collision_mask = 17
 script = ExtResource("1_mregq")
 metadata/_edit_vertical_guides_ = [8.0]
+metadata/_edit_horizontal_guides_ = [6.0]
 
 [node name="sound_effect" type="AudioStreamPlayer2D" parent="."]
+volume_db = -8.0
 
 [node name="body" type="Node2D" parent="."]
 
