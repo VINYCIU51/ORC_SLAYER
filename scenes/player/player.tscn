@@ -856,8 +856,8 @@ volume_db = 11.0
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, 1.5)
 scale = Vector2(1.33, 1.23)
-texture = ExtResource("10_ii4c0")
-hframes = 3
+texture = ExtResource("9_wlyqf")
+hframes = 9
 
 [node name="animation" type="AnimationPlayer" parent="body"]
 root_node = NodePath("../..")
@@ -867,7 +867,7 @@ libraries = {
 speed_scale = 1.5
 
 [node name="arrow_point" type="Marker2D" parent="body"]
-position = Vector2(5, 2)
+position = Vector2(9, 2)
 
 [node name="sword_attack" type="Area2D" parent="body" node_paths=PackedStringArray("player")]
 position = Vector2(19, 1)
