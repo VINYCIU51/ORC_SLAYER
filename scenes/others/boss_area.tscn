@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6r865peq26qt"]
+[gd_scene load_steps=3 format=3 uid="uid://c6r865peq26qt"]
 
 [ext_resource type="AudioStream" uid="uid://cw6noluxjbblk" path="res://sounds/maps/boss_default.wav" id="1_r7o17"]
 
@@ -7,31 +7,46 @@ script/source = "extends Area2D
 
 @export var active_area: CollisionShape2D
 @export var boss : Enemy
+@export var limit_entrance : CollisionShape2D
+@export var limit_exit : CollisionShape2D
 
-#@onready var map_music : AudioStreamPlayer2D = Utils.get_main_scene(self).get_node(\"map_music\")
+@onready var map_music : AudioStreamPlayer2D = Utils.get_main_scene(self).get_node(\"map_music\")
 @onready var music: AudioStreamPlayer2D = $boss_music
-@onready var limit: CollisionShape2D = $block_entrance/limit
+@onready var block_entrance: StaticBody2D = $block_entrance
 
 var is_activated := false
 
+func _ready() -> void:
+	limit_entrance.call_deferred(\"set_disabled\", true)
+	limit_exit.call_deferred(\"set_disabled\", true)
+
 func _physics_process(_delta: float) -> void:
 	
-	if boss == null:
-		limit.call_deferred(\"set_disabled\", true)
-		music.stop()
-		#map_music.stream_paused = false
-		#map_music.seek(0)
+	# adiciona os limites de entrada e saida da area
+	if limit_entrance.get_parent() != block_entrance:
+		limit_entrance.get_parent().remove_child(limit_entrance)
+		block_entrance.add_child(limit_entrance)
+		
+	if limit_exit.get_parent() != block_entrance:
+		limit_exit.get_parent().remove_child(limit_exit)
+		block_entrance.add_child(limit_exit)
 	
+	# desativa os limites e a musica ao matar o boss
+	if boss == null:
+		limit_entrance.call_deferred(\"set_disabled\", true)
+		limit_exit.call_deferred(\"set_disabled\", true)
+		music.stop()
+		map_music.stream_paused = false
+	
+	# bloqueia a saida do player ao ativar o boss
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and !is_activated:
 		is_activated = true
-		#map_music.stream_paused = true
+		map_music.stream_paused = true
 		music.play()
-		limit.call_deferred(\"set_disabled\", false)
+		limit_entrance.call_deferred(\"set_disabled\", false)
+		limit_exit.call_deferred(\"set_disabled\", false)
 "
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbym0"]
-size = Vector2(14, 416)
 
 [node name="Boss_area" type="Area2D"]
 collision_layer = 256
@@ -48,11 +63,5 @@ max_distance = 1e+15
 [node name="block_entrance" type="StaticBody2D" parent="."]
 collision_layer = 256
 collision_mask = 18
-
-[node name="limit" type="CollisionShape2D" parent="block_entrance"]
-position = Vector2(-315, 1)
-shape = SubResource("RectangleShape2D_hbym0")
-disabled = true
-debug_color = Color(2.06962e-06, 0.643051, 0.307013, 0.42)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
