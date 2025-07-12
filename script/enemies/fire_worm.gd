@@ -7,4 +7,5 @@ func _ready() -> void:
 	life = 6
 	speed = 60
 	dist_mellee = 0
-	should_jump = false
+	dist_follow = 350
+	should_jump = true

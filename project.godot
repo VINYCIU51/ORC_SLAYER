@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="knight"
+config/name="Orc Slayer"
 run/main_scene="uid://baqe4hvi2yjut"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bys6wstiokfcw"
 
 [autoload]
 
@@ -25,6 +25,7 @@ PauseMenu="*res://scenes/interface/pause_menu.tscn"
 PlayerInterface="*res://scenes/interface/player_interface.tscn"
 Utils="*res://scenes/others/Utils.tscn"
 DeathMenu="*res://scenes/interface/death_menu.tscn"
+DemoScreen="*res://scenes/interface/demo_screen.tscn"
 
 [display]
 

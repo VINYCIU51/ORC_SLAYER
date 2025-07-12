@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bdkig4nb7hp4c" path="res://scenes/NPCs/king.tscn" id="11_nyk56"]
 [ext_resource type="PackedScene" uid="uid://cpe005q76g1kk" path="res://scenes/NPCs/queen.tscn" id="12_11akb"]
 [ext_resource type="PackedScene" uid="uid://deci31t3kjw7s" path="res://scenes/others/dialog_area.tscn" id="13_11akb"]
-[ext_resource type="FontFile" uid="uid://itj0mwupgk6s" path="res://fonts/FiraSansCondensed-Bold.ttf" id="13_68qv1"]
+[ext_resource type="FontFile" uid="uid://cap63tknikscs" path="res://fonts/Deutsch.ttf" id="14_683nb"]
 [ext_resource type="PackedScene" uid="uid://bxy40a5eqt1kn" path="res://scenes/others/transition_area.tscn" id="14_apw5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ygy"]
@@ -110,22 +110,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -54.0
-offset_top = -43.0
-offset_right = 170.0
-offset_bottom = 23.0
+offset_left = -57.0
+offset_top = -62.0
+offset_right = 543.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("13_68qv1")
+theme_override_fonts/font = ExtResource("14_683nb")
+theme_override_font_sizes/font_size = 40
 text = "Por favor, Salve nossa filha, os monstros a levaram"
 autowrap_mode = 3
 ellipsis_char = ""
-visible_characters = 0
-visible_ratio = 0.0
+visible_ratio = -0.0196078
 
 [node name="combat_tutorial" parent="dialog_boxes" node_paths=PackedStringArray("label") instance=ExtResource("13_11akb")]
 position = Vector2(2619, 132)
@@ -137,17 +137,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = -78.5
-offset_right = 335.0
-offset_bottom = 48.5
+offset_left = -57.0
+offset_top = -62.0
+offset_right = 543.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("13_68qv1")
+theme_override_fonts/font = ExtResource("14_683nb")
+theme_override_font_sizes/font_size = 40
 text = "Combate:
 Mouse esquerdo: Ataque de espada
 Mouse direito: Parry
@@ -168,17 +169,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = -59.0
-offset_right = 358.0
-offset_bottom = 68.0
+offset_left = -57.0
+offset_top = -62.0
+offset_right = 543.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("13_68qv1")
+theme_override_fonts/font = ExtResource("14_683nb")
+theme_override_font_sizes/font_size = 40
 text = "Parry:
 para executar um parry, pressione mouse direito no momento do ataque
 
@@ -199,17 +201,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -57.0
-offset_right = 416.0
-offset_bottom = 70.0
+offset_left = -57.0
+offset_top = -62.0
+offset_right = 543.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("13_68qv1")
+theme_override_fonts/font = ExtResource("14_683nb")
+theme_override_font_sizes/font_size = 40
 text = "Escalada: 
 Flechas podem ser utilizadas para escalar lugares altos.
 lance uma flecha no segundo andar da torre  e salte sobre ela
@@ -227,4 +230,4 @@ scene_destine = "forest"
 limit_top = -160
 
 [node name="player" parent="." instance=ExtResource("3_1bcfs")]
-position = Vector2(3917, 122)
+position = Vector2(-40, 143)
