@@ -23,10 +23,12 @@ func _physics_process(delta: float) -> void:
 	set_state()
 	move_and_slide()
 
+# gira o npc
 func flip_sprite():
 	if direction != 0:
 		$body.scale.x = direction
 
+# controla as animaçoes
 func set_state():
 	var new_state = "idle"
 	
@@ -39,6 +41,7 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
+# aleatoriza a direcao e o tempo preso nela
 func randow_move():
 	direction = randi_range(-1,1)
 	move_cooldow = randf_range(1.0, 3.0)

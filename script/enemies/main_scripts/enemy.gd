@@ -90,6 +90,7 @@ func update_logic(delta: float):
 		if !animation.is_playing():
 			is_damaged = false
 
+# controla as animaçoes
 func set_state():
 	var new_state = "idle"
 
@@ -114,36 +115,46 @@ func set_state():
 		animation.play(new_state)
 		current_state = new_state
 
+# faz o mob receber dano
 func take_damage(dmg: int):
 	if Mobs.apply_damage(self, dmg):
 		Mobs.hit_blink(sprite)
 
+# gira o mob
 func flip_sprite():
+	# giro para o tipo que apenas anda de um lado para o outro
 	if type_patrol:
 		direction *= -1
-		
+	
+	# giro para o tipo perseguidor
 	if type_follower:
 		direction = 1 if global_position.x < player.global_position.x else -1
 	
+	# compensa a diferença da colisao (quando ao girar, a colisao sai do mob)
 	if flip_compensation != 0:
 		collision.position.x = direction * (flip_compensation + position_compensation)
-		
+	
+	# compensa a diferença de sprites, para suavisar o giro de sprites muito largos
 	if position_compensation != 0:
 		body.position.x = direction * position_compensation
 
 	body.scale.x = direction
 
+# controla certas flags com base no fim da animaçao
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":
 		queue_free()
 		
+	# controla se o mob ja foi ativado ou nao
 	elif anim_name == "spawn":
 		is_spawning = false
 		has_spawned = true
 
+	# diminue a resistencia aos parrys
 	elif anim_name == "parried" and has_parried:
 		has_parried = false
 		parry_resistance -= 1
 		
+		# fica stunado
 		if parry_resistance <= 0:
 			Mobs.take_stun(self)
