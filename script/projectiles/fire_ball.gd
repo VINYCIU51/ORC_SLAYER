@@ -24,6 +24,7 @@ func _physics_process(_delta):
 	
 	set_state()
 
+# define a animacao a ser tocada
 func set_state():
 	var new_state = "move"
 
